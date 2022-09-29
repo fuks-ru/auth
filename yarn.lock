@@ -1614,9 +1614,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-backend@workspace:0.3.12, @fuks-ru/auth-backend@workspace:entries/auth-backend":
+"@fuks-ru/auth-backend@workspace:0.3.12, @fuks-ru/auth-backend@workspace:entries/backend":
   version: 0.0.0-use.local
-  resolution: "@fuks-ru/auth-backend@workspace:entries/auth-backend"
+  resolution: "@fuks-ru/auth-backend@workspace:entries/backend"
   dependencies:
     "@fuks-ru/auth-constants": "workspace:0.0.1"
     "@fuks-ru/common": 0.0.4
@@ -1688,9 +1688,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@fuks-ru/auth-frontend@workspace:entries/auth-frontend":
+"@fuks-ru/auth-frontend@workspace:entries/frontend":
   version: 0.0.0-use.local
-  resolution: "@fuks-ru/auth-frontend@workspace:entries/auth-frontend"
+  resolution: "@fuks-ru/auth-frontend@workspace:entries/frontend"
   dependencies:
     "@ant-design/icons": ^4.7.0
     "@babel/core": ^7.19.1

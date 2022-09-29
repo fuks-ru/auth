@@ -121,7 +121,6 @@ jobs:
             docker rm auth-postgres || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth-nginx || true
-            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth-postgres || true
 
       - name: Pull docker containers
         uses: ./.github/actions/ssh-script
