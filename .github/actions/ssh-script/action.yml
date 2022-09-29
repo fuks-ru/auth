@@ -1,0 +1,36 @@
+name: 'Run ssh script'
+description: 'Run ssh script'
+inputs:
+  script:
+    description: 'Script for run'
+    required: true
+  secret-context:
+    description: 'Secret params'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run node script
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ fromJson(inputs.secret-context).SSH_HOST }}
+        username: ${{ fromJson(inputs.secret-context).SSH_NODE_USERNAME }}
+        key: ${{ fromJson(inputs.secret-context).SSH_NODE_PRIVATE_KEY }}
+        script_stop: true
+        script: |
+          export POSTGRES_PASSWORD="${{ fromJson(inputs.secret-context).POSTGRES_PASSWORD }}"
+          export POSTGRES_USER="${{ fromJson(inputs.secret-context).POSTGRES_USER }}"
+          export POSTGRES_HOST="auth-postgres"
+          export GOOGLE_AUTH_CLIENT_ID="${{ fromJson(inputs.secret-context).GOOGLE_AUTH_CLIENT_ID }}"
+  
+          export PERSONAL_NPM_TOKEN="${{ fromJson(inputs.secret-context).PERSONAL_NPM_TOKEN }}"
+          export JWT_SECRET="${{ fromJson(inputs.secret-context).JWT_SECRET }}"
+      
+          export MAILER_USER="${{ fromJson(inputs.secret-context).MAILER_USER }}"
+          export MAILER_PASSWORD="${{ fromJson(inputs.secret-context).MAILER_PASSWORD }}"
+          export MAILER_HOST="${{ fromJson(inputs.secret-context).MAILER_HOST }}"
+
+          export GOOGLE_RECAPTCHA_SECRET_KEY="${{ fromJson(inputs.secret-context).GOOGLE_RECAPTCHA_SECRET_KEY }}"
+
+          ${{inputs.script}}

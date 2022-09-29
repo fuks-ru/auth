@@ -1,0 +1,29 @@
+{
+  "name": "auth",
+  "description": "Auth service",
+  "main": "index.js",
+  "repository": "https://github.com/fuks-ru/auth",
+  "author": "Dmitry Fuks",
+  "license": "MIT",
+  "packageManager": "yarn@3.2.3",
+  "workspaces": [
+    "entries/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspaces foreach --interlaced --verbose --jobs=unlimited --parallel run dev",
+    "e2e": "yarn workspaces foreach --interlaced --verbose --parallel run e2e",
+    "prod": "yarn workspaces foreach --interlaced --verbose --jobs=unlimited --parallel run prod",
+    "build": "yarn workspaces foreach --interlaced --verbose --topological-dev --parallel run build",
+    "build:lib": "yarn workspaces foreach --interlaced --verbose --topological-dev --parallel run build:lib",
+    "prod:migration:run": "yarn workspaces foreach --interlaced --verbose --parallel run prod:migration:run",
+    "lint": "eslint \"{**/*,*}.{ts,tsx,js,jsx,json}\"",
+    "lint:fix": "yarn run lint --fix"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.2.0",
+    "eslint": "^8.24.0",
+    "eslint-config-fuks": "^1.8.2",
+    "typescript": "4.8.3"
+  }
+}

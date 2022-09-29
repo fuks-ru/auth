@@ -1,0 +1,37 @@
+name: 'Run node container'
+description: 'Run node container'
+inputs:
+  script:
+    description: 'Script for run'
+    required: true
+  detached:
+    description: 'Detached docker mode'
+    required: false
+  secret-context:
+    description: 'Secret params'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run node script
+      uses: ./.github/actions/ssh-script
+      with:
+        secret-context: ${{ inputs.secret-context }}
+        script: |
+          docker run --name auth \
+          --rm ${{ inputs.detached && '-d' }} \
+          -e POSTGRES_PASSWORD="${POSTGRES_PASSWORD}" \
+          -e POSTGRES_USER="${POSTGRES_USER}" \
+          -e POSTGRES_HOST="${POSTGRES_HOST}" \
+          -e GOOGLE_AUTH_CLIENT_ID="${GOOGLE_AUTH_CLIENT_ID}" \
+          -e JWT_SECRET="${JWT_SECRET}" \
+          -e PERSONAL_NPM_TOKEN="${PERSONAL_NPM_TOKEN}" \
+          -e MAILER_USER="${MAILER_USER}" \
+          -e MAILER_PASSWORD="${MAILER_PASSWORD}" \
+          -e MAILER_HOST="${MAILER_HOST}" \
+          -e GOOGLE_RECAPTCHA_SECRET_KEY="${GOOGLE_RECAPTCHA_SECRET_KEY}" \
+          -v "/server/fuks-blog/auth.fuks.ru/var":/app/entries/auth-backend/var \
+          --network="fuks-ru" \
+          difuks/auth \
+          ${{ inputs.script }}
