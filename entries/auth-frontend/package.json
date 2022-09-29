@@ -1,6 +1,6 @@
 {
   "name": "@fuks-ru/auth-frontend",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "My blog auth",
   "repository": "https://github.com/fuks-ru/auth",
   "author": "Dmitry Fuks",
@@ -15,7 +15,7 @@
     "@babel/preset-env": "^7.19.1",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
-    "@fuks-ru/auth-backend": "workspace:0.3.4",
+    "@fuks-ru/auth-backend": "workspace:0.3.5",
     "@fuks-ru/auth-constants": "workspace:0.0.1",
     "@fuks-ru/common": "0.0.4",
     "@fuks-ru/common-frontend": "0.0.4",
