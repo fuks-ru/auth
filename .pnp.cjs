@@ -3085,6 +3085,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-typescript", "virtual:405cddc6a3b50cfed2c3b50d08ad1161fe5fb160bf63da34b1734bf594f8237eb97b65ef1b1675919e171602353d7cd97c496b7523d785c2d27e0b9eeae22a61#npm:7.18.6"],\
             ["@fuks-ru/auth-backend", "virtual:405cddc6a3b50cfed2c3b50d08ad1161fe5fb160bf63da34b1734bf594f8237eb97b65ef1b1675919e171602353d7cd97c496b7523d785c2d27e0b9eeae22a61#workspace:entries/auth-backend"],\
             ["@fuks-ru/auth-constants", "workspace:packages/constants"],\
+            ["@fuks-ru/common", "npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.4%2Fdb4580da2f26673fecf24cc058a04d43ac66ca1b"],\
             ["@fuks-ru/common-frontend", "virtual:405cddc6a3b50cfed2c3b50d08ad1161fe5fb160bf63da34b1734bf594f8237eb97b65ef1b1675919e171602353d7cd97c496b7523d785c2d27e0b9eeae22a61#npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-frontend%2F0.0.4%2F5040ba338bb5ded73aa16ecd35628fa005a7b4c0"],\
             ["@linaria/core", "npm:4.1.2"],\
             ["@linaria/react", "virtual:405cddc6a3b50cfed2c3b50d08ad1161fe5fb160bf63da34b1734bf594f8237eb97b65ef1b1675919e171602353d7cd97c496b7523d785c2d27e0b9eeae22a61#npm:4.1.3"],\
@@ -3303,7 +3304,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@fuks-ru-common-frontend-virtual-6599171b63/0/cache/@fuks-ru-common-frontend-npm-0.0.4-709af81380-219b408cf0.zip/node_modules/@fuks-ru/common-frontend/",\
           "packageDependencies": [\
             ["@fuks-ru/common-frontend", "virtual:405cddc6a3b50cfed2c3b50d08ad1161fe5fb160bf63da34b1734bf594f8237eb97b65ef1b1675919e171602353d7cd97c496b7523d785c2d27e0b9eeae22a61#npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-frontend%2F0.0.4%2F5040ba338bb5ded73aa16ecd35628fa005a7b4c0"],\
-            ["@fuks-ru/common", null],\
+            ["@fuks-ru/common", "npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.4%2Fdb4580da2f26673fecf24cc058a04d43ac66ca1b"],\
             ["@types/axios", null],\
             ["@types/fuks-ru__common", null],\
             ["@types/react", "npm:18.0.21"],\
