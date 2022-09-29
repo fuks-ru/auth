@@ -1,6 +1,6 @@
 {
   "name": "@fuks-ru/auth-backend",
-  "version": "0.3.5",
+  "version": "0.3.12",
   "description": "My blog admin",
   "author": "Dmitry Fuks",
   "repository": "https://github.com/fuks-ru/auth",
@@ -20,7 +20,7 @@
     "prod:typeorm": "cross-env NODE_ENV=production node $(yarn bin typeorm) -d ./dist/build/Config/utils/ormconfig.js"
   },
   "files": [
-    "dist/lib",
+    "dist/lib/**/*",
     "README.md"
   ],
   "publishConfig": {
