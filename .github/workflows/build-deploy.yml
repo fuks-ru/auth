@@ -115,10 +115,13 @@ jobs:
           script: |
             docker container stop auth || true
             docker container stop auth-nginx || true
+            docker container stop auth-postgres || true
             docker rm auth || true
             docker rm auth-nginx || true
+            docker rm auth-postgres || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth-nginx || true
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth-postgres || true
 
       - name: Pull docker containers
         uses: ./.github/actions/ssh-script
