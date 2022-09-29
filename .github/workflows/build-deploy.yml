@@ -141,7 +141,7 @@ jobs:
             -e POSTGRES_USER="${POSTGRES_USER}" \
             -e POSTGRES_DB=auth \
             -e PGDATA=/var/lib/postgresql/data/pgdata \
-            -v "/server/fuks-blog/auth-backend-postgres/var":/var/lib/postgresql/data \
+            -v "/server/auth/postgres/var":/var/lib/postgresql/data \
             --network="fuks-ru" \
             postgres:14.2-alpine
 
