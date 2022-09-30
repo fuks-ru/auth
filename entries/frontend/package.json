@@ -1,9 +1,9 @@
 {
   "name": "@fuks-ru/auth-frontend",
+  "author": "Dmitry Fuks",
   "version": "0.3.4",
   "description": "My blog auth",
   "repository": "https://github.com/fuks-ru/auth",
-  "author": "Dmitry Fuks",
   "license": "ISC",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
