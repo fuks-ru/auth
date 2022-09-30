@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-import { Head } from 'frontend/shared/ui/Head';
+import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { Register } from 'frontend/features/Register';
 import { Layout } from 'frontend/widgets/Layout';

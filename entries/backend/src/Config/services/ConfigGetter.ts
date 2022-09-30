@@ -6,8 +6,6 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { GoogleRecaptchaModuleOptions } from '@nestlab/google-recaptcha';
 import { Request } from 'express';
 import * as path from 'node:path';
-import * as process from 'node:process';
-import { I18nTranslation } from 'nestjs-i18n';
 
 import { ormConfig } from 'backend/Config/utils/ormconfig';
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';

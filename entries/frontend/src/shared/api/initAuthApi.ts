@@ -10,7 +10,7 @@ import { errorInterceptor } from '@fuks-ru/common-frontend';
 import { AxiosRequestConfig } from 'axios';
 import { OperationResponse } from 'openapi-client-axios';
 
-import { backendUrl } from 'frontend/shared/config/constants';
+import { backendUrl } from 'frontend/shared/config';
 
 /**
  * Статус завершения запроса.

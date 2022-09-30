@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Head } from 'frontend/shared/ui/Head';
+import { Head } from 'frontend/shared/ui';
 import { Layout } from 'frontend/widgets/Layout';
 import { SendPasswordChange } from 'frontend/features/SendPasswordChange';
 

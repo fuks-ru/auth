@@ -2,7 +2,7 @@ import { Space } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Head } from 'frontend/shared/ui/Head';
+import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { LoginEmailPassword } from 'frontend/features/LoginEmailPassword';
 import { Layout } from 'frontend/widgets/Layout';

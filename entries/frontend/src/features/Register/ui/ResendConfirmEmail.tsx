@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useAuthApi } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
-import { useDifferenceInterval } from 'frontend/shared/lib/useDifferenceInterval';
+import { useDifferenceInterval } from 'frontend/shared/lib';
 
 interface IProps {
   email: string;

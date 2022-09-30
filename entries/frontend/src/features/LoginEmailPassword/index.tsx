@@ -6,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
-import { Link } from 'frontend/shared/ui/Link';
+import { Link } from 'frontend/shared/ui';
 
 /**
  * Форма входа.

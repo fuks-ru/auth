@@ -9,7 +9,7 @@ import { message } from 'antd';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useExecuteRecaptcha } from 'frontend/shared/lib/useExecuteRecaptcha';
+import { useExecuteRecaptcha } from 'frontend/shared/lib';
 import { getApiMethod, TStatus } from 'frontend/shared/api/initAuthApi';
 
 /**

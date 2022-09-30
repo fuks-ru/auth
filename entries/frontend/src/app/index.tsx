@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 import { initAuthApi } from 'frontend/shared/api/initAuthApi';
 import { App } from 'frontend/app/App';
-import 'frontend/shared/config/i18n';
+import 'frontend/shared/config';
 
 const container = document.querySelector('#app');
 

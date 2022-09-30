@@ -2,7 +2,7 @@ import { FC, lazy } from 'react';
 import { Route } from 'react-router-dom';
 
 import { AppProvider } from 'frontend/app/providers';
-import { routes } from 'frontend/shared/config/routes';
+import { routes } from 'frontend/shared/config';
 import { ConfirmEmailPage } from 'frontend/pages/ConfirmEmailPage';
 
 const RegisterPage = lazy(() => import('frontend/pages/RegisterPage'));

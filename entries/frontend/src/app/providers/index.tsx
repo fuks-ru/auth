@@ -4,7 +4,7 @@ import { BrowserRouter, Routes } from 'react-router-dom';
 import { GoogleRecaptchaProvider } from 'frontend/app/providers/GoogleRecaptchaProvider';
 import { RedirectFromProvider } from 'frontend/app/providers/RedirectFromProvider';
 import { ThemeProvider } from 'frontend/app/providers/ThemeProvider';
-import { Preloader } from 'frontend/shared/ui/Preloader';
+import { Preloader } from 'frontend/shared/ui';
 
 interface IProps {
   children: ReactNode;
