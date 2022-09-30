@@ -26,7 +26,10 @@ export const ResendForgotPassword: FC<IProps> = ({ email }) => {
       return;
     }
 
-    await sendForgotPassword({ email, redirectFrom });
+    await sendForgotPassword({
+      email,
+      redirectFrom: redirectFrom || undefined,
+    });
   }, [email, isRunning, redirectFrom, sendForgotPassword]);
 
   return (

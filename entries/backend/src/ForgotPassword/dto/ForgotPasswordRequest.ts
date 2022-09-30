@@ -18,7 +18,9 @@ export class ForgotPasswordRequest {
   /**
    * Путь для перенаправления.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public redirectFrom?: string;
 }
