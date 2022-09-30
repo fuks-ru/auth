@@ -13,9 +13,9 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
-import { env } from 'frontend/shared/config/env';
-
 import 'webpack-dev-server';
+
+import { env } from 'frontend/shared/config/env';
 import { isDevelopment, WEBPACK_PORT } from 'frontend/shared/config/constants';
 
 const plugins: WebpackPluginInstance[] = [

@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 
-import { authApi, initAuthApi } from 'frontend/shared/api/initAuthApi';
+import { initAuthApi } from 'frontend/shared/api/initAuthApi';
 import { App } from 'frontend/app/App';
 import 'frontend/shared/config/i18n';
 
