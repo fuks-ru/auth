@@ -36,10 +36,10 @@ runs:
           -e POSTGRES_USER="${{ fromJson(inputs.secret-context).POSTGRES_USER }}" \
           -e POSTGRES_HOST="${{ inputs.postgres-container }}" \
           -e GOOGLE_AUTH_CLIENT_ID="${{ fromJson(inputs.secret-context).GOOGLE_AUTH_CLIENT_ID }}" \
-          -e JWT_SECRET="${ fromJson(inputs.secret-context).JWT_SECRET }}" \
+          -e JWT_SECRET="${{ fromJson(inputs.secret-context).JWT_SECRET }}" \
           -e PERSONAL_NPM_TOKEN="${{ fromJson(inputs.secret-context).PERSONAL_NPM_TOKEN }}" \
           -e MAILER_USER="${{ fromJson(inputs.secret-context).MAILER_USER }}" \
-          -e MAILER_PASSWORD="${{ fromJson(inputs.secret-context).MAILER_PASSWORD }}}" \
+          -e MAILER_PASSWORD="${{ fromJson(inputs.secret-context).MAILER_PASSWORD }}" \
           -e MAILER_HOST="${{ fromJson(inputs.secret-context).MAILER_HOST }}" \
           -e GOOGLE_RECAPTCHA_SECRET_KEY="${{ fromJson(inputs.secret-context).GOOGLE_RECAPTCHA_SECRET_KEY }}" \
           -e DOMAIN="${{ inputs.domain }}" \
