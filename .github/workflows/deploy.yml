@@ -85,8 +85,8 @@ jobs:
           key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
           script: |
             docker run --name ${{ env.NGINX_CONTAINER }} \
-            -e DOMAIN=${{ env.AUTH_DOMAIN }}
-            -e BACKEND_CONTAINER=${{ env.BACKEND_CONTAINER }}
             --rm -d \
+            -e DOMAIN=${{ env.AUTH_DOMAIN }} \
+            -e BACKEND_CONTAINER=${{ env.BACKEND_CONTAINER }} \
             --network="fuks-ru" \
             difuks/auth-nginx
