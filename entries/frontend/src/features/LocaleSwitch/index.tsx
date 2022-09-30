@@ -2,7 +2,9 @@ import { FC } from 'react';
 import { Segmented } from 'antd';
 import { useTranslation } from 'react-i18next';
 import cookies from 'js-cookie';
-import { domainUrl } from '@fuks-ru/auth-constants';
+import extractDomain from 'extract-domain';
+
+window.extractDomain = extractDomain;
 
 /**
  * Компонент для смены текущего языка.
@@ -21,7 +23,7 @@ export const LocaleSwitch: FC = () => {
         cookies.set('i18next', value as string, {
           expires: 365,
           path: '/',
-          domain: domainUrl,
+          domain: extractDomain(window.location.hostname),
         });
 
         void i18n.changeLanguage(value as string);

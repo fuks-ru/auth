@@ -27,7 +27,6 @@
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
-    "@fuks-ru/auth-constants": "workspace:0.0.1",
     "@fuks-ru/common": "0.0.4",
     "@fuks-ru/common-backend": "0.1.6",
     "@nestjs-modules/mailer": "^1.8.1",

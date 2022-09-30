@@ -1,4 +1,3 @@
-import { ports, isDevelopment } from '@fuks-ru/auth-constants';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import * as path from 'node:path';
@@ -17,6 +16,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { env } from 'frontend/shared/config/env';
 
 import 'webpack-dev-server';
+import { isDevelopment, WEBPACK_PORT } from 'frontend/shared/config/constants';
 
 const plugins: WebpackPluginInstance[] = [
   new HtmlWebpackPlugin({
@@ -85,7 +85,7 @@ const config: Configuration = {
     ],
   },
   devServer: {
-    port: ports.AUTH_FRONTEND_PORT,
+    port: WEBPACK_PORT,
     hot: true,
     historyApiFallback: true,
   },

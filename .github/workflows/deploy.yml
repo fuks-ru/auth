@@ -1,0 +1,93 @@
+on:
+  workflow_call:
+    inputs:
+      domain-name:
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy
+
+    runs-on: ubuntu-latest
+
+    env:
+      BACKEND_CONTAINER: auth-${{ inputs.domain-name }}
+      NGINX_CONTAINER: auth-${{ inputs.domain-name }}-nginx
+      POSTGRES_CONTAINER: auth-${{ inputs.domain-name }}-postgres
+      DOMAIN: ${{ inputs.domain-name }}.ru
+      AUTH_DOMAIN: auth.${{ inputs.domain-name }}.ru
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Stop containers
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
+          script: |
+            docker container stop ${{ env.BACKEND_CONTAINER }} || true
+            docker container stop ${{ env.NGINX_CONTAINER }} || true
+            docker container ${{ env.POSTGRES_CONTAINER }} || true
+            docker rm ${{ env.BACKEND_CONTAINER }} || true
+            docker rm ${{ env.NGINX_CONTAINER }} || true
+            docker rm ${{ env.POSTGRES_CONTAINER }} || true
+
+      - name: Run database
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
+          script: |
+            docker run --name ${{ env.POSTGRES_CONTAINER }} \
+            --rm -d \
+            -e POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}" \
+            -e POSTGRES_USER="${{ secrets.POSTGRES_USER }}" \
+            -e POSTGRES_DB=auth \
+            -e PGDATA=/var/lib/postgresql/data/pgdata \
+            -v "/server/${{ env.BACKEND_CONTAINER }}/postgres/var":/var/lib/postgresql/data \
+            --network="fuks-ru" \
+            postgres:14.2-alpine
+
+      - name: Run migrations
+        uses: ./.github/actions/run-node
+        with:
+          domain: ${{ env.DOMAIN }}
+          backend-container: ${{ env.BACKEND_CONTAINER }}
+          postgres-container: ${{ env.POSTGRES_CONTAINER }}
+          secret-context: ${{ toJson(secrets) }}
+          script: yarn prod:migration:run
+
+      - name: Run node
+        uses: ./.github/actions/run-node
+        with:
+          domain: ${{ env.DOMAIN }}
+          backend-container: ${{ env.BACKEND_CONTAINER }}
+          postgres-container: ${{ env.POSTGRES_CONTAINER }}
+          secret-context: ${{ toJson(secrets) }}
+          detached: true
+          script: yarn prod
+
+      - name: Sleep for wait node start
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'
+
+      - name: Run nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
+          secret-context: ${{ toJson(secrets) }}
+          script: |
+            docker run --name ${{ env.NGINX_CONTAINER }} \
+            -e DOMAIN=${{ env.AUTH_DOMAIN }}
+            -e BACKEND_CONTAINER=${{ env.BACKEND_CONTAINER }}
+            --rm -d \
+            --network="fuks-ru" \
+            difuks/auth-nginx

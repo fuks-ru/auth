@@ -1,5 +1,6 @@
 import process from 'node:process';
-import { isDevelopment } from '@fuks-ru/auth-constants';
+
+import { isDevelopment } from 'frontend/shared/config/constants';
 
 /**
  * Переменные окружение, прокидываемые при сборке в приложение.

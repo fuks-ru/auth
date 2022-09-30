@@ -27,17 +27,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "@fuks-ru/auth-frontend",\
         "reference": "workspace:entries/frontend"\
-      },\
-      {\
-        "name": "@fuks-ru/auth-constants",\
-        "reference": "workspace:packages/constants"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
       ["@fuks-ru/auth-backend", ["virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#workspace:entries/backend", "workspace:entries/backend"]],\
-      ["@fuks-ru/auth-constants", ["workspace:packages/constants"]],\
       ["@fuks-ru/auth-frontend", ["workspace:entries/frontend"]],\
       ["auth", ["workspace:."]]\
     ],\
@@ -2933,7 +2928,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@fuks-ru-auth-backend-virtual-71cd6b2c50/1/entries/backend/",\
           "packageDependencies": [\
             ["@fuks-ru/auth-backend", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#workspace:entries/backend"],\
-            ["@fuks-ru/auth-constants", "workspace:packages/constants"],\
             ["@fuks-ru/common", "npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.4%2Fdb4580da2f26673fecf24cc058a04d43ac66ca1b"],\
             ["@fuks-ru/common-backend", "virtual:71cd6b2c50c867ab652030fdbec4f530368aeae8d1249c9de934325c68a6d83ca13bfaa4c1a20bdc6b9b1b0fba39c8f3f1c9e8b76418a1f8a556f2d950c23b83#npm:0.1.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.1.6%2F481a2f4c52229accb0e7a9f2f333f314577155c4"],\
             ["@nestjs-modules/mailer", "virtual:71cd6b2c50c867ab652030fdbec4f530368aeae8d1249c9de934325c68a6d83ca13bfaa4c1a20bdc6b9b1b0fba39c8f3f1c9e8b76418a1f8a556f2d950c23b83#npm:1.8.1"],\
@@ -3003,7 +2997,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./entries/backend/",\
           "packageDependencies": [\
             ["@fuks-ru/auth-backend", "workspace:entries/backend"],\
-            ["@fuks-ru/auth-constants", "workspace:packages/constants"],\
             ["@fuks-ru/common", "npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.4%2Fdb4580da2f26673fecf24cc058a04d43ac66ca1b"],\
             ["@fuks-ru/common-backend", "virtual:ef313f0d1995d7ec5b636df563a1d19b89ff93f76aa8e476d53f5aa17a2a50963c00aadb3a8604149095e7208e96bdc69902a2220d2e83ef90dac4d689358351#npm:0.1.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.1.6%2F481a2f4c52229accb0e7a9f2f333f314577155c4"],\
             ["@nestjs-modules/mailer", "virtual:ef313f0d1995d7ec5b636df563a1d19b89ff93f76aa8e476d53f5aa17a2a50963c00aadb3a8604149095e7208e96bdc69902a2220d2e83ef90dac4d689358351#npm:1.8.1"],\
@@ -3062,17 +3055,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT"\
         }]\
       ]],\
-      ["@fuks-ru/auth-constants", [\
-        ["workspace:packages/constants", {\
-          "packageLocation": "./packages/constants/",\
-          "packageDependencies": [\
-            ["@fuks-ru/auth-constants", "workspace:packages/constants"],\
-            ["@types/node", "npm:18.7.23"],\
-            ["typescript", "patch:typescript@npm%3A4.8.3#~builtin<compat/typescript>::version=4.8.3&hash=a1c5e5"]\
-          ],\
-          "linkType": "SOFT"\
-        }]\
-      ]],\
       ["@fuks-ru/auth-frontend", [\
         ["workspace:entries/frontend", {\
           "packageLocation": "./entries/frontend/",\
@@ -3084,7 +3066,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/preset-react", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:7.18.6"],\
             ["@babel/preset-typescript", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:7.18.6"],\
             ["@fuks-ru/auth-backend", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#workspace:entries/backend"],\
-            ["@fuks-ru/auth-constants", "workspace:packages/constants"],\
             ["@fuks-ru/common", "npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.4%2Fdb4580da2f26673fecf24cc058a04d43ac66ca1b"],\
             ["@fuks-ru/common-frontend", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:0.0.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-frontend%2F0.0.4%2F5040ba338bb5ded73aa16ecd35628fa005a7b4c0"],\
             ["@linaria/core", "npm:4.1.2"],\
@@ -3092,6 +3073,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@linaria/shaker", "npm:4.2.0"],\
             ["@linaria/webpack-loader", "npm:4.1.3"],\
             ["@pmmmwh/react-refresh-webpack-plugin", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:0.5.7"],\
+            ["@types/extract-domain", "npm:2.3.1"],\
             ["@types/js-cookie", "npm:3.0.2"],\
             ["@types/react", "npm:18.0.21"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -3104,6 +3086,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["cross-env", "npm:7.0.3"],\
             ["css-loader", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:6.7.1"],\
             ["date-fns", "npm:2.29.3"],\
+            ["extract-domain", "npm:2.4.8"],\
             ["fork-ts-checker-webpack-plugin", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:7.2.13"],\
             ["html-webpack-plugin", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:5.5.0"],\
             ["i18next", "npm:21.9.2"],\
@@ -5193,6 +5176,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.7.23"],\
             ["@types/qs", "npm:6.9.7"],\
             ["@types/range-parser", "npm:1.2.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/extract-domain", [\
+        ["npm:2.3.1", {\
+          "packageLocation": "./.yarn/cache/@types-extract-domain-npm-2.3.1-59fdad8a28-3a20b152df.zip/node_modules/@types/extract-domain/",\
+          "packageDependencies": [\
+            ["@types/extract-domain", "npm:2.3.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -10718,6 +10710,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["href-content", "npm:2.0.1"],\
             ["list-stylesheets", "npm:2.0.0"],\
             ["style-data", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["extract-domain", [\
+        ["npm:2.4.8", {\
+          "packageLocation": "./.yarn/cache/extract-domain-npm-2.4.8-f18700eb4f-ae46566449.zip/node_modules/extract-domain/",\
+          "packageDependencies": [\
+            ["extract-domain", "npm:2.4.8"],\
+            ["psl", "npm:1.9.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -17407,6 +17409,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/pseudomap-npm-1.0.2-0d0e40fee0-856c0aae0f.zip/node_modules/pseudomap/",\
           "packageDependencies": [\
             ["pseudomap", "npm:1.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["psl", [\
+        ["npm:1.9.0", {\
+          "packageLocation": "./.yarn/cache/psl-npm-1.9.0-a546edad1a-20c4277f64.zip/node_modules/psl/",\
+          "packageDependencies": [\
+            ["psl", "npm:1.9.0"]\
           ],\
           "linkType": "HARD"\
         }]\

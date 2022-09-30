@@ -1,4 +1,4 @@
-const prodDomainUrl = 'fuks.ru';
+const prodDomainUrl = '/';
 const devDomainUrl = 'localhost';
 
 /**
@@ -29,14 +29,10 @@ export const ports = {
 /**
  * Маршруты ко всем сервисам.
  */
-export const urls = {
-  AUTH_BACKEND_URL: isDevelopment
-    ? `http://${devDomainUrl}:${ports.AUTH_BACKEND_PORT}`
-    : `https://auth.${prodDomainUrl}`,
+export const devUrls = {
+  AUTH_BACKEND_URL: `http://${devDomainUrl}:${ports.AUTH_BACKEND_PORT}`,
 
-  AUTH_FRONTEND_URL: isDevelopment
-    ? `http://${devDomainUrl}:${ports.AUTH_FRONTEND_PORT}`
-    : `https://auth.${prodDomainUrl}`,
+  AUTH_FRONTEND_URL: `http://${devDomainUrl}:${ports.AUTH_FRONTEND_PORT}`,
 };
 
 /**

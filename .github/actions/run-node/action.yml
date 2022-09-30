@@ -10,28 +10,41 @@ inputs:
   secret-context:
     description: 'Secret params'
     required: true
+  domain:
+    description: 'Domain url'
+    required: true
+  backend-container:
+    description: 'Backend container name'
+    required: true
+  postgres-container:
+    description: 'Postgres container name'
+    required: true
 
 runs:
   using: composite
   steps:
     - name: Run node script
-      uses: ./.github/actions/ssh-script
+      uses: appleboy/ssh-action@master
       with:
+        host: ${{ fromJson(inputs.secret-context).SSH_HOST }}
+        username: ${{ fromJson(inputs.secret-context).SSH_NODE_USERNAME }}
+        key: ${{ fromJson(inputs.secret-context).SSH_NODE_PRIVATE_KEY }}
         secret-context: ${{ inputs.secret-context }}
         script: |
-          docker run --name auth \
+          docker run --name ${{ inputs.backend-container }} \
           --rm ${{ inputs.detached && '-d' }} \
-          -e POSTGRES_PASSWORD="${POSTGRES_PASSWORD}" \
-          -e POSTGRES_USER="${POSTGRES_USER}" \
-          -e POSTGRES_HOST="${POSTGRES_HOST}" \
-          -e GOOGLE_AUTH_CLIENT_ID="${GOOGLE_AUTH_CLIENT_ID}" \
-          -e JWT_SECRET="${JWT_SECRET}" \
-          -e PERSONAL_NPM_TOKEN="${PERSONAL_NPM_TOKEN}" \
-          -e MAILER_USER="${MAILER_USER}" \
-          -e MAILER_PASSWORD="${MAILER_PASSWORD}" \
-          -e MAILER_HOST="${MAILER_HOST}" \
-          -e GOOGLE_RECAPTCHA_SECRET_KEY="${GOOGLE_RECAPTCHA_SECRET_KEY}" \
-          -v "/server/auth/backend/var":/app/entries/backend/var \
+          -e POSTGRES_PASSWORD="${{ fromJson(inputs.secret-context).POSTGRES_PASSWORD }}" \
+          -e POSTGRES_USER="${{ fromJson(inputs.secret-context).POSTGRES_USER }}" \
+          -e POSTGRES_HOST="${{ inputs.postgres-container }}" \
+          -e GOOGLE_AUTH_CLIENT_ID="${{ fromJson(inputs.secret-context).GOOGLE_AUTH_CLIENT_ID }}" \
+          -e JWT_SECRET="${ fromJson(inputs.secret-context).JWT_SECRET }}" \
+          -e PERSONAL_NPM_TOKEN="${{ fromJson(inputs.secret-context).PERSONAL_NPM_TOKEN }}" \
+          -e MAILER_USER="${{ fromJson(inputs.secret-context).MAILER_USER }}" \
+          -e MAILER_PASSWORD="${{ fromJson(inputs.secret-context).MAILER_PASSWORD }}}" \
+          -e MAILER_HOST="${{ fromJson(inputs.secret-context).MAILER_HOST }}" \
+          -e GOOGLE_RECAPTCHA_SECRET_KEY="${{ fromJson(inputs.secret-context).GOOGLE_RECAPTCHA_SECRET_KEY }}" \
+          -e DOMAIN="${{ inputs.domain }}" \
+          -v "/server/${{ inputs.backend-container }}/backend/var":/app/entries/backend/var \
           --network="fuks-ru" \
           difuks/auth \
           ${{ inputs.script }}

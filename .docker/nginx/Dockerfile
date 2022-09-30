@@ -1,7 +1,5 @@
 FROM nginx:1.21.6-alpine
 
-WORKDIR /app
+COPY .docker/nginx/templates /etc/nginx/templates
 
-COPY .docker/nginx/data /etc/nginx/conf.d
-
-COPY public /public
+COPY public/auth /public/auth

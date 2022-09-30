@@ -1,5 +1,4 @@
 import { EnvGetter, ICommonModuleOptions } from '@fuks-ru/common-backend';
-import { API_PREFIX, ports, domainUrl } from '@fuks-ru/auth-constants';
 import { TransportType } from '@nestjs-modules/mailer/dist/interfaces/mailer-options.interface';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { JwtModuleOptions } from '@nestjs/jwt';
@@ -44,14 +43,14 @@ export class ConfigGetter {
    * Получает порт для апи.
    */
   public getApiPort(): number {
-    return ports.AUTH_BACKEND_PORT;
+    return 3_003;
   }
 
   /**
    * Получает префикс API.
    */
   public getApiPrefix(): string {
-    return API_PREFIX;
+    return '/api';
   }
 
   /**
@@ -166,8 +165,28 @@ export class ConfigGetter {
   /**
    * Получает корневой домен.
    */
-  public getDomain(): string {
-    return domainUrl;
+  public getRootDomain(): string {
+    return this.envGetter.isDev()
+      ? 'localhost'
+      : `${this.envGetter.getEnv('DOMAIN')}`;
+  }
+
+  /**
+   * Получает корневой домен со схемой.
+   */
+  public getRootDomainWithScheme(): string {
+    return this.envGetter.isDev()
+      ? 'http://localhost'
+      : `https://${this.envGetter.getEnv('DOMAIN')}`;
+  }
+
+  /**
+   * Получает домен фронта авторизации со схемой.
+   */
+  public getAuthDomainWithScheme(): string {
+    return this.envGetter.isDev()
+      ? 'http://localhost:3002'
+      : `https://auth.${this.envGetter.getEnv('DOMAIN')}`;
   }
 
   private getProdTypeOrmConfig(): TypeOrmModuleOptions {

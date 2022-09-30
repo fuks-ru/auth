@@ -1,4 +1,3 @@
-import { domainUrlWithScheme } from '@fuks-ru/auth-constants';
 import { FC, ReactNode, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ export const RedirectFromProvider: FC<IProps> = ({ children }) => {
   const [searchParams] = useSearchParams();
 
   const redirectFrom = useMemo(
-    () => searchParams.get('redirectFrom') || domainUrlWithScheme,
+    () => searchParams.get('redirectFrom'),
     [searchParams],
   );
 

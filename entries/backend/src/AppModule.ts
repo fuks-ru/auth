@@ -22,7 +22,7 @@ import { ConfigModule } from 'backend/Config/ConfigModule';
         statusResolver: configGetter.statusResolver,
         translations: configGetter.getTranslations(),
         logger: configGetter.getLoggerOptions(),
-        domain: configGetter.getDomain(),
+        domain: configGetter.getRootDomain(),
         apiPrefix: configGetter.getApiPrefix(),
       }),
     }),

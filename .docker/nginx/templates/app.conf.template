@@ -1,6 +1,6 @@
 server {
   listen 80;
-  server_name auth.fuks.ru;
+  server_name auth.${DOMAIN};
 
   location / {
       root /public/auth;
@@ -10,6 +10,6 @@ server {
   location /api {
     proxy_set_header X-Forwarded-For $remote_addr;
     proxy_set_header Host $http_host;
-    proxy_pass http://auth:3003;
+    proxy_pass http://${BACKEND_CONTAINER}:3003;
   }
 }

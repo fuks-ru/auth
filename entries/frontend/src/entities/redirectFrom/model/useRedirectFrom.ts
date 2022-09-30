@@ -5,4 +5,5 @@ import { RedirectFromContext } from 'frontend/entities/redirectFrom/model/Redire
 /**
  * Хук, получающий контекст, хранящий url для редиректа.
  */
-export const useRedirectFrom = (): string => useContext(RedirectFromContext);
+export const useRedirectFrom = (): string | null =>
+  useContext(RedirectFromContext);

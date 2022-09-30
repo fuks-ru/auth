@@ -2,7 +2,6 @@ import {
   RedirectErrorFactory,
   CookieSetterService,
 } from '@fuks-ru/common-backend';
-import { domainUrlWithScheme } from '@fuks-ru/auth-constants';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
@@ -32,8 +31,10 @@ export class LoginService {
       httpOnly: true,
     });
 
-    throw this.redirectErrorFactory.create({
-      location: redirectFrom || domainUrlWithScheme,
-    });
+    if (redirectFrom) {
+      throw this.redirectErrorFactory.create({
+        location: redirectFrom,
+      });
+    }
   }
 }

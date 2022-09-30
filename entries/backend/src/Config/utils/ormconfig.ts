@@ -1,7 +1,6 @@
-import { isDevelopment } from '@fuks-ru/auth-constants';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-const rootDir = isDevelopment ? 'src' : 'dist/build';
+const rootDir = process.env.NODE_ENV === 'development' ? 'src' : 'dist/build';
 
 /**
  * Prod конфиг БД.

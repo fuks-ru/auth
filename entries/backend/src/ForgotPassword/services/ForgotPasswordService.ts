@@ -1,11 +1,11 @@
 import { I18nResolver } from '@fuks-ru/common-backend';
-import { urls, domainUrlWithScheme } from '@fuks-ru/auth-constants';
 import { Injectable } from '@nestjs/common';
 import qs from 'qs';
 import { MailerService } from '@nestjs-modules/mailer';
 
 import { User } from 'backend/User/entities/User';
 import { ForgotPasswordCodeService } from 'backend/ForgotPassword/services/ForgotPasswordCodeService';
+import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 
 @Injectable()
 export class ForgotPasswordService {
@@ -13,6 +13,7 @@ export class ForgotPasswordService {
     private readonly mailerService: MailerService,
     private readonly forgotPasswordCodeService: ForgotPasswordCodeService,
     private readonly i18nResolver: I18nResolver,
+    private readonly configGetter: ConfigGetter,
   ) {}
 
   /**
@@ -20,7 +21,7 @@ export class ForgotPasswordService {
    */
   public async send(
     user: User,
-    redirectFrom: string = domainUrlWithScheme,
+    redirectFrom: string = this.configGetter.getRootDomainWithScheme(),
   ): Promise<void> {
     const forgotPasswordCode =
       await this.forgotPasswordCodeService.addForgotPasswordCodeToUser(
@@ -28,11 +29,11 @@ export class ForgotPasswordService {
         redirectFrom,
       );
 
-    const changePasswordUrl = `${
-      urls.AUTH_FRONTEND_URL
-    }/change-password?${qs.stringify({
-      forgotPasswordCode: forgotPasswordCode.value,
-    })}`;
+    const changePasswordUrl = `${this.configGetter.getAuthDomainWithScheme()}/change-password?${qs.stringify(
+      {
+        forgotPasswordCode: forgotPasswordCode.value,
+      },
+    )}`;
 
     const i18n = await this.i18nResolver.resolve();
 

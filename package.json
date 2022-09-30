@@ -7,8 +7,7 @@
   "license": "MIT",
   "packageManager": "yarn@3.2.3",
   "workspaces": [
-    "entries/*",
-    "packages/*"
+    "entries/*"
   ],
   "scripts": {
     "dev": "yarn workspaces foreach --interlaced --verbose --jobs=unlimited --parallel run dev",

@@ -6,10 +6,11 @@ import {
   TApiBody,
   TApiResponse,
 } from '@fuks-ru/auth-backend';
-import { urls } from '@fuks-ru/auth-constants';
 import { errorInterceptor } from '@fuks-ru/common-frontend';
 import { AxiosRequestConfig } from 'axios';
 import { OperationResponse } from 'openapi-client-axios';
+
+import { backendUrl } from 'frontend/shared/config/constants';
 
 /**
  * Статус завершения запроса.
@@ -26,7 +27,7 @@ export let authApi: Client;
  * Инициализирует Api.
  */
 export const initAuthApi = async (): Promise<void> => {
-  authApi = await getApi(urls.AUTH_BACKEND_URL);
+  authApi = await getApi(backendUrl);
 
   authApi.interceptors.response.use(undefined, errorInterceptor);
   authApi.defaults.headers.common.i18next = navigator.language;

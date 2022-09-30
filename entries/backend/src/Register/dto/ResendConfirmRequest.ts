@@ -12,7 +12,9 @@ export class ResendConfirmRequest {
   /**
    * Путь для перенаправления.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public redirectFrom?: string;
 }

@@ -43,7 +43,7 @@ jobs:
         run: yarn version apply --all
 
       - name: Publish packages
-        run: yarn workspaces foreach --include "@fuks-ru/{auth-backend,auth-constants}" --interlaced --verbose npm publish --tolerate-republish
+        run: yarn workspaces foreach --include "@fuks-ru/auth-backend" --interlaced --verbose npm publish --tolerate-republish
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -97,8 +97,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/auth-nginx:latest
 
-  deploy:
-    name: Deploy
+  pull-containers:
+    name: Pull containers
 
     needs: build
 
@@ -108,75 +108,47 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Stop and remove docker containers and remove images
-        uses: ./.github/actions/ssh-script
+      - name: Remove docker images
+        uses: appleboy/ssh-action@master
         with:
-          secret-context: ${{ toJson(secrets) }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
           script: |
-            docker container stop auth || true
-            docker container stop auth-nginx || true
-            docker container stop auth-postgres || true
-            docker rm auth || true
-            docker rm auth-nginx || true
-            docker rm auth-postgres || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth || true
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/auth-nginx || true
 
       - name: Pull docker containers
-        uses: ./.github/actions/ssh-script
+        uses: appleboy/ssh-action@master
         with:
-          secret-context: ${{ toJson(secrets) }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_NODE_USERNAME }}
+          key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/auth
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/auth-nginx
 
-      - name: Run auth database
-        uses: ./.github/actions/ssh-script
-        with:
-          secret-context: ${{ toJson(secrets) }}
-          script: |
-            docker run --name auth-postgres \
-            --rm -d \
-            -e POSTGRES_PASSWORD="${POSTGRES_PASSWORD}" \
-            -e POSTGRES_USER="${POSTGRES_USER}" \
-            -e POSTGRES_DB=auth \
-            -e PGDATA=/var/lib/postgresql/data/pgdata \
-            -v "/server/auth/postgres/var":/var/lib/postgresql/data \
-            --network="fuks-ru" \
-            postgres:14.2-alpine
+  deploy-fuks:
+    name: Deploy fuks
+    needs: [build, pull-containers]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      domain-name: fuks
+    secrets: inherit
 
-      - name: Run migrations
-        uses: ./.github/actions/run-node
-        with:
-          secret-context: ${{ toJson(secrets) }}
-          script: yarn prod:migration:run
+  deploy-esenin:
+    name: Deploy esenin
+    needs: [build, pull-containers]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      domain-name: esenin-family
+    secrets: inherit
 
-      - name: Run node
-        uses: ./.github/actions/run-node
-        with:
-          secret-context: ${{ toJson(secrets) }}
-          script: yarn prod
-          detached: true
-
-      - name: Sleep for wait node start
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '10s'
-
-      - name: Run nginx
-        uses: ./.github/actions/ssh-script
-        with:
-          secret-context: ${{ toJson(secrets) }}
-          script: |
-            docker run --name auth-nginx \
-            --rm -d \
-            --network="fuks-ru" \
-            difuks/auth-nginx
 
   notification:
       name: Notification
 
-      needs: [build, deploy]
+      needs: [build, pull-containers, deploy-fuks, deploy-esenin]
 
       runs-on: ubuntu-latest
 
@@ -198,6 +170,10 @@ jobs:
               
               [build and deploy](${{ env.ACTION_URL }}) by *${{ github.actor }}*
               
-              steps: build *${{ needs.build.result == 'success' && '✅' || '⛔️' }}* deploy *${{ needs.deploy.result == 'success' && '✅' || '⛔️' }}*
+              steps:
+              build *${{ needs.build.result == 'success' && '✅' || '⛔️' }}*
+              pull-containers *${{ needs.pull-containers.result == 'success' && '✅' || '⛔️' }}*
+              deploy-fuks *${{ needs.deploy-fuks.result == 'success' && '✅' || '⛔️' }}*
+              deploy-esenin *${{ needs.deploy-esenin.result == 'success' && '✅' || '⛔️' }}*
               
               [commit](${{ env.COMMIT_URL }})

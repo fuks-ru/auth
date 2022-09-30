@@ -26,7 +26,7 @@ export const ResendConfirmEmail: FC<IProps> = ({ email }) => {
       return;
     }
 
-    await resendConfirm({ email, redirectFrom });
+    await resendConfirm({ email, redirectFrom: redirectFrom || undefined });
   }, [email, isRunning, redirectFrom, resendConfirm]);
 
   return (
