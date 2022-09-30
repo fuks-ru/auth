@@ -29,7 +29,6 @@ runs:
         host: ${{ fromJson(inputs.secret-context).SSH_HOST }}
         username: ${{ fromJson(inputs.secret-context).SSH_NODE_USERNAME }}
         key: ${{ fromJson(inputs.secret-context).SSH_NODE_PRIVATE_KEY }}
-        secret-context: ${{ inputs.secret-context }}
         script: |
           docker run --name ${{ inputs.backend-container }} \
           --rm ${{ inputs.detached && '-d' }} \
