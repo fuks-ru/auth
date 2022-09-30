@@ -31,7 +31,7 @@ jobs:
           script: |
             docker container stop ${{ env.BACKEND_CONTAINER }} || true
             docker container stop ${{ env.NGINX_CONTAINER }} || true
-            docker container ${{ env.POSTGRES_CONTAINER }} || true
+            docker container stop ${{ env.POSTGRES_CONTAINER }} || true
             docker rm ${{ env.BACKEND_CONTAINER }} || true
             docker rm ${{ env.NGINX_CONTAINER }} || true
             docker rm ${{ env.POSTGRES_CONTAINER }} || true
