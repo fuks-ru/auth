@@ -16,6 +16,7 @@ void i18n
     interpolation: {
       escapeValue: false,
     },
+    supportedLngs: ['ru-RU', 'en-US'],
   });
 
 export { default as i18n } from 'i18next';

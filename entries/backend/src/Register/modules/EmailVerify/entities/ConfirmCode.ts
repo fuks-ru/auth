@@ -28,7 +28,9 @@ export class ConfirmCode {
   /**
    * Url для перехода после активации.
    */
-  @Column()
+  @Column({
+    nullable: true,
+  })
   public redirectFrom!: string;
 
   /**

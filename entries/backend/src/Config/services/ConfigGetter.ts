@@ -11,8 +11,8 @@ import { I18nTranslation } from 'nestjs-i18n';
 
 import { ormConfig } from 'backend/Config/utils/ormconfig';
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
-import enUs from 'backend/__i18n__/enUS.json';
-import ruRU from 'backend/__i18n__/ruRU.json';
+import enUs from 'backend/__i18n__/en-US.json';
+import ruRU from 'backend/__i18n__/ru-RU.json';
 
 interface IRequest extends Request {
   headers: {
@@ -136,16 +136,7 @@ export class ConfigGetter {
   /**
    * Возвращает переводы.
    */
-  public getTranslations(): {
-    /**
-     * Английские переводы.
-     */
-    'en-US': I18nTranslation;
-    /**
-     * Русские переводы.
-     */
-    'ru-RU': I18nTranslation;
-  } {
+  public getTranslations(): ICommonModuleOptions['translations'] {
     return {
       'en-US': enUs,
       'ru-RU': ruRU,
