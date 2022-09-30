@@ -83,7 +83,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_NODE_USERNAME }}
           key: ${{ secrets.SSH_NODE_PRIVATE_KEY }}
-          secret-context: ${{ toJson(secrets) }}
           script: |
             docker run --name ${{ env.NGINX_CONTAINER }} \
             -e DOMAIN=${{ env.AUTH_DOMAIN }}
