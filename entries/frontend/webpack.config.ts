@@ -15,7 +15,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 import 'webpack-dev-server';
 
-import { isDevelopment, WEBPACK_PORT } from 'frontend/shared/config';
+import { isDevelopment, WEBPACK_PORT } from 'frontend/shared/config/constants';
 
 const env = {
   NODE_ENV: process.env.NODE_ENV,
