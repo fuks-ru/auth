@@ -14,7 +14,7 @@
   "incorrectConfirmLink": "Некорректная ссылка для подтверждения",
   "passwordRecovery": "Восстановление пароля",
   "sendOrLogin": "<0>Отправить</0> или <2>войти</2>",
-  "changePasswordEmailSent": "Письмо с ссылкой на смену пароля отправлено вам на email. Письмо не пришло?",
+  "changePasswordEmailSent": "Письмо с ссылкой на смену пароля отправлено вам на email {{ email }} (проверьте спам). Письмо не пришло?",
   "googleApiResponseError": "Нет ответа от Google API",
   "loginWithGoogle": "Войти через Google",
   "authTitle": "{{ title }} | Авторизация",

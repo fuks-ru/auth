@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { Register } from 'frontend/features/Register';
-import { Layout } from 'frontend/widgets/Layout';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -16,13 +15,13 @@ const RegisterPage: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
   const { t } = useTranslation();
 
   return (
-    <Layout>
+    <>
       <Head title={t('registration')} />
       <Space direction='vertical'>
         <Register onFinishEmail={onFinishEmail} onSuccess={onSuccess} />
         <LoginGoogle />
       </Space>
-    </Layout>
+    </>
   );
 };
 

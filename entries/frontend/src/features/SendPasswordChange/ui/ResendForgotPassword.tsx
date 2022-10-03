@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react';
-import { Button, Card, Form, Input, Typography } from 'antd';
+import { Button, Card, Form, Typography } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -28,14 +28,12 @@ export const ResendForgotPassword: FC<IProps> = ({ email }) => {
         initialValues={{ email, redirectFrom }}
         onFinish={onFinish}
       >
-        <Form.Item hidden={true} name='email'>
-          <Input />
-        </Form.Item>
-        <Form.Item hidden={true} name='redirectFrom'>
-          <Input />
-        </Form.Item>
+        <Form.Item hidden={true} name='email' />
+        <Form.Item hidden={true} name='redirectFrom' />
         <Form.Item>
-          <Typography.Text>{t('changePasswordEmailSent')}</Typography.Text>
+          <Typography.Text>
+            {t('changePasswordEmailSent', { email })}
+          </Typography.Text>
         </Form.Item>
         <Form.Item noStyle={true}>
           <Button

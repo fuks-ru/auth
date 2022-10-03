@@ -1,4 +1,4 @@
-import { Form, Input, message } from 'antd';
+import { Form, message } from 'antd';
 import { FC, useCallback } from 'react';
 import GoogleLogin, {
   GoogleLoginResponse,
@@ -42,9 +42,7 @@ export const LoginGoogle: FC = () => {
 
   return (
     <Form form={form} initialValues={{ redirectFrom }} onFinish={onFinish}>
-      <Form.Item name='redirectFrom' hidden={true}>
-        <Input hidden={true} readOnly={true} />
-      </Form.Item>
+      <Form.Item name='redirectFrom' hidden={true} />
       <Form.Item name='accessToken'>
         <GoogleLogin
           clientId={process.env.GOOGLE_AUTH_CLIENT_ID as string}

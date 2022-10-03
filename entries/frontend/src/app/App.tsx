@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import { AppProvider } from 'frontend/app/providers';
 import { routes } from 'frontend/shared/config';
+import { Layout } from 'frontend/widgets/Layout';
 
 const Registration = lazy(() => import('frontend/processes/Registration'));
 const LoginSuccessPage = lazy(() => import('frontend/pages/LoginSuccessPage'));
@@ -18,7 +19,7 @@ const ChangePasswordPage = lazy(
  * Главный компонент авторизации.
  */
 export const App: FC = () => (
-  <AppProvider>
+  <AppProvider Wrapper={Layout}>
     <Route path={routes.login} element={<LoginPage />} />
     <Route path={`${routes.registration}/*`} element={<Registration />} />
     <Route path={routes.forgotPassword} element={<ForgotPasswordPage />} />

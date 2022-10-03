@@ -1,4 +1,4 @@
-import { CommonModule } from '@fuks-ru/common-backend';
+import { CommonModule, EnvGetter } from '@fuks-ru/common-backend';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
@@ -36,11 +36,11 @@ import { ConfigModule } from 'backend/Config/ConfigModule';
     BasicAuthModule,
     AuthModule,
     MailerModule.forRootAsync({
-      inject: [ConfigGetter],
+      inject: [ConfigGetter, EnvGetter],
       useFactory: (configGetter: ConfigGetter) => ({
         transport: configGetter.getMailerTransport(),
         defaults: {
-          from: `"Fuks Blog" <${configGetter.getMailerFrom()}>`,
+          from: `"${configGetter.getRootDomain()}" <${configGetter.getMailerFrom()}>`,
         },
       }),
     }),

@@ -1,9 +1,8 @@
 import { Button, Card, Form, Input, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
@@ -25,9 +24,7 @@ export const LoginEmailPassword: FC = () => {
   return (
     <Card title={t('login')}>
       <Form form={form} initialValues={{ redirectFrom }} onFinish={onFinish}>
-        <Form.Item name='redirectFrom' noStyle={true}>
-          <Input hidden={true} readOnly={true} />
-        </Form.Item>
+        <Form.Item name='redirectFrom' noStyle={true} />
         <Form.Item name='email'>
           <Input
             prefix={<UserOutlined className={opacityIcon} />}

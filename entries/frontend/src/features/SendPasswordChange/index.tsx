@@ -34,9 +34,7 @@ export const SendPasswordChange: FC = () => {
           setEmail(body.email);
         }}
       >
-        <Form.Item name='redirectFrom' noStyle={true}>
-          <Input hidden={true} readOnly={true} />
-        </Form.Item>
+        <Form.Item name='redirectFrom' noStyle={true} />
         <Form.Item name='email'>
           <Input
             prefix={<UserOutlined className={opacityIcon} />}

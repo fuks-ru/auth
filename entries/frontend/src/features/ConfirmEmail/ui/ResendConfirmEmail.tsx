@@ -1,9 +1,8 @@
-import { styled } from '@linaria/react';
-import { Button, Card, Form, Space, Typography } from 'antd';
-import { FC, useCallback } from 'react';
+import { Button, Form, Typography } from 'antd';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthApi, useAuthForm } from 'frontend/shared/api';
+import { useAuthForm } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { useDifferenceInterval } from 'frontend/shared/lib';
 
@@ -27,14 +26,13 @@ export const ResendConfirmEmail: FC<IProps> = ({ email }) => {
       initialValues={{ redirectFrom, email }}
       onFinish={onFinish}
     >
+      <Form.Item hidden={true} name='email' />
+      <Form.Item hidden={true} name='redirectFrom' />
       <Form.Item>
-        <Typography.Text>{t('confirmEmailSent')}</Typography.Text>
+        <Typography.Text>{t('confirmEmailSent', { email })}</Typography.Text>
       </Form.Item>
       <Form.Item noStyle={true}>
-        <Button
-          disabled={isRunning || status === 'pending'}
-          htmlType='submit'
-        >
+        <Button disabled={isRunning || status === 'pending'} htmlType='submit'>
           {isRunning ? t('resendAfter', { secondsToNextSend }) : t('resend')}
         </Button>
       </Form.Item>

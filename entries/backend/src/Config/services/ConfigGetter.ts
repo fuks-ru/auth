@@ -188,7 +188,7 @@ export class ConfigGetter {
   private getDevTypeOrmConfig(): TypeOrmModuleOptions {
     return {
       type: 'sqlite',
-      database: path.join(process.cwd(), './var/fuks-blog-auth-sqlite'),
+      database: path.join(process.cwd(), './var/auth-sqlite'),
       synchronize: true,
       entities: ['**/entities/**/*.ts'],
       autoLoadEntities: true,

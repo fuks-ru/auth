@@ -31,6 +31,7 @@ const Registration: FC = () => {
   );
 };
 
+/**
+ * Процесс регистрации, объединяющий регистрацию и подтверждение email.
+ */
 export default Registration;
-
-export { routes } from 'frontend/processes/Registration/model/routes';

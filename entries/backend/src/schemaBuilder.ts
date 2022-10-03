@@ -12,7 +12,7 @@ import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 
   app.setGlobalPrefix(configGetter.getApiPrefix());
 
-  const document = swaggerService.createDocument('Fuks block auth', app);
+  const document = swaggerService.createDocument('Auth', app);
 
   await swaggerService.generateApiContract(document);
 })();

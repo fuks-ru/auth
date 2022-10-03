@@ -23,9 +23,7 @@ export const ChangePassword: FC = () => {
         initialValues={{ forgotPasswordCode }}
         onFinish={onFinish}
       >
-        <Form.Item name='forgotPasswordCode' noStyle={true}>
-          <Input hidden={true} readOnly={true} />
-        </Form.Item>
+        <Form.Item name='forgotPasswordCode' noStyle={true} />
         <Form.Item name='password'>
           <Input
             type='password'

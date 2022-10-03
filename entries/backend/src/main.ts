@@ -20,7 +20,7 @@ import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
     credentials: true,
   });
 
-  const document = swaggerService.createDocument('Fuks auth', app);
+  const document = swaggerService.createDocument('Auth', app);
 
   swaggerService.setupRoute(configGetter.getApiPrefix(), app, document);
 

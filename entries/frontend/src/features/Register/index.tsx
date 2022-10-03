@@ -40,9 +40,7 @@ export const Register: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
           onFinishEmail(body.email);
         }}
       >
-        <Form.Item name='redirectFrom' noStyle={true}>
-          <Input hidden={true} readOnly={true} />
-        </Form.Item>
+        <Form.Item name='redirectFrom' noStyle={true} />
         <Form.Item name='email'>
           <Input
             placeholder={t('email')}
