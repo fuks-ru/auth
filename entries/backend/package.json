@@ -1,7 +1,7 @@
 {
   "name": "@fuks-ru/auth-backend",
   "author": "Dmitry Fuks",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "My blog admin",
   "repository": "https://github.com/fuks-ru/auth",
   "license": "ISC",
