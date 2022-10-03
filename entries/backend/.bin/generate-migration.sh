@@ -2,18 +2,18 @@ export POSTGRES_HOST="localhost"
 export POSTGRES_USER="root"
 export POSTGRES_PASSWORD="root"
 
-docker run --name fuks-blog-auth-postgres \
+docker run --name auth-postgres \
   --rm -d \
   -e POSTGRES_PASSWORD="$POSTGRES_USER" \
   -e POSTGRES_USER="$POSTGRES_PASSWORD" \
   -e POSTGRES_DB=auth \
   -e PGDATA=/var/lib/postgresql/data/pgdata \
-  -v "/$(pwd)/var/fuks-blog-auth-postgres":/var/lib/postgresql/data \
+  -v "/$(pwd)/var/auth-postgres":/var/lib/postgresql/data \
   -p 5432:5432 \
   postgres:14.2-alpine
 
-yarn dev:typeorm migration:generate "/$(pwd)/src/__migration__/$1"
-
 yarn dev:typeorm migration:run
 
-docker stop fuks-blog-auth-postgres
+yarn dev:typeorm migration:generate "$(pwd)/src/__migration__/$1"
+
+docker stop auth-postgres

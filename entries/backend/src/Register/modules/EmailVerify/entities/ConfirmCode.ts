@@ -31,7 +31,7 @@ export class ConfirmCode {
   @Column({
     nullable: true,
   })
-  public redirectFrom!: string;
+  public redirectFrom?: string;
 
   /**
    * Пользователь.
