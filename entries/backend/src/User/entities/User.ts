@@ -14,8 +14,9 @@ import type { ForgotPasswordCode } from 'backend/ForgotPassword/entities/ForgotP
  * Описывает роли пользователя.
  */
 export enum Role {
-  ADMIN = 0,
-  USER = 1,
+  ADMIN = 'admin',
+  MODERATOR = 'moderator',
+  USER = 'user',
 }
 
 @Entity({ name: 'users' })

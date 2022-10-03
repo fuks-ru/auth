@@ -18,6 +18,8 @@ export class UserVerifyResponse {
   /**
    * Роль.
    */
-  @ApiProperty()
+  @ApiProperty({
+    enum: Role,
+  })
   public role!: Role;
 }

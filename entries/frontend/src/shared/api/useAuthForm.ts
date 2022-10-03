@@ -65,6 +65,8 @@ export const useAuthForm = <
         }
 
         if (error instanceof RedirectError) {
+          window.location.assign(error.data.location);
+
           return;
         }
 
