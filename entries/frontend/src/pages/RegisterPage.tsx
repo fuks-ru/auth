@@ -7,14 +7,19 @@ import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { Register } from 'frontend/features/Register';
 import { Layout } from 'frontend/widgets/Layout';
 
-const RegisterPage: FC = () => {
+interface IProps {
+  onFinishEmail: (email: string) => void;
+  onSuccess: () => void;
+}
+
+const RegisterPage: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
   const { t } = useTranslation();
 
   return (
     <Layout>
       <Head title={t('registration')} />
       <Space direction='vertical'>
-        <Register />
+        <Register onFinishEmail={onFinishEmail} onSuccess={onSuccess} />
         <LoginGoogle />
       </Space>
     </Layout>

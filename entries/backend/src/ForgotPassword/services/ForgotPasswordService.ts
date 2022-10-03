@@ -19,14 +19,11 @@ export class ForgotPasswordService {
   /**
    * Отправляет код восстановления пароля пользователю.
    */
-  public async send(
-    user: User,
-    redirectFrom: string = this.configGetter.getRootDomainWithScheme(),
-  ): Promise<void> {
+  public async send(user: User, redirectFrom?: string): Promise<void> {
     const forgotPasswordCode =
       await this.forgotPasswordCodeService.addForgotPasswordCodeToUser(
         user,
-        redirectFrom,
+        redirectFrom || this.configGetter.getRootDomainWithScheme(),
       );
 
     const changePasswordUrl = `${this.configGetter.getAuthDomainWithScheme()}/change-password?${qs.stringify(

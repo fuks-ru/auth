@@ -1,28 +1,33 @@
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Button, Form, Input, Card } from 'antd';
-import { FC, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
-import { ResendConfirmEmail } from 'frontend/features/Register/ui/ResendConfirmEmail';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { Link } from 'frontend/shared/ui';
+import { routes } from 'frontend/shared/config';
+
+interface IProps {
+  onFinishEmail: (email: string) => void;
+  onSuccess: () => void;
+}
 
 /**
  * Форма регистрации.
  */
-export const Register: FC = () => {
+export const Register: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
   const [form, onFinish, status] = useAuthForm('registerBasic');
   const { t } = useTranslation();
 
-  const [email, setEmail] = useState<string>();
-
   const redirectFrom = useRedirectFrom();
 
-  if (status === 'success' && email) {
-    return <ResendConfirmEmail email={email} />;
-  }
+  useEffect(() => {
+    if (status === 'success') {
+      onSuccess();
+    }
+  }, [onSuccess, status]);
 
   return (
     <Card title={t('registration')}>
@@ -32,7 +37,7 @@ export const Register: FC = () => {
         onFinish={async (body) => {
           await onFinish(body);
 
-          setEmail(body.email);
+          onFinishEmail(body.email);
         }}
       >
         <Form.Item name='redirectFrom' noStyle={true}>
@@ -68,7 +73,7 @@ export const Register: FC = () => {
             >
               Register
             </Button>
-            or<Link route='login'>login</Link>
+            or<Link route={routes.login}>login</Link>
           </Trans>
         </Form.Item>
       </Form>

@@ -1,10 +1,8 @@
 import { FC, ReactNode } from 'react';
 import { Link as LinkBase, useLocation } from 'react-router-dom';
 
-import { routes } from 'frontend/shared/config/routes';
-
 interface IProps {
-  route: keyof typeof routes;
+  route: string;
   children: ReactNode;
   saveQuery?: boolean;
 }
@@ -15,7 +13,7 @@ interface IProps {
 export const Link: FC<IProps> = ({ children, route, saveQuery = true }) => {
   const { search } = useLocation();
 
-  const to = `${routes[route]}${saveQuery ? search : ''}`;
+  const to = `${route}${saveQuery ? search : ''}`;
 
   return <LinkBase to={to}>{children}</LinkBase>;
 };

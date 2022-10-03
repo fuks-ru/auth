@@ -21,6 +21,6 @@ export class ConfirmationController {
   })
   @Public()
   public async confirm(@Body() body: ConfirmRequest): Promise<void> {
-    await this.confirmationService.confirm(body.confirmCode);
+    await this.confirmationService.confirm(body);
   }
 }

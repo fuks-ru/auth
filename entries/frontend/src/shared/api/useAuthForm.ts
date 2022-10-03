@@ -1,5 +1,5 @@
 import { TMethods, TApiArgs, TApiBody } from '@fuks-ru/auth-backend';
-import { UnknownError, ValidationError } from '@fuks-ru/common-frontend';
+import { SystemError, ValidationError, RedirectError } from '@fuks-ru/common';
 import { Form, FormInstance, message } from 'antd';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -64,7 +64,11 @@ export const useAuthForm = <
           return;
         }
 
-        if (error instanceof UnknownError) {
+        if (error instanceof RedirectError) {
+          return;
+        }
+
+        if (error instanceof SystemError) {
           await message.error(error.message);
 
           setStatus('failed');

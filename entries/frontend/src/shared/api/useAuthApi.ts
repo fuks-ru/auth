@@ -4,7 +4,7 @@ import {
   TApiBody,
   TApiResponse,
 } from '@fuks-ru/auth-backend';
-import { UnknownError, ValidationError } from '@fuks-ru/common-frontend';
+import { RedirectError, SystemError, ValidationError } from '@fuks-ru/common';
 import { message } from 'antd';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -51,11 +51,15 @@ export const useAuthApi = <
 
         return;
       } catch (error) {
-        if (error instanceof ValidationError || error instanceof UnknownError) {
+        if (error instanceof ValidationError || error instanceof SystemError) {
           await message.error(error.message);
 
           setStatus('failed');
 
+          return;
+        }
+
+        if (error instanceof RedirectError) {
           return;
         }
 

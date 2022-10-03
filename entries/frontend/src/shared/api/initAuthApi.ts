@@ -6,7 +6,6 @@ import {
   TApiBody,
   TApiResponse,
 } from '@fuks-ru/auth-backend';
-import { errorInterceptor } from '@fuks-ru/common-frontend';
 import { AxiosRequestConfig } from 'axios';
 import { OperationResponse } from 'openapi-client-axios';
 
@@ -29,7 +28,6 @@ export let authApi: Client;
 export const initAuthApi = async (): Promise<void> => {
   authApi = await getApi(backendUrl);
 
-  authApi.interceptors.response.use(undefined, errorInterceptor);
   authApi.defaults.headers.common.i18next = navigator.language;
 };
 

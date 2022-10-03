@@ -1,9 +1,9 @@
 import { styled } from '@linaria/react';
-import { Button, Card, Space, Typography } from 'antd';
+import { Button, Card, Form, Space, Typography } from 'antd';
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthApi } from 'frontend/shared/api';
+import { useAuthApi, useAuthForm } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { useDifferenceInterval } from 'frontend/shared/lib';
 
@@ -15,32 +15,29 @@ interface IProps {
  * Компонент для повторной отправки кода подтверждения.
  */
 export const ResendConfirmEmail: FC<IProps> = ({ email }) => {
-  const [resendConfirm, , status] = useAuthApi('registerResendConfirm');
+  const [form, onFinish, status] = useAuthForm('registerResendConfirm');
   const { t } = useTranslation();
   const redirectFrom = useRedirectFrom();
 
   const { secondsToNextSend, isRunning } = useDifferenceInterval({ status });
 
-  const onResendClick = useCallback(async () => {
-    if (isRunning) {
-      return;
-    }
-
-    await resendConfirm({ email, redirectFrom: redirectFrom || undefined });
-  }, [email, isRunning, redirectFrom, resendConfirm]);
-
   return (
-    <SCard title={t('registration')}>
-      <Space direction='vertical' size='small'>
+    <Form
+      form={form}
+      initialValues={{ redirectFrom, email }}
+      onFinish={onFinish}
+    >
+      <Form.Item>
         <Typography.Text>{t('confirmEmailSent')}</Typography.Text>
-        <Button onClick={onResendClick} disabled={isRunning}>
-          {isRunning ? t('resendAfter', { secondsToNextSend }) : t('send')}
+      </Form.Item>
+      <Form.Item noStyle={true}>
+        <Button
+          disabled={isRunning || status === 'pending'}
+          htmlType='submit'
+        >
+          {isRunning ? t('resendAfter', { secondsToNextSend }) : t('resend')}
         </Button>
-      </Space>
-    </SCard>
+      </Form.Item>
+    </Form>
   );
 };
-
-const SCard = styled(Card)`
-  max-width: 400px;
-`;

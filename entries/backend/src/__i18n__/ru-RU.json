@@ -13,8 +13,8 @@
   "userNotFound": "Пользователь не найден",
   "confirmationCodeNotExist": "Некорректный код подтверждения",
   "beforeResending": "До повторной отправки {seconds}с",
-  "welcome": "Добро пожаловать на fuks.ru!",
-  "toConfirm": "Для подтверждения перейдите по ссылке: {link}",
+  "welcome": "Добро пожаловать на {domain}!",
+  "toConfirm": "Код подтверждения: {code}",
   "forgotPasswordCodeNotExist": "Некорректный код восстановления",
   "passwordRecovery": "Восстановления пароля",
   "toChangePassword": "Для восстановления пароля перейдите по ссылке: {link}",
@@ -24,5 +24,6 @@
   "mustBeBoolean": "Должен быть boolean",
   "noRights": "Нет прав",
   "admin": "Админ",
-  "user": "Пользователь"
+  "user": "Пользователь",
+  "lengthEqual": "Длина должна соответствовать: {constraints.0}"
 }

@@ -8,6 +8,7 @@ import { useAuthForm } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { ResendForgotPassword } from 'frontend/features/SendPasswordChange/ui/ResendForgotPassword';
 import { Link } from 'frontend/shared/ui';
+import { routes } from 'frontend/shared/config';
 
 /**
  * Форма восстановления пароля.
@@ -44,10 +45,14 @@ export const SendPasswordChange: FC = () => {
         </Form.Item>
         <Form.Item noStyle={true}>
           <Trans t={t} i18nKey='sendOrLogin'>
-            <Button type='primary' htmlType='submit'>
+            <Button
+              type='primary'
+              htmlType='submit'
+              disabled={status === 'pending'}
+            >
               Send
             </Button>
-            or<Link route='login'>login</Link>
+            or<Link route={routes.login}>login</Link>
           </Trans>
         </Form.Item>
       </Form>

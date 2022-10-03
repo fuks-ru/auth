@@ -56,6 +56,7 @@ const config: Configuration = {
     path: path.resolve(process.cwd(), '../../public/auth'),
     filename: `[name]${isDevelopment ? '' : '-[contenthash]'}.js`,
     clean: true,
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],

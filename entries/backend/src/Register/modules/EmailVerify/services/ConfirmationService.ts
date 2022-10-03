@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfirmCodeService } from 'backend/Register/modules/EmailVerify/services/ConfirmCodeService';
 import { LoginService } from 'backend/Login/services/LoginService';
 import { UserService } from 'backend/User/services/UserService';
+import { ConfirmRequest } from 'backend/Register/modules/EmailVerify/dto/ConfirmRequest';
 
 @Injectable()
 export class ConfirmationService {
@@ -17,8 +18,11 @@ export class ConfirmationService {
   /**
    * Подтверждает email пользователя, активирует его и осуществляет вход.
    */
-  public async confirm(value: string): Promise<void> {
-    const confirmCode = await this.confirmCodeService.getByValue(value);
+  public async confirm(data: ConfirmRequest): Promise<void> {
+    const confirmCode = await this.confirmCodeService.getByValueAndEmail(
+      data.confirmCode,
+      data.email,
+    );
 
     const user = await this.userService.confirmByConfirmCode(confirmCode);
 

@@ -1,11 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsEmail, Length } from 'class-validator';
+import { i18nValidationMessage } from 'nestjs-i18n';
 
 export class ConfirmRequest {
   /**
    * Код подтверждения.
    */
   @ApiProperty()
-  @IsString()
+  @Length(4, 4, {
+    message: i18nValidationMessage('lengthEqual'),
+  })
   public confirmCode!: string;
+
+  /**
+   * Email.
+   */
+  @ApiProperty()
+  @IsEmail(
+    {},
+    {
+      message: i18nValidationMessage('incorrectEmailFormat'),
+    },
+  )
+  public email!: string;
 }

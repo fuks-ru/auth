@@ -18,5 +18,10 @@
   "googleApiResponseError": "Google API response error",
   "loginWithGoogle": "Login with Google",
   "authTitle": "{{ title }} | Fuks Blog | Auth",
-  "unknownError": "Unknown error"
+  "unknownError": "Unknown error",
+  "emailConfirmation": "Email confirmation",
+  "code": "Code",
+  "register": "Зарегистрироваться",
+  "resend": "Resend",
+  "loginSuccess": "You have successfully logged in"
 }

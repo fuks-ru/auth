@@ -26,7 +26,9 @@ export class ForgotPasswordCodeService {
     redirectFrom: string,
   ): Promise<ForgotPasswordCode> {
     const existCode = await this.forgotPasswordCodeRepository.findOneBy({
-      user,
+      user: {
+        id: user.id,
+      },
     });
 
     const newValue = v4();

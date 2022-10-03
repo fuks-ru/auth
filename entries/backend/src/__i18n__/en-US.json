@@ -13,8 +13,8 @@
   "userNotFound": "User not found",
   "confirmationCodeNotExist": "Confirmation code not exist",
   "beforeResending": "Before resending {seconds}s",
-  "welcome": "Welcome to fuks.ru!",
-  "toConfirm": "To confirm, follow the link: {link}",
+  "welcome": "Welcome to {domain}!",
+  "toConfirm": "Confirmation code: {code}",
   "forgotPasswordCodeNotExist": "Forgot password code not exist",
   "passwordRecovery": "Password recovery",
   "toChangePassword": "To change password, follow the link: {link}",
@@ -24,5 +24,6 @@
   "mustBeBoolean": "Must be boolean",
   "noRights": "No rights",
   "admin": "Admin",
-  "user": "User"
+  "user": "User",
+  "lengthEqual": "Length must be equal: {constraints.0}"
 }

@@ -11,7 +11,7 @@ import { useForgotPasswordCode } from 'frontend/features/ChangePassword/model/us
  * Форма смены пароля.
  */
 export const ChangePassword: FC = () => {
-  const [form, onFinish] = useAuthForm('forgotPasswordChange');
+  const [form, onFinish, status] = useAuthForm('forgotPasswordChange');
   const { t } = useTranslation();
 
   const forgotPasswordCode = useForgotPasswordCode();
@@ -41,7 +41,11 @@ export const ChangePassword: FC = () => {
           />
         </Form.Item>
         <Form.Item noStyle={true}>
-          <Button type='primary' htmlType='submit'>
+          <Button
+            type='primary'
+            htmlType='submit'
+            disabled={status === 'pending'}
+          >
             {t('send')}
           </Button>
         </Form.Item>

@@ -2,7 +2,6 @@ import { SystemErrorFactory, I18nResolver } from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { v4 } from 'uuid';
 import { differenceInSeconds } from 'date-fns';
 
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
@@ -26,10 +25,12 @@ export class ConfirmCodeService {
     redirectFrom: string,
   ): Promise<ConfirmCode> {
     const existCode = await this.confirmCodeRepository.findOneBy({
-      user,
+      user: {
+        id: user.id,
+      },
     });
 
-    const newValue = v4();
+    const newValue = this.generateConfirmCode();
 
     if (!existCode) {
       const confirmCode = new ConfirmCode();
@@ -68,9 +69,15 @@ export class ConfirmCodeService {
   /**
    * Получает код по его значению.
    */
-  public async getByValue(value: string): Promise<ConfirmCode> {
+  public async getByValueAndEmail(
+    value: string,
+    email: string,
+  ): Promise<ConfirmCode> {
     const confirmCode = await this.confirmCodeRepository.findOneBy({
       value,
+      user: {
+        email,
+      },
     });
 
     if (!confirmCode) {
@@ -92,5 +99,17 @@ export class ConfirmCodeService {
     await this.confirmCodeRepository.delete({
       id,
     });
+  }
+
+  private generateConfirmCode(): string {
+    const generateSymbol = (): string =>
+      Math.floor(Math.random() * 10).toString();
+
+    return [
+      generateSymbol(),
+      generateSymbol(),
+      generateSymbol(),
+      generateSymbol(),
+    ].join('');
   }
 }

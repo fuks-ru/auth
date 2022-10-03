@@ -1,12 +1,15 @@
 import { Button, Card, Form, Input, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { Link } from 'frontend/shared/ui';
+import { routes } from 'frontend/shared/config';
+import { useNavigateToSuccess } from 'frontend/shared/lib/useNavigateToSuccess';
 
 /**
  * Форма входа.
@@ -16,6 +19,8 @@ export const LoginEmailPassword: FC = () => {
   const { t } = useTranslation();
 
   const redirectFrom = useRedirectFrom();
+
+  useNavigateToSuccess(status);
 
   return (
     <Card title={t('login')}>
@@ -46,12 +51,12 @@ export const LoginEmailPassword: FC = () => {
               Login
             </Button>
             or
-            <Link route='registration'>registration</Link>
+            <Link route={routes.registration}>registration</Link>
           </Trans>
         </Form.Item>
         <Form.Item noStyle={true}>
           <Typography.Text>
-            <Link route='forgotPassword'>{t('forgotPassword')}</Link>
+            <Link route={routes.forgotPassword}>{t('forgotPassword')}</Link>
           </Typography.Text>
         </Form.Item>
       </Form>
