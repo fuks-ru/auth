@@ -1,4 +1,4 @@
-import { Component, ComponentType, FC, ReactNode, Suspense } from 'react';
+import { ComponentType, FC, ReactNode, Suspense } from 'react';
 import { BrowserRouter, Routes } from 'react-router-dom';
 
 import { GoogleRecaptchaProvider } from 'frontend/app/providers/GoogleRecaptchaProvider';
