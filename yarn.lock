@@ -1618,8 +1618,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fuks-ru/auth-backend@workspace:entries/backend"
   dependencies:
-    "@fuks-ru/common": 0.0.7
-    "@fuks-ru/common-backend": 0.3.4
+    "@fuks-ru/common": 0.0.8
+    "@fuks-ru/common-backend": 0.3.5
     "@nestjs-modules/mailer": ^1.8.1
     "@nestjs/axios": ^0.1.0
     "@nestjs/common": ^9.1.2
@@ -1689,7 +1689,7 @@ __metadata:
     "@babel/preset-react": ^7.18.6
     "@babel/preset-typescript": ^7.18.6
     "@fuks-ru/auth-backend": "workspace:0.4.1"
-    "@fuks-ru/common": 0.0.7
+    "@fuks-ru/common": 0.0.8
     "@fuks-ru/common-frontend": 0.0.6
     "@linaria/core": ^4.1.2
     "@linaria/react": ^4.1.3
@@ -1739,9 +1739,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@fuks-ru/common-backend@npm:0.3.4":
-  version: 0.3.4
-  resolution: "@fuks-ru/common-backend@npm:0.3.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.3.4%2F15f0770cbc51911d0bceb3f024896a166a3c80dd"
+"@fuks-ru/common-backend@npm:0.3.5":
+  version: 0.3.5
+  resolution: "@fuks-ru/common-backend@npm:0.3.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.3.5%2Ffc4fd396f5579e0357d49e76c9ac27360dfd2a34"
   dependencies:
     "@rollup/plugin-json": ^4.1.0
     "@types/argon2": ^0.15.0
@@ -1769,7 +1769,7 @@ __metadata:
     nestjs-i18n: ^9.1.3
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
-  checksum: fcd7d0d16a14d59916c916fa0d7e5fb44bdba6fbb1ee9ab9e6145b6f64ce88a68daf1a18ec2847f4f1586f2cd468eb14ba776ec253022b09cbb975bc339a2aa2
+  checksum: 9537a4e026448d004745fd69abcdcd5c84ff9b46d81af3ca12ababce9040e42af8998a006c252d35fae4eb2cf052ecd53dc5722a9f4b0b1028e3ef5e5454e406
   languageName: node
   linkType: hard
 
@@ -1784,10 +1784,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/common@npm:0.0.7":
-  version: 0.0.7
-  resolution: "@fuks-ru/common@npm:0.0.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.7%2F12b3cf8b7fad66b576b9d7842645cd268e79f91e"
-  checksum: 690e214f74288b63f6e8943165599b7a01d93a95c798c98c6e4bbf33967423b20c3ba825de0d5eda6da29c710c0fd88220811ffd09606575888d8a0e16a25e37
+"@fuks-ru/common@npm:0.0.8":
+  version: 0.0.8
+  resolution: "@fuks-ru/common@npm:0.0.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon%2F0.0.8%2Fc876ae6b4eb0078e72f7923f222e4bc8d2862aa5"
+  checksum: 717a68cc8be71b3373b2fd54202606ada23c5fa0ca4d3c9cf1dd3c2b9c069767513b1f86504ac79ab3be191dcfaf940553b3101d5e50bb5eca1136734965c538
   languageName: node
   linkType: hard
 

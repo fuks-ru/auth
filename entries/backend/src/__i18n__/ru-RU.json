@@ -18,12 +18,11 @@
   "forgotPasswordCodeNotExist": "Некорректный код восстановления",
   "passwordRecovery": "Восстановления пароля",
   "toChangePassword": "Для восстановления пароля перейдите по ссылке: {link}",
-  "jwtTokenEmpty": "Отсутствует токен авторизации",
-  "authError": "Ошибка авторизации",
   "incorrectRole": "Некорректная роль",
   "mustBeBoolean": "Должен быть boolean",
   "noRights": "Нет прав",
   "admin": "Админ",
   "user": "Пользователь",
-  "lengthEqual": "Длина должна соответствовать: {constraints.0}"
+  "lengthEqual": "Длина должна соответствовать: {constraints.0}",
+  "forbidden": "Нет доступа"
 }

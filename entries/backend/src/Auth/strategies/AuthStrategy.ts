@@ -31,22 +31,13 @@ export class AuthStrategy extends PassportStrategy(Strategy, 'auth') {
       const i18n = await this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
-        CommonErrorCode.UNAUTHORIZED,
-        i18n.t('jwtTokenEmpty'),
+        CommonErrorCode.FORBIDDEN,
+        i18n.t('forbidden'),
       );
     }
 
-    try {
-      return await this.authService.verify({
-        jwtToken,
-      });
-    } catch {
-      const i18n = await this.i18nResolver.resolve();
-
-      throw this.systemErrorFactory.create(
-        CommonErrorCode.UNAUTHORIZED,
-        i18n.t('authError'),
-      );
-    }
+    return this.authService.verify({
+      jwtToken,
+    });
   }
 }
