@@ -9,8 +9,8 @@ import { Request as ExpressRequest } from 'express';
 import { I18nRequestScopeService } from 'nestjs-i18n';
 import { Strategy } from 'passport-custom';
 import { isEmail } from 'class-validator';
+import { CommonErrorCode } from '@fuks-ru/common';
 
-import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 import { BasicLoginRequest } from 'backend/BasicLogin/dto/BasicLoginRequest';
 import { User } from 'backend/User/entities/User';
 import { BasicLoginService } from 'backend/BasicLogin/services/BasicLoginService';
@@ -77,7 +77,7 @@ export class BasicLoginStrategy extends PassportStrategy(Strategy, 'local') {
 
     if (!user) {
       throw this.systemErrorFactory.create(
-        ErrorCode.UNAUTHORIZED,
+        CommonErrorCode.UNAUTHORIZED,
         i18n.t('incorrectEmailOrPassword'),
       );
     }

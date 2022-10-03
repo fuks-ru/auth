@@ -32,7 +32,6 @@ export class ConfigGetter {
     [ErrorCode.CONFIRM_CODE_TIMEOUT]: HttpStatus.TOO_MANY_REQUESTS,
     [ErrorCode.FORGOT_PASSWORD_NOT_EXIST]: HttpStatus.NOT_FOUND,
     [ErrorCode.FORGOT_PASSWORD_CODE_TIMEOUT]: HttpStatus.TOO_MANY_REQUESTS,
-    [ErrorCode.UNAUTHORIZED]: HttpStatus.UNAUTHORIZED,
   };
 
   public constructor(private readonly envGetter: EnvGetter) {}
