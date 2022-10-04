@@ -20,11 +20,8 @@
   "toChangePassword": "Для восстановления пароля перейдите по ссылке: {link}",
   "incorrectRole": "Некорректная роль",
   "mustBeBoolean": "Должен быть boolean",
-  "noRights": "Нет прав",
   "admin": "Админ",
   "user": "Пользователь",
   "lengthEqual": "Длина должна соответствовать: {constraints.0}",
-  "forbidden": "Нет доступа",
-  "alreadyAuth": "Пользователь уже авторизован",
-  "unauthorized": "Не авторизован"
+  "alreadyAuth": "Пользователь уже авторизован"
 }

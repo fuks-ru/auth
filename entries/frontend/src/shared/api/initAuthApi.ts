@@ -27,8 +27,6 @@ export let authApi: Client;
  */
 export const initAuthApi = async (): Promise<void> => {
   authApi = await getApi(backendUrl);
-
-  authApi.defaults.headers.common.i18next = navigator.language;
 };
 
 /**

@@ -1,10 +1,8 @@
-import { SystemErrorFactory, I18nResolver } from '@fuks-ru/common-backend';
+import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { CommonErrorCode } from '@fuks-ru/common';
-
-import { UserVerifyResponse } from 'backend/Auth/dto/UserVerifyResponse';
-import { Role } from 'backend/User/entities/User';
+import { Schemas } from '@fuks-ru/auth-client';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -21,10 +19,9 @@ export class RolesGuard implements CanActivate {
     const contextHandler = context.getHandler();
     const contextClass = context.getClass();
 
-    const requiredRoles = this.reflector.get<Role[] | undefined>(
-      'roles',
-      contextHandler,
-    );
+    const requiredRoles = this.reflector.get<
+      Array<Schemas.UserVerifyResponse['role']> | undefined
+    >('roles', contextHandler);
 
     const isPublic = this.reflector.getAllAndOverride<boolean>('isPublic', [
       contextHandler,
@@ -37,9 +34,9 @@ export class RolesGuard implements CanActivate {
 
     const { user } = context.switchToHttp().getRequest<{
       /**
-       * Данные о пользователе, после выполнения стратегии.
+       * Пользователь.
        */
-      user?: UserVerifyResponse;
+      user?: Schemas.UserVerifyResponse;
     }>();
 
     if (user?.role === undefined || !requiredRoles.includes(user.role)) {

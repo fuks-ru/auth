@@ -20,11 +20,8 @@
   "toChangePassword": "To change password, follow the link: {link}",
   "incorrectRole": "Incorrect role",
   "mustBeBoolean": "Must be boolean",
-  "noRights": "No rights",
   "admin": "Admin",
   "user": "User",
   "lengthEqual": "Length must be equal: {constraints.0}",
-  "forbidden": "Forbidden",
-  "alreadyAuth": "User already authenticated",
-  "unauthorized": "Not authorized"
+  "alreadyAuth": "User already authenticated"
 }
