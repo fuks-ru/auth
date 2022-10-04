@@ -32,7 +32,7 @@ describe('Auth', () => {
 
       const response = await request(app.getHttpServer())
         .get('/api/auth/verify')
-        .set('Cookie', loginResponse.headers['set-cookie']);
+        .set('Cookie', loginResponse.headers['set-cookie'] as string[]);
 
       expect(response.statusCode).toEqual(HttpStatus.OK);
       expect(response.body).toEqual(
