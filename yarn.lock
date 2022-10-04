@@ -1619,7 +1619,7 @@ __metadata:
   resolution: "@fuks-ru/auth-client@workspace:entries/backend"
   dependencies:
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.3.6
+    "@fuks-ru/common-backend": 0.3.7
     "@nestjs-modules/mailer": ^1.8.1
     "@nestjs/axios": ^0.1.0
     "@nestjs/common": ^9.1.2
@@ -1747,7 +1747,7 @@ __metadata:
   dependencies:
     "@fuks-ru/auth-client": "workspace:0.4.3"
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.3.6
+    "@fuks-ru/common-backend": 0.3.7
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     "@nestjs/passport": ^9.0.0
@@ -1762,7 +1762,7 @@ __metadata:
   peerDependencies:
     "@fuks-ru/auth-client": "*"
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.3.6
+    "@fuks-ru/common-backend": 0.3.7
     "@nestjs/common": ^9.1.2
     "@nestjs/core": ^9.1.2
     "@nestjs/passport": ^9.0.0
@@ -1772,9 +1772,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@fuks-ru/common-backend@npm:0.3.6":
-  version: 0.3.6
-  resolution: "@fuks-ru/common-backend@npm:0.3.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.3.6%2F2b39bdbfbc689fdd754d386409af29538e150ce8"
+"@fuks-ru/common-backend@npm:0.3.7":
+  version: 0.3.7
+  resolution: "@fuks-ru/common-backend@npm:0.3.7::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.3.7%2F4f87e4938050da9c313cb072e0daa008938498d7"
   dependencies:
     "@rollup/plugin-json": ^4.1.0
     "@types/argon2": ^0.15.0
@@ -1802,7 +1802,7 @@ __metadata:
     nestjs-i18n: ^9.1.3
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
-  checksum: 9947930e7eb8ebe21f221e6c052928566e71212f36c1c2e4ca1e3d58dc575c54f3c550070a1cd73a4e735d475e7620597218b079572861e5673e5337a58750bd
+  checksum: 666db7777a9c099658f1cc46bf9b741f1de916722c9e7b6dc25fab54c623eed8c7cd05c7ba324dda178abda6ebd0f46ef6ea995dbb6c1ec3f70dbba08fe2e98a
   languageName: node
   linkType: hard
 

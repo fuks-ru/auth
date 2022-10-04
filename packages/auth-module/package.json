@@ -22,7 +22,7 @@
   "devDependencies": {
     "@fuks-ru/auth-client": "workspace:0.4.3",
     "@fuks-ru/common": "0.0.9",
-    "@fuks-ru/common-backend": "0.3.6",
+    "@fuks-ru/common-backend": "0.3.7",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/passport": "^9.0.0",
@@ -38,7 +38,7 @@
   "peerDependencies": {
     "@fuks-ru/auth-client": "*",
     "@fuks-ru/common": "0.0.9",
-    "@fuks-ru/common-backend": "0.3.6",
+    "@fuks-ru/common-backend": "0.3.7",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/passport": "^9.0.0",
