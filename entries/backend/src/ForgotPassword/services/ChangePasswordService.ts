@@ -1,4 +1,4 @@
-import { EncodingService, RedirectErrorFactory } from '@fuks-ru/common-backend';
+import { EncodingService } from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
 
 import { ChangePasswordRequest } from 'backend/ForgotPassword/dto/ChangePasswordRequest';
@@ -11,7 +11,6 @@ export class ChangePasswordService {
     private readonly userService: UserService,
     private readonly encodingService: EncodingService,
     private readonly forgotPasswordCodeService: ForgotPasswordCodeService,
-    private readonly redirectErrorFactory: RedirectErrorFactory,
   ) {}
 
   /**
@@ -34,9 +33,5 @@ export class ChangePasswordService {
     );
 
     await this.forgotPasswordCodeService.removeById(forgotPasswordCode.id);
-
-    throw this.redirectErrorFactory.create({
-      location: forgotPasswordCode.redirectFrom,
-    });
   }
 }

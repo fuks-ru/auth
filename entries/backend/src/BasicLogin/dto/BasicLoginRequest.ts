@@ -12,10 +12,4 @@ export class BasicLoginRequest {
    */
   @ApiProperty()
   public password!: string;
-
-  /**
-   * Путь для перенаправления.
-   */
-  @ApiProperty()
-  public redirectFrom?: string;
 }

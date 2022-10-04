@@ -26,14 +26,6 @@ export class ConfirmCode {
   public value!: string;
 
   /**
-   * Url для перехода после активации.
-   */
-  @Column({
-    nullable: true,
-  })
-  public redirectFrom?: string;
-
-  /**
    * Пользователь.
    */
   @OneToOne('User', 'confirmCode', {

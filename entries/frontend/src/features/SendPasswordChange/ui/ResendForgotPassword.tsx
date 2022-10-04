@@ -4,7 +4,6 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
-import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { useDifferenceInterval } from 'frontend/shared/lib';
 
 interface IProps {
@@ -17,19 +16,13 @@ interface IProps {
 export const ResendForgotPassword: FC<IProps> = ({ email }) => {
   const [form, onFinish, status] = useAuthForm('forgotPasswordSend');
   const { t } = useTranslation();
-  const redirectFrom = useRedirectFrom();
 
   const { secondsToNextSend, isRunning } = useDifferenceInterval({ status });
 
   return (
     <SCard title={t('passwordRecovery')}>
-      <Form
-        form={form}
-        initialValues={{ email, redirectFrom }}
-        onFinish={onFinish}
-      >
+      <Form form={form} initialValues={{ email }} onFinish={onFinish}>
         <Form.Item hidden={true} name='email' />
-        <Form.Item hidden={true} name='redirectFrom' />
         <Form.Item>
           <Typography.Text>
             {t('changePasswordEmailSent', { email })}

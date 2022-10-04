@@ -5,7 +5,6 @@ import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
-import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
 
@@ -21,8 +20,6 @@ export const Register: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
   const [form, onFinish, status] = useAuthForm('registerBasic');
   const { t } = useTranslation();
 
-  const redirectFrom = useRedirectFrom();
-
   useEffect(() => {
     if (status === 'success') {
       onSuccess();
@@ -33,14 +30,12 @@ export const Register: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
     <Card title={t('registration')}>
       <Form
         form={form}
-        initialValues={{ redirectFrom }}
         onFinish={async (body) => {
           await onFinish(body);
 
           onFinishEmail(body.email);
         }}
       >
-        <Form.Item name='redirectFrom' noStyle={true} />
         <Form.Item name='email'>
           <Input
             placeholder={t('email')}

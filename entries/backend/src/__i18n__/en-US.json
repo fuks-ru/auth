@@ -24,5 +24,7 @@
   "admin": "Admin",
   "user": "User",
   "lengthEqual": "Length must be equal: {constraints.0}",
-  "forbidden": "Forbidden"
+  "forbidden": "Forbidden",
+  "alreadyAuth": "User already authenticated",
+  "unauthorized": "Not authorized"
 }

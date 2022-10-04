@@ -30,10 +30,7 @@ export class BasicRegisterService {
 
     const createdUser = await this.userService.addUserIfNotConfirmed(user);
 
-    await this.emailVerifyService.send(
-      createdUser,
-      registerRequest.redirectFrom,
-    );
+    await this.emailVerifyService.send(createdUser);
 
     return user;
   }

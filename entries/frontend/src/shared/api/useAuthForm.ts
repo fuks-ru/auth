@@ -1,11 +1,19 @@
-import { TMethods, TApiArgs, TApiBody } from '@fuks-ru/auth-backend';
-import { SystemError, ValidationError, RedirectError } from '@fuks-ru/common';
+import { TMethods, TApiArgs, TApiBody } from '@fuks-ru/auth-client';
+import {
+  SystemError,
+  ValidationError,
+  RedirectError,
+  ForbiddenError,
+  UnauthorizedError,
+  AlreadyAuthError,
+} from '@fuks-ru/common';
 import { Form, FormInstance, message } from 'antd';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useExecuteRecaptcha } from 'frontend/shared/lib';
+import { useExecuteRecaptcha, useNavigate } from 'frontend/shared/lib';
 import { getApiMethod, TStatus } from 'frontend/shared/api/initAuthApi';
+import { routes } from 'frontend/shared/config';
 
 /**
  * Обертка над api-client сервиса авторизации, предоставляющая инстанс
@@ -26,6 +34,7 @@ export const useAuthForm = <
   const [status, setStatus] = useState<TStatus>('none');
   const executeRecaptcha = useExecuteRecaptcha();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const onFinish = useCallback(
     async (body: Body, args?: TApiArgs<ApiName>) => {
@@ -64,7 +73,24 @@ export const useAuthForm = <
           return;
         }
 
+        if (error instanceof AlreadyAuthError) {
+          navigate(routes.loginSuccess);
+
+          return;
+        }
+
         if (error instanceof RedirectError) {
+          window.location.assign(error.data.location);
+
+          return;
+        }
+
+        if (
+          error instanceof ForbiddenError ||
+          error instanceof UnauthorizedError
+        ) {
+          navigate(routes.login);
+
           return;
         }
 
@@ -81,7 +107,7 @@ export const useAuthForm = <
         setStatus('failed');
       }
     },
-    [name, executeRecaptcha, form, t],
+    [name, executeRecaptcha, form, t, navigate],
   );
 
   return [form, onFinish, status];

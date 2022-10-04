@@ -3,14 +3,22 @@ import {
   TApiArgs,
   TApiBody,
   TApiResponse,
-} from '@fuks-ru/auth-backend';
-import { RedirectError, SystemError, ValidationError } from '@fuks-ru/common';
+} from '@fuks-ru/auth-client';
+import {
+  ForbiddenError,
+  RedirectError,
+  SystemError,
+  UnauthorizedError,
+  ValidationError,
+  AlreadyAuthError,
+} from '@fuks-ru/common';
 import { message } from 'antd';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useExecuteRecaptcha } from 'frontend/shared/lib';
 import { getApiMethod, TStatus } from 'frontend/shared/api/initAuthApi';
+import { useNavigate } from 'frontend/shared/lib';
+import { routes } from 'frontend/shared/config';
 
 /**
  * Получает метод, объект ответа и статус запроса из authApi.
@@ -27,8 +35,8 @@ export const useAuthApi = <
 ] => {
   const [responseBody, setResponseBody] = useState<TApiResponse<ApiName>>();
   const [status, setStatus] = useState<TStatus>('none');
-  const executeRecaptcha = useExecuteRecaptcha();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const method = useCallback(
     async (body: Body, args?: TApiArgs<ApiName>) => {
@@ -37,13 +45,7 @@ export const useAuthApi = <
       try {
         const apiMethod = getApiMethod(name);
 
-        const token = await executeRecaptcha();
-
-        const apiResponse = await apiMethod(args || null, body, {
-          headers: {
-            recaptcha: token,
-          },
-        });
+        const apiResponse = await apiMethod(args || null, body);
 
         setResponseBody(apiResponse.data);
 
@@ -59,6 +61,21 @@ export const useAuthApi = <
           return;
         }
 
+        if (error instanceof AlreadyAuthError) {
+          navigate(routes.loginSuccess);
+
+          return;
+        }
+
+        if (
+          error instanceof ForbiddenError ||
+          error instanceof UnauthorizedError
+        ) {
+          navigate(routes.login);
+
+          return;
+        }
+
         if (error instanceof RedirectError) {
           window.location.assign(error.data.location);
 
@@ -70,7 +87,7 @@ export const useAuthApi = <
         setStatus('failed');
       }
     },
-    [executeRecaptcha, name, t],
+    [name, navigate, t],
   );
 
   return [method, responseBody, status];

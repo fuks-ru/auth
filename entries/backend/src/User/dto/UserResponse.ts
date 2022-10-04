@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
+import { Role } from 'backend/User/entities/User';
+
 export class UserResponse {
   /**
    * Id.
@@ -17,7 +19,7 @@ export class UserResponse {
    * Роль.
    */
   @ApiProperty()
-  public role!: number;
+  public role!: Role;
 
   /**
    * Подтвержден ли пользователь по email.

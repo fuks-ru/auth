@@ -6,10 +6,4 @@ export class GoogleLoginRequest {
    */
   @ApiProperty()
   public accessToken!: string;
-
-  /**
-   * Путь для перенаправления.
-   */
-  @ApiProperty()
-  public redirectFrom?: string;
 }

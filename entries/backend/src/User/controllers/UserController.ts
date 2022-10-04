@@ -24,6 +24,7 @@ export class UserController {
     type: UserResponse,
     isArray: true,
   })
+  @Roles(Role.MODERATOR, Role.ADMIN)
   public async list(): Promise<UserResponse[]> {
     const userList = await this.userService.getList();
 
@@ -40,6 +41,7 @@ export class UserController {
   @ApiOkResponse({
     type: UserDetailResponse,
   })
+  @Roles(Role.MODERATOR, Role.ADMIN)
   public async get(@Param('id') id: string): Promise<UserDetailResponse> {
     const user = await this.userService.getById(id);
 

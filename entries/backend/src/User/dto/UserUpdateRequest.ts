@@ -26,7 +26,7 @@ export class UserUpdateRequest {
   @IsEnum(Role, {
     message: i18nValidationMessage('incorrectRole'),
   })
-  public role?: number;
+  public role?: Role;
 
   /**
    * Подтвержден ли пользователь по email.

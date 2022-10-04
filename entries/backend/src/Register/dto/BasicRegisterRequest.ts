@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, MinLength, ValidateIf, IsOptional } from 'class-validator';
+import { IsEmail, MinLength, ValidateIf } from 'class-validator';
 import { Match } from '@fuks-ru/common-backend';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
@@ -37,11 +37,4 @@ export class BasicRegisterRequest {
     message: i18nValidationMessage('passwordEqual'),
   })
   public repeatPassword!: string;
-
-  /**
-   * Путь для перенаправления.
-   */
-  @ApiProperty()
-  @IsOptional()
-  public redirectFrom?: string;
 }

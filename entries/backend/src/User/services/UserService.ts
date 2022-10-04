@@ -108,19 +108,13 @@ export class UserService {
   }
 
   /**
-   * Получает подтвержденного пользователя по id.
+   * Ищет подтвержденного пользователя по id.
    */
-  public async getConfirmedById(id: string): Promise<User> {
-    const user = await this.userRepository.findOneBy({
+  public findConfirmedById(id: string): Promise<User | null> {
+    return this.userRepository.findOneBy({
       id,
       isConfirmed: true,
     });
-
-    if (!user) {
-      throw await this.getNotFoundError();
-    }
-
-    return user;
   }
 
   /**

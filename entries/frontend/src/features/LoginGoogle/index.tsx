@@ -9,14 +9,12 @@ import { useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useTheme } from 'frontend/entities/theme';
-import { useRedirectFrom } from 'frontend/entities/redirectFrom';
-import { useNavigateToSuccess } from 'frontend/shared/lib/useNavigateToSuccess';
+import { useNavigateToSuccess } from 'frontend/shared/lib';
 
 /**
  * Страница авторизации.
  */
 export const LoginGoogle: FC = () => {
-  const redirectFrom = useRedirectFrom();
   const [form, onFinish, status] = useAuthForm('loginGoogle');
   const { t } = useTranslation();
   const { theme } = useTheme();
@@ -41,8 +39,7 @@ export const LoginGoogle: FC = () => {
   );
 
   return (
-    <Form form={form} initialValues={{ redirectFrom }} onFinish={onFinish}>
-      <Form.Item name='redirectFrom' hidden={true} />
+    <Form form={form} onFinish={onFinish}>
       <Form.Item name='accessToken'>
         <GoogleLogin
           clientId={process.env.GOOGLE_AUTH_CLIENT_ID as string}

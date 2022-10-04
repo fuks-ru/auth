@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import cookies from 'js-cookie';
 import extractDomain from 'extract-domain';
 
-window.extractDomain = extractDomain;
-
 /**
  * Компонент для смены текущего языка.
  */
