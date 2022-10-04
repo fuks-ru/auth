@@ -2951,6 +2951,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/passport-jwt", "npm:3.0.6"],\
             ["@types/passport-local", "npm:1.0.34"],\
             ["@types/qs", "npm:6.9.7"],\
+            ["@types/set-cookie-parser", "npm:2.4.2"],\
             ["@types/supertest", "npm:2.0.12"],\
             ["@types/uuid", "npm:8.3.4"],\
             ["argon2", "npm:0.29.1"],\
@@ -2973,6 +2974,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["qs", "npm:6.11.0"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.5.7"],\
+            ["set-cookie-parser", "npm:2.5.1"],\
             ["sqlite3", "virtual:e88e5b017d3261d7195f9628f868a6765ba753a7fcaa70c186218f8fd6679e1423b7621d63091e7460fa33e8869bbcc760a4aaf0eeab89abf53a27d80cb1c6fb#npm:5.1.1"],\
             ["supertest", "npm:6.2.4"],\
             ["swagger-ui-express", "virtual:e88e5b017d3261d7195f9628f868a6765ba753a7fcaa70c186218f8fd6679e1423b7621d63091e7460fa33e8869bbcc760a4aaf0eeab89abf53a27d80cb1c6fb#npm:4.5.0"],\
@@ -3020,6 +3022,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/passport-jwt", "npm:3.0.6"],\
             ["@types/passport-local", "npm:1.0.34"],\
             ["@types/qs", "npm:6.9.7"],\
+            ["@types/set-cookie-parser", "npm:2.4.2"],\
             ["@types/supertest", "npm:2.0.12"],\
             ["@types/uuid", "npm:8.3.4"],\
             ["argon2", "npm:0.29.1"],\
@@ -3042,6 +3045,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["qs", "npm:6.11.0"],\
             ["reflect-metadata", "npm:0.1.13"],\
             ["rxjs", "npm:7.5.7"],\
+            ["set-cookie-parser", "npm:2.5.1"],\
             ["sqlite3", "virtual:e88e5b017d3261d7195f9628f868a6765ba753a7fcaa70c186218f8fd6679e1423b7621d63091e7460fa33e8869bbcc760a4aaf0eeab89abf53a27d80cb1c6fb#npm:5.1.1"],\
             ["supertest", "npm:6.2.4"],\
             ["swagger-ui-express", "virtual:e88e5b017d3261d7195f9628f868a6765ba753a7fcaa70c186218f8fd6679e1423b7621d63091e7460fa33e8869bbcc760a4aaf0eeab89abf53a27d80cb1c6fb#npm:4.5.0"],\
@@ -5534,6 +5538,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/serve-static", "npm:1.15.0"],\
             ["@types/mime", "npm:3.0.1"],\
+            ["@types/node", "npm:18.7.23"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/set-cookie-parser", [\
+        ["npm:2.4.2", {\
+          "packageLocation": "./.yarn/cache/@types-set-cookie-parser-npm-2.4.2-eb947592c8-c31bf04eb9.zip/node_modules/@types/set-cookie-parser/",\
+          "packageDependencies": [\
+            ["@types/set-cookie-parser", "npm:2.4.2"],\
             ["@types/node", "npm:18.7.23"]\
           ],\
           "linkType": "HARD"\
@@ -19849,6 +19863,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/set-blocking-npm-2.0.0-49e2cffa24-6e65a05f7c.zip/node_modules/set-blocking/",\
           "packageDependencies": [\
             ["set-blocking", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["set-cookie-parser", [\
+        ["npm:2.5.1", {\
+          "packageLocation": "./.yarn/cache/set-cookie-parser-npm-2.5.1-530f8bd9ef-b99c37f976.zip/node_modules/set-cookie-parser/",\
+          "packageDependencies": [\
+            ["set-cookie-parser", "npm:2.5.1"]\
           ],\
           "linkType": "HARD"\
         }]\

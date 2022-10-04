@@ -25,8 +25,8 @@ export class AuthStrategy extends PassportStrategy(Strategy, 'auth') {
       const i18n = await this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
-        CommonErrorCode.FORBIDDEN,
-        i18n.t('forbidden'),
+        CommonErrorCode.UNAUTHORIZED,
+        i18n.t('unauthorized'),
       );
     }
 

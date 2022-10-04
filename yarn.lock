@@ -1638,6 +1638,7 @@ __metadata:
     "@types/passport-jwt": ^3.0.6
     "@types/passport-local": ^1.0.34
     "@types/qs": ^6.9.7
+    "@types/set-cookie-parser": ^2.4.2
     "@types/supertest": ^2.0.12
     "@types/uuid": ^8.3.4
     argon2: ^0.29.1
@@ -1660,6 +1661,7 @@ __metadata:
     qs: ^6.11.0
     reflect-metadata: ^0.1.13
     rxjs: ^7.5.7
+    set-cookie-parser: ^2.5.1
     sqlite3: ^5.1.1
     supertest: ^6.2.4
     swagger-ui-express: ^4.5.0
@@ -3348,6 +3350,15 @@ __metadata:
     "@types/mime": "*"
     "@types/node": "*"
   checksum: b6ac93d471fb0f53ddcac1f9b67572a09cd62806f7db5855244b28f6f421139626f24799392566e97d1ffc61b12f9de7f30380c39fcae3c8a161fe161d44edf2
+  languageName: node
+  linkType: hard
+
+"@types/set-cookie-parser@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "@types/set-cookie-parser@npm:2.4.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: c31bf04eb9620829dc3c91bced74ac934ad039d20d20893fb5acac0f08769cbd4eef3bf7502a0289c7be59c3e9cfa456147b4e88bff47dd1b9efb4995ba5d5a3
   languageName: node
   linkType: hard
 
@@ -14901,6 +14912,13 @@ __metadata:
   version: 2.0.0
   resolution: "set-blocking@npm:2.0.0"
   checksum: 6e65a05f7cf7ebdf8b7c75b101e18c0b7e3dff4940d480efed8aad3a36a4005140b660fa1d804cb8bce911cac290441dc728084a30504d3516ac2ff7ad607b02
+  languageName: node
+  linkType: hard
+
+"set-cookie-parser@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "set-cookie-parser@npm:2.5.1"
+  checksum: b99c37f976e68ae6eb7c758bf2bbce1e60bb54e3eccedaa25f2da45b77b9cab58d90674cf9edd7aead6fbeac6308f2eb48713320a47ca120d0e838d0194513b6
   languageName: node
   linkType: hard
 
