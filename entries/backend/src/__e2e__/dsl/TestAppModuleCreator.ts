@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { GoogleRecaptchaModuleOptions } from '@nestlab/google-recaptcha';
+import cookieParser from 'cookie-parser';
 
 import { IMockedUser, UsersBuilder } from 'backend/__e2e__/dsl/UsersBuilder';
 import { AppModule } from 'backend/AppModule';
@@ -18,7 +19,7 @@ export class AppBuilder {
     public override getLoggerOptions(): ICommonModuleOptions['logger'] {
       return {
         isToConsoleDisable: true,
-        isToFileDisable: true,
+        isToFileDisable: false,
       };
     }
 
@@ -72,6 +73,8 @@ export class AppBuilder {
       .compile();
 
     const app = moduleRef.createNestApplication();
+
+    app.use(cookieParser());
 
     const configGetter = moduleRef.get(ConfigGetter);
 

@@ -5,6 +5,7 @@ import { CommonErrorCode } from '@fuks-ru/common';
 import { AppBuilder } from 'backend/__e2e__/dsl/TestAppModuleCreator';
 import { IMockedUser } from 'backend/__e2e__/dsl/UsersBuilder';
 import { Role } from 'backend/User/entities/User';
+import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 
 const existUser: IMockedUser = {
   email: 'test@test.com',
@@ -49,7 +50,7 @@ describe('BasicLogin', () => {
         .send(body);
 
       expect(response.body).toEqual({
-        code: CommonErrorCode.UNAUTHORIZED,
+        code: ErrorCode.USER_INCORRECT_EMAIL_OR_PASSWORD,
         message: expect.any(String),
       });
       expect(response.statusCode).toEqual(HttpStatus.UNAUTHORIZED);
@@ -57,7 +58,7 @@ describe('BasicLogin', () => {
   });
 
   describe('When a user send valid email and password', () => {
-    it('should redirect error and cookie token', async () => {
+    it('should return ok and set cookie token', async () => {
       const body = {
         email: existUser.email,
         password: existUser.password,
@@ -68,14 +69,7 @@ describe('BasicLogin', () => {
         .post('/api/login/basic')
         .send(body);
 
-      expect(response.statusCode).toEqual(HttpStatus.INTERNAL_SERVER_ERROR);
-      expect(response.body).toEqual({
-        code: CommonErrorCode.REDIRECT,
-        message: expect.any(String),
-        redirect: {
-          location: 'https://test.com',
-        },
-      });
+      expect(response.statusCode).toEqual(HttpStatus.CREATED);
       expect(response.headers['set-cookie']).toEqual(
         expect.arrayContaining([expect.stringContaining('jwtToken')]),
       );
