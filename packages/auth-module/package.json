@@ -20,7 +20,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
-    "@fuks-ru/auth-client": "workspace:0.4.3",
+    "@fuks-ru/auth-client": "workspace:0.4.4",
     "@fuks-ru/common": "0.0.9",
     "@fuks-ru/common-backend": "0.3.7",
     "@nestjs/common": "^9.1.2",

@@ -1,6 +1,0 @@
-releases:
-  "@fuks-ru/auth-client": patch
-  "@fuks-ru/auth-frontend": patch
-
-declined:
-  - "@fuks-ru/auth-module"
