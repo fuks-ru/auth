@@ -21,14 +21,12 @@ export class ForgotPasswordService {
    */
   public async send(user: User, redirectFrom?: string): Promise<void> {
     const forgotPasswordCode =
-      await this.forgotPasswordCodeService.addForgotPasswordCodeToUser(
-        user,
-        redirectFrom || this.configGetter.getRootDomainWithScheme(),
-      );
+      await this.forgotPasswordCodeService.addForgotPasswordCodeToUser(user);
 
     const changePasswordUrl = `${this.configGetter.getAuthDomainWithScheme()}/change-password?${qs.stringify(
       {
         forgotPasswordCode: forgotPasswordCode.value,
+        redirectFrom,
       },
     )}`;
 

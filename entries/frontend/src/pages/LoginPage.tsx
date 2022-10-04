@@ -5,9 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { LoginEmailPassword } from 'frontend/features/LoginEmailPassword';
+import { useCheckAlreadyAuth } from 'frontend/shared/lib';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();
+
+  useCheckAlreadyAuth();
 
   return (
     <Space direction='vertical'>

@@ -5,7 +5,7 @@ import { styled } from '@linaria/react';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { ResendConfirmEmail } from 'frontend/features/ConfirmEmail/ui/ResendConfirmEmail';
-import { useNavigateToSuccess } from 'frontend/shared/lib/useNavigateToSuccess';
+import { useNavigateToSuccess } from 'frontend/shared/lib';
 
 interface IProps {
   email: string;

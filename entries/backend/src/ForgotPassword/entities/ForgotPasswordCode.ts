@@ -26,12 +26,6 @@ export class ForgotPasswordCode {
   public value!: string;
 
   /**
-   * Url для перехода после смены пароля.
-   */
-  @Column()
-  public redirectFrom!: string;
-
-  /**
    * Пользователь.
    */
   @OneToOne('User', 'forgotPassword', {

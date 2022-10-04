@@ -1,16 +1,19 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Request as ExpressRequest } from 'express';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
-import { Public } from 'backend/Auth/decorators/Public';
-import { UserVerifyRequest } from 'backend/Auth/dto/UserVerifyRequest';
 import { UserVerifyResponse } from 'backend/Auth/dto/UserVerifyResponse';
-import { AuthService } from 'backend/Auth/services/AuthService';
+import { Public } from 'backend/Auth/decorators/Public';
+import { User } from 'backend/User/entities/User';
+
+interface IRequest extends ExpressRequest {
+  user: User;
+}
 
 @Controller()
-@ApiTags('Login')
+@ApiTags('Auth')
 export class AuthController {
-  public constructor(private readonly authService: AuthService) {}
-
   /**
    * Маршрут для получения пользователя по токену.
    */
@@ -21,10 +24,20 @@ export class AuthController {
   @ApiOkResponse({
     type: UserVerifyResponse,
   })
-  @Public()
-  public async verify(
-    @Body() body: UserVerifyRequest,
-  ): Promise<UserVerifyResponse> {
-    return this.authService.verify(body);
+  public verify(@Req() request: IRequest): UserVerifyResponse {
+    const { hashedPassword, ...response } = request.user;
+
+    return response;
   }
+
+  /**
+   * Маршрут, возвращающий успешный ответ, если пользователь не авторизован.
+   */
+  @Get('/auth/check-not')
+  @ApiOperation({
+    operationId: 'authCheckNot',
+  })
+  @Public()
+  @UseGuards(AuthGuard('not-auth'))
+  public checkNot(): void {}
 }

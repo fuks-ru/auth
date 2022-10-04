@@ -1,6 +1,7 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Recaptcha } from '@nestlab/google-recaptcha';
+import { AuthGuard } from '@nestjs/passport';
 
 import { Public } from 'backend/Auth/decorators/Public';
 import { EmailVerifyService } from 'backend/Register/modules/EmailVerify/services/EmailVerifyService';
@@ -27,6 +28,7 @@ export class RegisterController {
   })
   @Recaptcha()
   @Public()
+  @UseGuards(AuthGuard('not-auth'))
   public async basic(@Body() body: BasicRegisterRequest): Promise<void> {
     await this.basicRegisterService.register(body);
   }
@@ -40,9 +42,10 @@ export class RegisterController {
   })
   @Recaptcha()
   @Public()
+  @UseGuards(AuthGuard('not-auth'))
   public async resend(@Body() body: ResendConfirmRequest): Promise<void> {
     const user = await this.userService.getUnConfirmedByEmail(body.email);
 
-    await this.emailVerifyService.send(user, body.redirectFrom);
+    await this.emailVerifyService.send(user);
   }
 }

@@ -32,6 +32,7 @@ export class ConfigGetter {
     [ErrorCode.CONFIRM_CODE_TIMEOUT]: HttpStatus.TOO_MANY_REQUESTS,
     [ErrorCode.FORGOT_PASSWORD_NOT_EXIST]: HttpStatus.NOT_FOUND,
     [ErrorCode.FORGOT_PASSWORD_CODE_TIMEOUT]: HttpStatus.TOO_MANY_REQUESTS,
+    [ErrorCode.USER_INCORRECT_EMAIL_OR_PASSWORD]: HttpStatus.UNAUTHORIZED,
   };
 
   public constructor(private readonly envGetter: EnvGetter) {}
@@ -157,15 +158,6 @@ export class ConfigGetter {
     return this.envGetter.isDev()
       ? 'localhost'
       : `${this.envGetter.getEnv('DOMAIN')}`;
-  }
-
-  /**
-   * Получает корневой домен со схемой.
-   */
-  public getRootDomainWithScheme(): string {
-    return this.envGetter.isDev()
-      ? 'http://localhost'
-      : `https://${this.envGetter.getEnv('DOMAIN')}`;
   }
 
   /**

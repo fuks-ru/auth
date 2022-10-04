@@ -1,7 +1,8 @@
 import { FC, lazy, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { routes } from 'frontend/processes/Registration/model/routes';
+import { useNavigate } from 'frontend/shared/lib';
 
 const RegisterPage = lazy(() => import('frontend/pages/RegisterPage'));
 const ConfirmEmailPage = lazy(() => import('frontend/pages/ConfirmEmailPage'));

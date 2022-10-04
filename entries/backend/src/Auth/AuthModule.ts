@@ -9,6 +9,8 @@ import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 import { AuthController } from 'backend/Auth/contollers/AuthController';
 import { AuthService } from 'backend/Auth/services/AuthService';
 import { UserModule } from 'backend/User/UserModule';
+import { NotAuthStrategy } from 'backend/Auth/strategies/NotAuthStrategy';
+import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { UserModule } from 'backend/User/UserModule';
   providers: [
     AuthService,
     AuthStrategy,
+    NotAuthStrategy,
+    CheckNotAuth,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,

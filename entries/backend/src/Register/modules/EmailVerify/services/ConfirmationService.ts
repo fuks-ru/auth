@@ -1,4 +1,3 @@
-import { RedirectErrorFactory } from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
 
 import { ConfirmCodeService } from 'backend/Register/modules/EmailVerify/services/ConfirmCodeService';
@@ -11,7 +10,6 @@ export class ConfirmationService {
   public constructor(
     private readonly confirmCodeService: ConfirmCodeService,
     private readonly userService: UserService,
-    private readonly redirectErrorFactory: RedirectErrorFactory,
     private readonly loginService: LoginService,
   ) {}
 
@@ -28,6 +26,6 @@ export class ConfirmationService {
 
     await this.confirmCodeService.removeById(confirmCode.id);
 
-    this.loginService.login(user, confirmCode.redirectFrom);
+    this.loginService.login(user);
   }
 }

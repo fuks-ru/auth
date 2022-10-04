@@ -5,10 +5,9 @@ import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
-import { useRedirectFrom } from 'frontend/entities/redirectFrom';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
-import { useNavigateToSuccess } from 'frontend/shared/lib/useNavigateToSuccess';
+import { useNavigateToSuccess } from 'frontend/shared/lib';
 
 /**
  * Форма входа.
@@ -17,14 +16,11 @@ export const LoginEmailPassword: FC = () => {
   const [form, onFinish, status] = useAuthForm('loginBasic');
   const { t } = useTranslation();
 
-  const redirectFrom = useRedirectFrom();
-
   useNavigateToSuccess(status);
 
   return (
     <Card title={t('login')}>
-      <Form form={form} initialValues={{ redirectFrom }} onFinish={onFinish}>
-        <Form.Item name='redirectFrom' noStyle={true} />
+      <Form form={form} onFinish={onFinish}>
         <Form.Item name='email'>
           <Input
             prefix={<UserOutlined className={opacityIcon} />}

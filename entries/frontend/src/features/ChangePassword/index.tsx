@@ -1,11 +1,13 @@
 import { Button, Card, Form, Input } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useForgotPasswordCode } from 'frontend/features/ChangePassword/model/useForgotPasswordCode';
+import { useNavigate } from 'frontend/shared/lib';
+import { routes } from 'frontend/shared/config';
 
 /**
  * Форма смены пароля.
@@ -13,8 +15,15 @@ import { useForgotPasswordCode } from 'frontend/features/ChangePassword/model/us
 export const ChangePassword: FC = () => {
   const [form, onFinish, status] = useAuthForm('forgotPasswordChange');
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const forgotPasswordCode = useForgotPasswordCode();
+
+  useEffect(() => {
+    if (status === 'success') {
+      navigate(routes.login);
+    }
+  }, [status, navigate]);
 
   return (
     <Card title={t('changePassword')}>
@@ -23,7 +32,7 @@ export const ChangePassword: FC = () => {
         initialValues={{ forgotPasswordCode }}
         onFinish={onFinish}
       >
-        <Form.Item name='forgotPasswordCode' noStyle={true} />
+        <Form.Item name='forgotPasswordCode' hidden={true} />
         <Form.Item name='password'>
           <Input
             type='password'

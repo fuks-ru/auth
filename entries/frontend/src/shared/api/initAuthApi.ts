@@ -5,7 +5,7 @@ import {
   TApiArgs,
   TApiBody,
   TApiResponse,
-} from '@fuks-ru/auth-backend';
+} from '@fuks-ru/auth-client';
 import { AxiosRequestConfig } from 'axios';
 import { OperationResponse } from 'openapi-client-axios';
 

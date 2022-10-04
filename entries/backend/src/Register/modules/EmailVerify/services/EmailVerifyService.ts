@@ -18,10 +18,9 @@ export class EmailVerifyService {
   /**
    * Отправляет код подтверждения пользователю.
    */
-  public async send(user: User, redirectFrom?: string): Promise<void> {
+  public async send(user: User): Promise<void> {
     const confirmCode = await this.confirmCodeService.addConfirmCodeToUser(
       user,
-      redirectFrom || this.configGetter.getRootDomainWithScheme(),
     );
 
     const i18n = await this.i18nResolver.resolve();

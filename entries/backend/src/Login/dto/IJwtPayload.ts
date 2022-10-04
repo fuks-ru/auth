@@ -5,5 +5,5 @@ export interface IJwtPayload {
   /**
    * Id пользователя.
    */
-  id: string;
+  id?: string;
 }

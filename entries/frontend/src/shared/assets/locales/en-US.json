@@ -23,5 +23,7 @@
   "code": "Code",
   "register": "Register",
   "resend": "Resend",
-  "loginSuccess": "You have successfully logged in"
+  "loginSuccess": "You have successfully logged in",
+  "logout": "Logout",
+  "userInfo": "Email {{ email }}, role: {{ role }}"
 }

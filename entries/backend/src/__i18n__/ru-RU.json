@@ -24,5 +24,7 @@
   "admin": "Админ",
   "user": "Пользователь",
   "lengthEqual": "Длина должна соответствовать: {constraints.0}",
-  "forbidden": "Нет доступа"
+  "forbidden": "Нет доступа",
+  "alreadyAuth": "Пользователь уже авторизован",
+  "unauthorized": "Не авторизован"
 }

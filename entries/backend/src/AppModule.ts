@@ -12,6 +12,7 @@ import { RegisterModule } from 'backend/Register/RegisterModule';
 import { ForgotPasswordModule } from 'backend/ForgotPassword/ForgotPasswordModule';
 import { RoleModule } from 'backend/Role/RoleModule';
 import { ConfigModule } from 'backend/Config/ConfigModule';
+import { LogoutModule } from 'backend/Logout/LogoutModule';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { ConfigModule } from 'backend/Config/ConfigModule';
     }),
     ForgotPasswordModule,
     RoleModule,
+    LogoutModule,
   ],
 })
 export class AppModule {}

@@ -23,7 +23,6 @@ export class ForgotPasswordCodeService {
    */
   public async addForgotPasswordCodeToUser(
     user: User,
-    redirectFrom: string,
   ): Promise<ForgotPasswordCode> {
     const existCode = await this.forgotPasswordCodeRepository.findOneBy({
       user: {
@@ -38,7 +37,6 @@ export class ForgotPasswordCodeService {
 
       forgotPasswordCode.value = newValue;
       forgotPasswordCode.user = user;
-      forgotPasswordCode.redirectFrom = redirectFrom;
 
       return this.forgotPasswordCodeRepository.save(forgotPasswordCode);
     }
@@ -62,7 +60,6 @@ export class ForgotPasswordCodeService {
     }
 
     existCode.value = newValue;
-    existCode.redirectFrom = redirectFrom;
 
     return this.forgotPasswordCodeRepository.save(existCode);
   }

@@ -23,5 +23,7 @@
   "code": "Код",
   "register": "Зарегистрироваться",
   "resend": "Отправить снова",
-  "loginSuccess": "Вы успешно авторизовались"
+  "loginSuccess": "Вы успешно авторизовались",
+  "logout": "Выйти",
+  "userInfo": "Email {{ email }}, роль: {{ role }}"
 }

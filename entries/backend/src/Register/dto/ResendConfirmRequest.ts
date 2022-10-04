@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsOptional } from 'class-validator';
+import { IsEmail } from 'class-validator';
 
 export class ResendConfirmRequest {
   /**
@@ -8,13 +8,4 @@ export class ResendConfirmRequest {
   @IsEmail()
   @ApiProperty()
   public email!: string;
-
-  /**
-   * Путь для перенаправления.
-   */
-  @ApiProperty({
-    required: false,
-  })
-  @IsOptional()
-  public redirectFrom?: string;
 }
