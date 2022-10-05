@@ -5,6 +5,7 @@ import {
   TApiArgs,
   TApiBody,
   TApiResponse,
+  AxiosRequestConfig,
   OperationResponse,
 } from '@fuks-ru/auth-client';
 
@@ -38,6 +39,7 @@ export const getApiMethod = <
   ApiMethod extends (
     args: TApiArgs<ApiName> | null,
     body: TApiBody<ApiName>,
+    config?: AxiosRequestConfig,
   ) => OperationResponse<TApiResponse<ApiName>>,
 >(
   name: ApiName,

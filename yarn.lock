@@ -1619,7 +1619,7 @@ __metadata:
   resolution: "@fuks-ru/auth-client@workspace:entries/backend"
   dependencies:
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.4.2
+    "@fuks-ru/common-backend": 0.4.3
     "@nestjs-modules/mailer": ^1.8.1
     "@nestjs/axios": ^0.1.0
     "@nestjs/common": ^9.1.2
@@ -1799,9 +1799,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/common-backend@npm:0.4.2":
-  version: 0.4.2
-  resolution: "@fuks-ru/common-backend@npm:0.4.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.4.2%2F6046bc438325da397608ee8aac67cb64f32861c4"
+"@fuks-ru/common-backend@npm:0.4.3":
+  version: 0.4.3
+  resolution: "@fuks-ru/common-backend@npm:0.4.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.4.3%2F537324ae5e01510c42676b3b4d3f6796fe88d949"
   dependencies:
     "@rollup/plugin-json": ^4.1.0
     "@types/argon2": ^0.15.0
@@ -1829,7 +1829,7 @@ __metadata:
     nestjs-i18n: ^9.1.3
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
-  checksum: 4ed74c269eedba5debcab258bc8edc112a36ad7fed37118a9ef83bf0683df7b513079eb4ed1af3159cbfdcc3480f926cdc297a2356c9eb451406feca84189371
+  checksum: 5998da49362a78e5bc5d8b329f941c7d8a5feaef2b66220736676b252d4de24fb45769b198d412cd1ce168db0a7f5ad02fc22fe361f9f2e76af32202c3a4264d
   languageName: node
   linkType: hard
 
