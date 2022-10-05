@@ -5,9 +5,8 @@ import {
   TApiArgs,
   TApiBody,
   TApiResponse,
+  OperationResponse,
 } from '@fuks-ru/auth-client';
-import { AxiosRequestConfig } from 'axios';
-import { OperationResponse } from 'openapi-client-axios';
 
 import { backendUrl } from 'frontend/shared/config';
 
@@ -39,7 +38,6 @@ export const getApiMethod = <
   ApiMethod extends (
     args: TApiArgs<ApiName> | null,
     body: TApiBody<ApiName>,
-    config?: AxiosRequestConfig,
   ) => OperationResponse<TApiResponse<ApiName>>,
 >(
   name: ApiName,

@@ -1619,7 +1619,7 @@ __metadata:
   resolution: "@fuks-ru/auth-client@workspace:entries/backend"
   dependencies:
     "@fuks-ru/common": 0.0.9
-    "@fuks-ru/common-backend": 0.3.7
+    "@fuks-ru/common-backend": 0.4.2
     "@nestjs-modules/mailer": ^1.8.1
     "@nestjs/axios": ^0.1.0
     "@nestjs/common": ^9.1.2
@@ -1796,6 +1796,40 @@ __metadata:
     openapi-client-axios-typegen: ^5.0.2
     ttypescript: ^1.5.13
   checksum: 666db7777a9c099658f1cc46bf9b741f1de916722c9e7b6dc25fab54c623eed8c7cd05c7ba324dda178abda6ebd0f46ef6ea995dbb6c1ec3f70dbba08fe2e98a
+  languageName: node
+  linkType: hard
+
+"@fuks-ru/common-backend@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@fuks-ru/common-backend@npm:0.4.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40fuks-ru%2Fcommon-backend%2F0.4.2%2F6046bc438325da397608ee8aac67cb64f32861c4"
+  dependencies:
+    "@rollup/plugin-json": ^4.1.0
+    "@types/argon2": ^0.15.0
+    argon2: ^0.29.1
+    geoip-lite: ^1.4.6
+    nest-winston: ^1.7.0
+    reflect-metadata: ^0.1.13
+    request-context: ^2.0.0
+    rollup: ^2.79.1
+    rollup-plugin-typescript2: ^0.34.0
+    rxjs: ^7.5.7
+    uuid: ^9.0.0
+    winston: ^3.8.2
+    winston-daily-rotate-file: ^4.7.1
+  peerDependencies:
+    "@fuks-ru/common": "*"
+    "@nestjs/common": ^8.4.4
+    "@nestjs/core": ^8.4.4
+    "@nestjs/platform-express": ^8.4.4
+    "@nestjs/swagger": ^5.2.1
+    class-transformer: ^0.5.1
+    class-validator: ^0.13.2
+    date-fns: ^2.28.0
+    express: ^4.17.3
+    nestjs-i18n: ^9.1.3
+    openapi-client-axios-typegen: ^5.0.2
+    ttypescript: ^1.5.13
+  checksum: 4ed74c269eedba5debcab258bc8edc112a36ad7fed37118a9ef83bf0683df7b513079eb4ed1af3159cbfdcc3480f926cdc297a2356c9eb451406feca84189371
   languageName: node
   linkType: hard
 
