@@ -3085,7 +3085,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.6"],\
             ["@types/webpack", "npm:5.28.0"],\
             ["antd", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:4.23.3"],\
-            ["axios", "npm:0.27.2"],\
             ["babel-loader", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:8.2.5"],\
             ["copy-webpack-plugin", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:11.0.0"],\
             ["core-js", "npm:3.25.3"],\
@@ -3102,7 +3101,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mini-css-extract-plugin", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:2.6.1"],\
             ["node-polyfill-webpack-plugin", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:2.0.1"],\
             ["normalize.css", "npm:8.0.1"],\
-            ["openapi-client-axios", "virtual:e88e5b017d3261d7195f9628f868a6765ba753a7fcaa70c186218f8fd6679e1423b7621d63091e7460fa33e8869bbcc760a4aaf0eeab89abf53a27d80cb1c6fb#npm:5.3.0"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:18.2.0"],\
             ["react-google-login", "virtual:8255c9ae13d28fe73efc6ae5a9f83290fee3a73b68f81c5288ba9f3955c14cb342c5bbd3dd9e9611f428a65cf293f0d583e718259d57e169f0d40812ee7935ea#npm:5.2.2"],\
@@ -3391,7 +3389,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/axios", null],\
             ["@types/fuks-ru__common", null],\
             ["@types/react", "npm:18.0.21"],\
-            ["axios", "npm:0.27.2"],\
+            ["axios", null],\
             ["react", "npm:18.2.0"]\
           ],\
           "packagePeers": [\
