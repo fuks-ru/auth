@@ -3,7 +3,7 @@ export POSTGRES_USER="root"
 export POSTGRES_PASSWORD="root"
 
 docker run --name auth-postgres \
-  --rm \
+  --rm -d \
   -e POSTGRES_PASSWORD="$POSTGRES_USER" \
   -e POSTGRES_USER="$POSTGRES_PASSWORD" \
   -e POSTGRES_DB=auth \
