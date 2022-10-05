@@ -1,6 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-const rootDir = process.env.NODE_ENV === 'development' ? 'src' : 'dist/build';
+import { isDevelopment } from 'backend/constants';
+
+const rootDir = isDevelopment ? 'src' : 'dist/build';
 
 /**
  * Prod конфиг БД.

@@ -16,7 +16,7 @@
     "e2e": "cross-env NODE_ENV=development jest",
     "dev:migration:generate": "cross-env NODE_ENV=development bash ./.bin/generate-migration.sh",
     "prod:migration:run": "cross-env NODE_ENV=production yarn prod:typeorm migration:run",
-    "dev:typeorm": "cross-env NODE_ENV=development node -r ts-node/register/transpile-only $(yarn bin typeorm) -d ./src/Config/utils/ormconfig.ts",
+    "dev:typeorm": "cross-env NODE_ENV=development node -r ts-node/register/transpile-only -r tsconfig-paths/register $(yarn bin typeorm) -d ./src/Config/utils/ormconfig.ts",
     "prod:typeorm": "cross-env NODE_ENV=production node $(yarn bin typeorm) -d ./dist/build/Config/utils/ormconfig.js"
   },
   "files": [
