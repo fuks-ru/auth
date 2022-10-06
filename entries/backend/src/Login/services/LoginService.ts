@@ -5,12 +5,14 @@ import { JwtService } from '@nestjs/jwt';
 import { IJwtPayload } from 'backend/Login/dto/IJwtPayload';
 import { JWT_TOKEN_COOKIE_NAME } from 'backend/Login/utils/constants';
 import { User } from 'backend/User/entities/User';
+import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 
 @Injectable()
 export class LoginService {
   public constructor(
     private readonly cookieSetterService: CookieSetterService,
     private readonly jwtService: JwtService,
+    private readonly configGetter: ConfigGetter,
   ) {}
 
   /**
@@ -25,6 +27,7 @@ export class LoginService {
 
     this.cookieSetterService.setCookie(JWT_TOKEN_COOKIE_NAME, jwtToken, {
       httpOnly: true,
+      domain: `.${this.configGetter.getRootDomain()}`,
     });
   }
 }
