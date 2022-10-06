@@ -2,6 +2,7 @@ import { styled } from '@linaria/react';
 import { Button, Card, Form, Typography } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import Input from 'antd/lib/input/Input';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useDifferenceInterval } from 'frontend/shared/lib';
@@ -22,7 +23,9 @@ export const ResendForgotPassword: FC<IProps> = ({ email }) => {
   return (
     <SCard title={t('passwordRecovery')}>
       <Form form={form} initialValues={{ email }} onFinish={onFinish}>
-        <Form.Item hidden={true} name='email' />
+        <Form.Item hidden={true} name='email'>
+          <Input />
+        </Form.Item>
         <Form.Item>
           <Typography.Text>
             {t('changePasswordEmailSent', { email })}

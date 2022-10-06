@@ -1,4 +1,4 @@
-import { Button, Form, Typography } from 'antd';
+import { Button, Form, Input, Typography } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -20,7 +20,9 @@ export const ResendConfirmEmail: FC<IProps> = ({ email }) => {
 
   return (
     <Form form={form} initialValues={{ email }} onFinish={onFinish}>
-      <Form.Item hidden={true} name='email' />
+      <Form.Item hidden={true} name='email'>
+        <Input />
+      </Form.Item>
       <Form.Item>
         <Typography.Text>{t('confirmEmailSent', { email })}</Typography.Text>
       </Form.Item>

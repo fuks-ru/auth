@@ -27,7 +27,9 @@ export const ConfirmEmail: FC<IProps> = ({ email }) => {
         <ResendConfirmEmail email={email} />
 
         <Form initialValues={{ email }} form={form} onFinish={onFinish}>
-          <Form.Item hidden={true} name='email' />
+          <Form.Item hidden={true} name='email' >
+            <Input />
+          </Form.Item>
           <Form.Item name='confirmCode'>
             <Input placeholder={t('code')} />
           </Form.Item>
