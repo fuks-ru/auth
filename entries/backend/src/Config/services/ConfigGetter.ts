@@ -157,7 +157,16 @@ export class ConfigGetter {
   public getRootDomain(): string {
     return this.envGetter.isDev()
       ? 'localhost'
-      : `${this.envGetter.getEnv('DOMAIN')}`;
+      : this.envGetter.getEnv('DOMAIN');
+  }
+
+  /**
+   * Получает домен для установки кук.
+   */
+  public getCookieDomain(): string {
+    return this.envGetter.isDev()
+      ? 'localhost'
+      : `.${this.envGetter.getEnv('DOMAIN')}`;
   }
 
   /**

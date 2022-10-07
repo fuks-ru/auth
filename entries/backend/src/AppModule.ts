@@ -23,7 +23,7 @@ import { LogoutModule } from 'backend/Logout/LogoutModule';
         statusResolver: configGetter.statusResolver,
         translations: configGetter.getTranslations(),
         logger: configGetter.getLoggerOptions(),
-        domain: configGetter.getRootDomain(),
+        sessionCookieDomain: configGetter.getCookieDomain(),
         apiPrefix: configGetter.getApiPrefix(),
       }),
     }),

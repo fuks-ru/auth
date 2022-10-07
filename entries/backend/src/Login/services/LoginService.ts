@@ -27,7 +27,7 @@ export class LoginService {
 
     this.cookieSetterService.setCookie(JWT_TOKEN_COOKIE_NAME, jwtToken, {
       httpOnly: true,
-      domain: `.${this.configGetter.getRootDomain()}`,
+      domain: this.configGetter.getCookieDomain(),
     });
   }
 }
