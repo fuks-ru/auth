@@ -3,11 +3,13 @@ import { Controller, Post } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 
 import { JWT_TOKEN_COOKIE_NAME } from 'backend/Login/utils/constants';
+import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 
 @Controller('logout')
 export class LogoutController {
   public constructor(
     private readonly cookieSetterService: CookieSetterService,
+    private readonly configGetter: ConfigGetter,
   ) {}
 
   /**
@@ -18,6 +20,8 @@ export class LogoutController {
     operationId: 'logout',
   })
   public logout(): void {
-    this.cookieSetterService.clearCookie(JWT_TOKEN_COOKIE_NAME);
+    this.cookieSetterService.clearCookie(JWT_TOKEN_COOKIE_NAME, {
+      domain: this.configGetter.getCookieDomain(),
+    });
   }
 }
