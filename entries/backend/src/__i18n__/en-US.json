@@ -22,6 +22,7 @@
   "mustBeBoolean": "Must be boolean",
   "admin": "Admin",
   "user": "User",
+  "moderator": "Moderator",
   "lengthEqual": "Length must be equal: {constraints.0}",
   "alreadyAuth": "User already authenticated"
 }

@@ -22,6 +22,7 @@
   "mustBeBoolean": "Должен быть boolean",
   "admin": "Админ",
   "user": "Пользователь",
+  "moderator": "Модератор",
   "lengthEqual": "Длина должна соответствовать: {constraints.0}",
   "alreadyAuth": "Пользователь уже авторизован"
 }

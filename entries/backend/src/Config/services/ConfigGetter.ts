@@ -178,6 +178,15 @@ export class ConfigGetter {
       : `https://auth.${this.envGetter.getEnv('DOMAIN')}`;
   }
 
+  /**
+   * Получает домены админок со схемой.
+   */
+  public getAdminDomainsWithScheme(): string[] {
+    return this.envGetter.isDev()
+      ? ['http://localhost:3000']
+      : [`https://admin.${this.envGetter.getEnv('DOMAIN')}`];
+  }
+
   private getProdTypeOrmConfig(): TypeOrmModuleOptions {
     return {
       ...ormConfig,

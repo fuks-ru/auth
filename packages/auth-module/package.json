@@ -25,8 +25,8 @@
     "passport-custom": "^1.1.1"
   },
   "devDependencies": {
-    "@fuks-ru/common": "0.0.9",
-    "@fuks-ru/common-backend": "0.5.0",
+    "@fuks-ru/common": "0.1.0",
+    "@fuks-ru/common-backend": "0.5.2",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/passport": "^9.0.0",

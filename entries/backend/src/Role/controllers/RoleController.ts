@@ -23,6 +23,7 @@ export class RoleController {
     return [
       { id: Role.ADMIN, name: i18n.t('admin') },
       { id: Role.USER, name: i18n.t('user') },
+      { id: Role.MODERATOR, name: i18n.t('moderator') },
     ];
   }
 }

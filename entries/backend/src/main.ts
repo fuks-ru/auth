@@ -19,7 +19,10 @@ import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
   app.use(cookieParser());
   app.setGlobalPrefix(configGetter.getApiPrefix());
   app.enableCors({
-    origin: [configGetter.getAuthDomainWithScheme()],
+    origin: [
+      configGetter.getAuthDomainWithScheme(),
+      ...configGetter.getAdminDomainsWithScheme(),
+    ],
     credentials: true,
   });
   app.useLogger(logger);
