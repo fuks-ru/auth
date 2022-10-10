@@ -44,6 +44,7 @@
     "mini-css-extract-plugin": "^2.6.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "normalize.css": "^8.0.1",
+    "openapi-client-axios": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-login": "^5.2.2",

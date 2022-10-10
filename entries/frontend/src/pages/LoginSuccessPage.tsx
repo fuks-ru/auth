@@ -18,8 +18,10 @@ const LoginSuccessPage: FC = () => {
     <>
       <Head title={t('login')} />
       <Card title={t('login')}>
-        <Typography.Paragraph>{t('loginSuccess')}</Typography.Paragraph>
-        {user && <Logout user={user} />}
+        <>
+          <Typography.Paragraph>{t('loginSuccess')}</Typography.Paragraph>
+          {user && <Logout user={user} />}
+        </>
       </Card>
     </>
   );
