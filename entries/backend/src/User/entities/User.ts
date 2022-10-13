@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import type { ConfirmCode } from 'backend/Register/modules/EmailVerify/entities/ConfirmCode';
+import type { ConfirmCode } from 'backend/ConfirmCode/entities/ConfirmCode';
 import type { ForgotPasswordCode } from 'backend/ForgotPassword/entities/ForgotPasswordCode';
 
 /**
@@ -32,11 +32,21 @@ export class User {
    */
   @Column({
     unique: true,
+    nullable: true,
   })
-  public email!: string;
+  public email?: string;
 
   /**
-   * Подтвержден ли пользователь по email.
+   * Телефон.
+   */
+  @Column({
+    unique: true,
+    nullable: true,
+  })
+  public phone?: string;
+
+  /**
+   * Подтвержден ли пользователь.
    */
   @Column({
     default: false,

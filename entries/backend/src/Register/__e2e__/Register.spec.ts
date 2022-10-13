@@ -13,7 +13,7 @@ const existUser: IMockedUser = {
   role: Role.USER,
 };
 
-describe('Register', () => {
+describe('EmailRegister', () => {
   let app: INestApplication;
 
   beforeAll(async () => {

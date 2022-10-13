@@ -13,7 +13,7 @@ interface IProps {
  * Компонент для повторной отправки кода подтверждения.
  */
 export const ResendConfirmEmail: FC<IProps> = ({ email }) => {
-  const [form, onFinish, status] = useAuthForm('registerResendConfirm');
+  const [form, onFinish, status] = useAuthForm('emailResendConfirm');
   const { t } = useTranslation();
 
   const { secondsToNextSend, isRunning } = useDifferenceInterval({ status });

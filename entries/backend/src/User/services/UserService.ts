@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
 
-import { ConfirmCode } from 'backend/Register/modules/EmailVerify/entities/ConfirmCode';
+import { ConfirmCode } from 'backend/ConfirmCode/entities/ConfirmCode';
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 import { User } from 'backend/User/entities/User';
 import { ForgotPasswordCode } from 'backend/ForgotPassword/entities/ForgotPasswordCode';
@@ -25,7 +25,15 @@ export class UserService {
    * подтвержден.
    */
   public async addUserIfNotConfirmed(user: User): Promise<User> {
-    const existUser = await this.findByEmail(user.email);
+    let existUser: User | null = null;
+
+    if (user.email) {
+      existUser = await this.findByEmail(user.email);
+    }
+
+    if (!user.email && user.phone) {
+      existUser = await this.findByPhone(user.phone);
+    }
 
     if (existUser?.isConfirmed) {
       const i18n = await this.i18nResolver.resolve();
@@ -84,6 +92,15 @@ export class UserService {
   }
 
   /**
+   * Ищет пользователя по телефону.
+   */
+  public async findByPhone(phone: string): Promise<User | null> {
+    return this.userRepository.findOneBy({
+      phone,
+    });
+  }
+
+  /**
    * Получает пользователя по id.
    */
   public async getById(id: string): Promise<User> {
@@ -123,6 +140,22 @@ export class UserService {
   public async getUnConfirmedByEmail(email: string): Promise<User> {
     const user = await this.userRepository.findOneBy({
       email,
+      isConfirmed: false,
+    });
+
+    if (!user) {
+      throw await this.getNotFoundError();
+    }
+
+    return user;
+  }
+
+  /**
+   * Получает неподтвержденного пользователя по телефону.
+   */
+  public async getUnConfirmedByPhone(phone: string): Promise<User> {
+    const user = await this.userRepository.findOneBy({
+      phone,
       isConfirmed: false,
     });
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { v4 } from 'uuid';
 import { EncodingService } from '@fuks-ru/common-backend';
 
+import { EmailRegisterRequest } from 'backend/Register/dto/EmailRegisterRequest';
+import { EmailVerifyService } from 'backend/Register/modules/EmailVerify/services/EmailVerifyService';
 import { Role, User } from 'backend/User/entities/User';
 import { UserService } from 'backend/User/services/UserService';
 
@@ -10,21 +11,27 @@ export class EmailRegisterService {
   public constructor(
     private readonly userService: UserService,
     private readonly encodingService: EncodingService,
+    private readonly emailVerifyService: EmailVerifyService,
   ) {}
 
   /**
    * Регистрирует пользователя.
    */
-  public async register(email: string): Promise<User> {
-    const hashedPassword = await this.encodingService.hash(v4());
+  public async register(registerRequest: EmailRegisterRequest): Promise<User> {
+    const hashedPassword = await this.encodingService.hash(
+      registerRequest.password,
+    );
 
     const user = new User();
 
     user.hashedPassword = hashedPassword;
-    user.email = email;
+    user.email = registerRequest.email;
     user.role = Role.USER;
-    user.isConfirmed = true;
 
-    return this.userService.addUserIfNotConfirmed(user);
+    const createdUser = await this.userService.addUserIfNotConfirmed(user);
+
+    await this.emailVerifyService.send(createdUser);
+
+    return user;
   }
 }

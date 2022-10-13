@@ -4,7 +4,7 @@ import { SystemErrorFactory, I18nResolver } from '@fuks-ru/common-backend';
 
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 import { User } from 'backend/User/entities/User';
-import { EmailRegisterService } from 'backend/Register/services/EmailRegisterService';
+import { GoogleRegisterService } from 'backend/Register/services/GoogleRegisterService';
 import { UserService } from 'backend/User/services/UserService';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class GoogleLoginAuth {
   public constructor(
     private readonly systemErrorFactory: SystemErrorFactory,
     private readonly userService: UserService,
-    private readonly emailRegisterService: EmailRegisterService,
+    private readonly emailRegisterService: GoogleRegisterService,
     private readonly i18nResolver: I18nResolver,
   ) {}
 

@@ -5,6 +5,7 @@
   "loginOrRegister": "<0>Войти</0> или <2>регистрация</2>",
   "forgotPassword": "Забыли пароль?",
   "confirmEmailSent": "Письмо с кодом подтверждения отправлено вам на email {{ email }} (проверьте спам). Код не пришел?",
+  "confirmPhoneSent": "Смс с кодом подтверждения отправлено вам на телефон {{ phone }}. Код не пришел?",
   "registration": "Регистрация",
   "repeatPassword": "Повторите пароль",
   "registerOrLogin": "<0>Зарегистрироваться</0> или <2>войти</2>",
@@ -19,11 +20,14 @@
   "loginWithGoogle": "Войти через Google",
   "authTitle": "{{ title }} | Авторизация",
   "unknownError": "Неизвестная ошибка",
-  "emailConfirmation": "Подтверждение email",
+  "confirmation": "Подтверждение",
   "code": "Код",
   "register": "Зарегистрироваться",
   "resend": "Отправить снова",
   "loginSuccess": "Вы успешно авторизовались",
   "logout": "Выйти",
-  "userInfo": "Email {{ email }}, роль: {{ role }}"
+  "userInfo": "Email {{ email }}, роль: {{ role }}",
+  "phone": "Телефон",
+  "byEmail": "По email",
+  "byPhone": "По телефону"
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-import { ConfirmCodeService } from 'backend/Register/modules/EmailVerify/services/ConfirmCodeService';
 import { LoginService } from 'backend/Login/services/LoginService';
 import { UserService } from 'backend/User/services/UserService';
 import { ConfirmRequest } from 'backend/Register/modules/EmailVerify/dto/ConfirmRequest';
+import { ConfirmCodeService } from 'backend/ConfirmCode/services/ConfirmCodeService';
 
 @Injectable()
 export class ConfirmationService {

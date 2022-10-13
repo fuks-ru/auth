@@ -5,10 +5,13 @@ import { routes } from 'frontend/processes/Registration/model/routes';
 import { useNavigate } from 'frontend/shared/lib';
 
 const RegisterPage = lazy(() => import('frontend/pages/RegisterPage'));
-const ConfirmEmailPage = lazy(() => import('frontend/pages/ConfirmEmailPage'));
+const ConfirmPage = lazy(() => import('frontend/pages/ConfirmPage'));
 
 const Registration: FC = () => {
-  const [email, setEmail] = useState<string>('');
+  const [confirmData, setConfirmData] = useState<{
+    type: 'phone' | 'email';
+    value: string;
+  } | null>();
   const navigate = useNavigate();
 
   return (
@@ -17,16 +20,21 @@ const Registration: FC = () => {
         path={routes.root}
         element={
           <RegisterPage
-            onFinishEmail={setEmail}
+            onFinishPhone={(phone) => {
+              setConfirmData({ type: 'phone', value: phone });
+            }}
+            onFinishEmail={(email) => {
+              setConfirmData({ type: 'email', value: email });
+            }}
             onSuccess={() => {
-              navigate(`.${routes.confirmEmail}`);
+              navigate(`.${routes.confirm}`);
             }}
           />
         }
       />
       <Route
-        path={routes.confirmEmail}
-        element={<ConfirmEmailPage email={email} />}
+        path={routes.confirm}
+        element={confirmData && <ConfirmPage data={confirmData} />}
       />
     </Routes>
   );

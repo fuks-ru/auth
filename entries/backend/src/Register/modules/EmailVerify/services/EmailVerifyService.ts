@@ -3,8 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 
 import { User } from 'backend/User/entities/User';
-import { ConfirmCodeService } from 'backend/Register/modules/EmailVerify/services/ConfirmCodeService';
 import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
+import { ConfirmCodeService } from 'backend/ConfirmCode/services/ConfirmCodeService';
 
 @Injectable()
 export class EmailVerifyService {

@@ -6,7 +6,7 @@ import { Public } from 'backend/Auth/decorators/Public';
 import { ConfirmRequest } from 'backend/Register/modules/EmailVerify/dto/ConfirmRequest';
 import { ConfirmationService } from 'backend/Register/modules/EmailVerify/services/ConfirmationService';
 
-@Controller('/confirmation')
+@Controller('/confirmation/email')
 @ApiTags('Confirmation')
 export class ConfirmationController {
   public constructor(
@@ -18,7 +18,7 @@ export class ConfirmationController {
    */
   @Post('/confirm')
   @ApiOperation({
-    operationId: 'confirmationConfirm',
+    operationId: 'confirmationEmailConfirm',
   })
   @Public()
   @UseGuards(AuthGuard('not-auth'))

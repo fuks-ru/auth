@@ -5,6 +5,7 @@
   "loginOrRegister": "<0>Login</0> or <2>registration</2>",
   "forgotPassword": "Forgot your password?",
   "confirmEmailSent": "An email with a confirmation code has been sent to your email {{ email }} (check spam). Code not received?",
+  "confirmPhoneSent": "An sms with a confirmation code has been sent to your phone {{ phone }}. Code not received?",
   "registration": "Registration",
   "repeatPassword": "Repeat password",
   "registerOrLogin": "<0>Register</0> or <2>login</2>",
@@ -19,11 +20,14 @@
   "loginWithGoogle": "Login with Google",
   "authTitle": "{{ title }} | Auth",
   "unknownError": "Unknown error",
-  "emailConfirmation": "Email confirmation",
+  "confirmation": "Confirmation",
   "code": "Code",
   "register": "Register",
   "resend": "Resend",
   "loginSuccess": "You have successfully logged in",
   "logout": "Logout",
-  "userInfo": "Email {{ email }}, role: {{ role }}"
+  "userInfo": "Email {{ email }}, role: {{ role }}",
+  "phone": "Phone",
+  "byEmail": "By email",
+  "byPhone": "By phone"
 }

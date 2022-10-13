@@ -16,13 +16,13 @@ interface IProps {
  * подтверждения.
  */
 export const ConfirmEmail: FC<IProps> = ({ email }) => {
-  const [form, onFinish, status] = useAuthForm('confirmationConfirm');
+  const [form, onFinish, status] = useAuthForm('confirmationEmailConfirm');
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);
 
   return (
-    <SCard title={t('emailConfirmation')}>
+    <SCard title={t('confirmation')}>
       <Space direction='vertical' size={32}>
         <ResendConfirmEmail email={email} />
 

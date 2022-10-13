@@ -5,7 +5,7 @@ import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
 import { MailerModule } from '@nestjs-modules/mailer';
 
 import { AuthModule } from 'backend/Auth/AuthModule';
-import { BasicAuthModule } from 'backend/BasicLogin/BasicAuthModule';
+import { EmailLoginModule } from 'backend/EmailLogin/EmailLoginModule';
 import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 import { GoogleLoginModule } from 'backend/GoogleLogin/GoogleLoginModule';
 import { RegisterModule } from 'backend/Register/RegisterModule';
@@ -25,6 +25,9 @@ import { LogoutModule } from 'backend/Logout/LogoutModule';
         logger: configGetter.getLoggerOptions(),
         sessionCookieDomain: configGetter.getCookieDomain(),
         apiPrefix: configGetter.getApiPrefix(),
+        swagger: {
+          generators: ['axios'],
+        },
       }),
     }),
     TypeOrmModule.forRootAsync({
@@ -34,7 +37,7 @@ import { LogoutModule } from 'backend/Logout/LogoutModule';
     }),
     GoogleLoginModule,
     RegisterModule,
-    BasicAuthModule,
+    EmailLoginModule,
     AuthModule,
     MailerModule.forRootAsync({
       inject: [ConfigGetter, EnvGetter],
