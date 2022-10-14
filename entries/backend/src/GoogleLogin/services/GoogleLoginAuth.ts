@@ -12,7 +12,7 @@ export class GoogleLoginAuth {
   public constructor(
     private readonly systemErrorFactory: SystemErrorFactory,
     private readonly userService: UserService,
-    private readonly emailRegisterService: GoogleRegisterService,
+    private readonly googleRegisterService: GoogleRegisterService,
     private readonly i18nResolver: I18nResolver,
   ) {}
 
@@ -31,7 +31,7 @@ export class GoogleLoginAuth {
 
     return (
       (await this.userService.findConfirmedByEmail(tokenPayload.email)) ||
-      (await this.emailRegisterService.register(tokenPayload.email))
+      (await this.googleRegisterService.register(tokenPayload.email))
     );
   }
 }

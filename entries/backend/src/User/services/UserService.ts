@@ -83,6 +83,26 @@ export class UserService {
   }
 
   /**
+   * Ищет подтвержденного пользователя по email.
+   */
+  public async findConfirmedByTelegramId(id: number): Promise<User | null> {
+    return this.userRepository.findOneBy({
+      telegramId: id,
+      isConfirmed: true,
+    });
+  }
+
+  /**
+   * Ищет подтвержденного пользователя по телефону.
+   */
+  public async findConfirmedByPhone(phone: string): Promise<User | null> {
+    return this.userRepository.findOneBy({
+      phone,
+      isConfirmed: true,
+    });
+  }
+
+  /**
    * Ищет пользователя по email.
    */
   public async findByEmail(email: string): Promise<User | null> {

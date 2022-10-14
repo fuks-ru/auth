@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EncodingService } from '@fuks-ru/common-backend';
 
-import { EmailRegisterRequest } from 'backend/Register/dto/EmailRegisterRequest';
-import { EmailVerifyService } from 'backend/Register/modules/EmailVerify/services/EmailVerifyService';
 import { Role, User } from 'backend/User/entities/User';
 import { UserService } from 'backend/User/services/UserService';
 import { PhoneRegisterRequest } from 'backend/Register/dto/PhoneRegisterRequest';

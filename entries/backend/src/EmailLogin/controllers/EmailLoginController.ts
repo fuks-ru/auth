@@ -20,11 +20,11 @@ export class EmailLoginController {
   /**
    * Маршрут для авторизации по логину и паролю.
    */
-  @Post('/login/basic')
+  @Post('/login/email')
   @ApiOperation({
-    operationId: 'loginBasic',
+    operationId: 'loginEmail',
   })
-  @UseGuards(AuthGuard('not-auth'), GoogleRecaptchaGuard, AuthGuard('local'))
+  @UseGuards(AuthGuard('not-auth'), GoogleRecaptchaGuard, AuthGuard('email'))
   @Public()
   public login(@Request() { user }: IRequest): void {
     this.loginService.login(user);

@@ -11,13 +11,13 @@ interface IRequest extends ExpressRequest {
   user: User;
 }
 
-@Controller()
+@Controller('/auth')
 @ApiTags('Auth')
 export class AuthController {
   /**
    * Маршрут для получения пользователя по токену.
    */
-  @Get('/auth/verify')
+  @Get('/verify')
   @ApiOperation({
     operationId: 'authVerify',
   })
@@ -33,7 +33,7 @@ export class AuthController {
   /**
    * Маршрут, возвращающий успешный ответ, если пользователь не авторизован.
    */
-  @Get('/auth/check-not')
+  @Get('/check-not')
   @ApiOperation({
     operationId: 'authCheckNot',
   })

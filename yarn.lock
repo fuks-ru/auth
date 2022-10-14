@@ -1675,6 +1675,7 @@ __metadata:
     typescript: 4.8.3
     typescript-transform-paths: ^3.3.1
     uuid: ^9.0.0
+    zadarma: ^1.1.2
   peerDependencies:
     "@fuks-ru/common": "*"
   languageName: unknown
@@ -4367,7 +4368,7 @@ __metadata:
   dependencies:
     "@rushstack/eslint-patch": ^1.2.0
     eslint: ^8.24.0
-    eslint-config-fuks: ^1.8.2
+    eslint-config-fuks: ^1.9.2
     typescript: 4.8.3
   languageName: unknown
   linkType: soft
@@ -4402,6 +4403,15 @@ __metadata:
   dependencies:
     follow-redirects: 1.5.10
   checksum: dcace11a0a25fdf9b3b97fc9d011d23dd9c67cc13d91778080482ddddbbfe731f7410a090b11aa0bbbdf83686c5911ccb4289fd3683b7488c1b0c4d3c882380c
+  languageName: node
+  linkType: hard
+
+"axios@npm:^0.21.1":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
+  dependencies:
+    follow-redirects: ^1.14.0
+  checksum: 44245f24ac971e7458f3120c92f9d66d1fc695e8b97019139de5b0cc65d9b8104647db01e5f46917728edfc0cfd88eb30fc4c55e6053eef4ace76768ce95ff3c
   languageName: node
   linkType: hard
 
@@ -6826,9 +6836,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-fuks@npm:^1.8.2":
-  version: 1.8.2
-  resolution: "eslint-config-fuks@npm:1.8.2"
+"eslint-config-fuks@npm:^1.9.2":
+  version: 1.9.2
+  resolution: "eslint-config-fuks@npm:1.9.2"
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.38.0
     "@typescript-eslint/parser": ^5.38.0
@@ -6851,13 +6861,15 @@ __metadata:
     eslint-plugin-sonarjs: ^0.15.0
     eslint-plugin-styled-components-varname: ^1.0.1
     eslint-plugin-unicorn: ^43.0.2
+    eslint-plugin-vue: ^9.6.0
     prettier: ^2.7.1
     prettier-plugin-jsdoc: ^0.4.2
+    vue-eslint-parser: ^9.1.0
   peerDependencies:
     eslint: ^8.5.0
     prettier: ^2.5.0
     typescript: ^4.6.3
-  checksum: c5dfbd09916a245bc06e9baf67fe2915f03223fbb98954f5a2e3a8ecfae70d4c6df51f8520f514c3821462ab958376806f9d2f18dfff5a830647e21eb0cf3f4a
+  checksum: eabb41429bcccaabea5dfe336c0bc0afdddeed37bd217f363b47699e13bfbef6fa614a483603c1b228d3ed2b528c24c5f2c4e22f869d4e6127c0cd44aaf30e77
   languageName: node
   linkType: hard
 
@@ -7167,6 +7179,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-vue@npm:^9.6.0":
+  version: 9.6.0
+  resolution: "eslint-plugin-vue@npm:9.6.0"
+  dependencies:
+    eslint-utils: ^3.0.0
+    natural-compare: ^1.4.0
+    nth-check: ^2.0.1
+    postcss-selector-parser: ^6.0.9
+    semver: ^7.3.5
+    vue-eslint-parser: ^9.0.1
+    xml-name-validator: ^4.0.0
+  peerDependencies:
+    eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
+  checksum: fcfb333b09af4d1db027f8a52b7ffdf0ebaa649f5738b7a6124bd02aaa1e075daaaa97e490a863667dda16c79e1d37688a8311d7685b9a63d3c4c0dd5f1d9622
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:5.1.1, eslint-scope@npm:^5.1.1":
   version: 5.1.1
   resolution: "eslint-scope@npm:5.1.1"
@@ -7261,7 +7290,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"espree@npm:^9.4.0":
+"espree@npm:^9.3.1, espree@npm:^9.4.0":
   version: 9.4.0
   resolution: "espree@npm:9.4.0"
   dependencies:
@@ -7425,6 +7454,15 @@ __metadata:
     jest-message-util: ^29.1.0
     jest-util: ^29.1.0
   checksum: 74333a64c9f903804806a7a2669394b3f9b464e960b74efbe4e55498ef218703d5701c0f44333b68dfd94c7b7ec5fca69f4662acb30c321e7a258c88810c66b2
+  languageName: node
+  linkType: hard
+
+"express-formidable@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "express-formidable@npm:1.2.0"
+  dependencies:
+    formidable: ^1.0.17
+  checksum: a1bce48f4cd3ddd3d2c0de122e01dd781aef1a6de1b977cbd98e2979d1d3e0730e23fe17533cbb13773ffb046e33a6afb11408d532c25dc93bf3f5953aa11a3d
   languageName: node
   linkType: hard
 
@@ -7753,7 +7791,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.7, follow-redirects@npm:^1.14.9":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.14.7, follow-redirects@npm:^1.14.9":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
@@ -7807,6 +7845,13 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
+  languageName: node
+  linkType: hard
+
+"formidable@npm:^1.0.17":
+  version: 1.2.6
+  resolution: "formidable@npm:1.2.6"
+  checksum: 2b68ed07ba88302b9c63f8eda94f19a460cef6017bfda48348f09f41d2a36660c9353137991618e0e4c3db115b41e4b8f6fa63bc973b7a7c91dec66acdd02a56
   languageName: node
   linkType: hard
 
@@ -8538,6 +8583,13 @@ __metadata:
     domutils: ^3.0.1
     entities: ^4.3.0
   checksum: 06d5c71e8313597722bc429ae2a7a8333d77bd3ab07ccb916628384b37332027b047f8619448d8f4a3312b6609c6ea3302a4e77435d859e9e686999e6699ca39
+  languageName: node
+  linkType: hard
+
+"http-build-query@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "http-build-query@npm:0.7.0"
+  checksum: 8d1064a2db6eb376a34715b92f117c2669facfbed8912d9e70675ab1893abfc243f59a1126f4bc5b2ec12edd938268572ee9429e008ab4c58c8a45696bb41640
   languageName: node
   linkType: hard
 
@@ -13053,7 +13105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4":
+"postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4, postcss-selector-parser@npm:^6.0.9":
   version: 6.0.10
   resolution: "postcss-selector-parser@npm:6.0.10"
   dependencies:
@@ -14936,6 +14988,17 @@ __metadata:
   bin:
     semver: ./bin/semver.js
   checksum: 1b26ecf6db9e8292dd90df4e781d91875c0dcc1b1909e70f5d12959a23c7eebb8f01ea581c00783bbee72ceeaad9505797c381756326073850dc36ed284b21b9
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.3.6":
+  version: 7.3.8
+  resolution: "semver@npm:7.3.8"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: ba9c7cbbf2b7884696523450a61fee1a09930d888b7a8d7579025ad93d459b2d1949ee5bbfeb188b2be5f4ac163544c5e98491ad6152df34154feebc2cc337c1
   languageName: node
   linkType: hard
 
@@ -16879,6 +16942,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vue-eslint-parser@npm:^9.0.1, vue-eslint-parser@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "vue-eslint-parser@npm:9.1.0"
+  dependencies:
+    debug: ^4.3.4
+    eslint-scope: ^7.1.1
+    eslint-visitor-keys: ^3.3.0
+    espree: ^9.3.1
+    esquery: ^1.4.0
+    lodash: ^4.17.21
+    semver: ^7.3.6
+  peerDependencies:
+    eslint: ">=6.0.0"
+  checksum: e2e6b05989294c4439d91283a78a0cb444cfba30f2715a5be1950d7815cadb5c8f449d9362a92bdd163cb8944abaac73bb076ce3c27b27586eaa4560002e6dfd
+  languageName: node
+  linkType: hard
+
 "walker@npm:^1.0.8":
   version: 1.0.8
   resolution: "walker@npm:1.0.8"
@@ -17269,6 +17349,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"xml-name-validator@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "xml-name-validator@npm:4.0.0"
+  checksum: af100b79c29804f05fa35aa3683e29a321db9b9685d5e5febda3fa1e40f13f85abc40f45a6b2bf7bee33f68a1dc5e8eaef4cec100a304a9db565e6061d4cb5ad
+  languageName: node
+  linkType: hard
+
 "xml2js@npm:^0.4.23":
   version: 0.4.23
   resolution: "xml2js@npm:0.4.23"
@@ -17417,6 +17504,17 @@ __metadata:
   bin:
     z-schema: bin/z-schema
   checksum: afa4e0039a104a53eeb6977bf754ef44e32042aecbf3b5eb18b82649763abd5c2608e47d6d6902291359b41e76130594d7f2b6132316d819c3529f17d4d3464d
+  languageName: node
+  linkType: hard
+
+"zadarma@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "zadarma@npm:1.1.2"
+  dependencies:
+    axios: ^0.21.1
+    express-formidable: ^1.2.0
+    http-build-query: ^0.7.0
+  checksum: 662e8d1a08835cd08a48fd99617079bba237b44fdcfd051f554039d51d49700a3c2daa7606b20f3267636360165539a743e95c444a799a79463b18b1cfb6f7d0
   languageName: node
   linkType: hard
 

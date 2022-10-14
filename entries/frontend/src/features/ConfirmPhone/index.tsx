@@ -16,13 +16,13 @@ interface IProps {
  * подтверждения.
  */
 export const ConfirmPhone: FC<IProps> = ({ phone }) => {
-  const [form, onFinish, status] = useAuthForm('confirmationEmailConfirm');
+  const [form, onFinish, status] = useAuthForm('confirmationPhoneConfirm');
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);
 
   return (
-    <SCard title={t('emailConfirmation')}>
+    <SCard title={t('confirmation')}>
       <Space direction='vertical' size={32}>
         <ResendConfirmPhone phone={phone} />
 

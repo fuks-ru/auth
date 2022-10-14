@@ -1,4 +1,4 @@
-import { Form, message } from 'antd';
+import { message } from 'antd';
 import { FC, useCallback } from 'react';
 import GoogleLogin, {
   GoogleLoginResponse,
@@ -7,7 +7,7 @@ import GoogleLogin, {
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
 
-import { useAuthForm } from 'frontend/shared/api';
+import { useAuthApi } from 'frontend/shared/api';
 import { useTheme } from 'frontend/entities/theme';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
 
@@ -15,7 +15,7 @@ import { useNavigateToSuccess } from 'frontend/shared/lib';
  * Страница авторизации.
  */
 export const LoginGoogle: FC = () => {
-  const [form, onFinish, status] = useAuthForm('loginGoogle');
+  const [send, , status] = useAuthApi('loginGoogle');
   const { t } = useTranslation();
   const { theme } = useTheme();
 
@@ -29,33 +29,40 @@ export const LoginGoogle: FC = () => {
         return;
       }
 
-      form.setFieldsValue({
+      void send({
         accessToken: response.tokenId,
       });
-
-      form.submit();
     },
-    [form, t],
+    [send, t],
   );
 
   return (
-    <Form form={form} onFinish={onFinish}>
-      <Form.Item name='accessToken'>
-        <GoogleLogin
-          clientId={process.env.GOOGLE_AUTH_CLIENT_ID as string}
-          buttonText={t('loginWithGoogle')}
-          onSuccess={handleGoogleResponse}
-          onFailure={handleGoogleResponse}
-          cookiePolicy='single_host_origin'
-          className={googleLogin}
-          theme={theme}
-        />
-      </Form.Item>
-    </Form>
+    <GoogleLogin
+      clientId={process.env.GOOGLE_AUTH_CLIENT_ID as string}
+      buttonText={t('loginWithGoogle')}
+      onSuccess={handleGoogleResponse}
+      onFailure={handleGoogleResponse}
+      cookiePolicy='single_host_origin'
+      className={googleLogin}
+      theme={theme}
+    />
   );
 };
 
 const googleLogin = css`
   width: 100%;
   font-family: inherit;
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: none !important;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  > span {
+    padding-right: 16px;
+  }
 `;

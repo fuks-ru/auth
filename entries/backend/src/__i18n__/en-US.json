@@ -25,5 +25,8 @@
   "moderator": "Moderator",
   "lengthEqual": "Length must be equal: {constraints.0}",
   "alreadyAuth": "User already authenticated",
-  "incorrectPhoneFormat": "Incorrect phone format"
+  "incorrectPhoneFormat": "Incorrect phone format",
+  "enterPhone": "Enter phone",
+  "incorrectPhoneOrPassword": "Incorrect phone or password",
+  "telegramHashNotValid": "Telegram hash not valid"
 }

@@ -26,8 +26,10 @@
   "resend": "Resend",
   "loginSuccess": "You have successfully logged in",
   "logout": "Logout",
-  "userInfo": "Email {{ email }}, role: {{ role }}",
+  "role": "Role",
   "phone": "Phone",
   "byEmail": "By email",
-  "byPhone": "By phone"
+  "byPhone": "By phone",
+  "firstName": "First name",
+  "lastName": "Last name"
 }

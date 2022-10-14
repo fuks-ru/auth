@@ -25,7 +25,7 @@ describe('EmailLogin', () => {
       const body = {};
 
       const response = await request(app.getHttpServer())
-        .post('/api/login/basic')
+        .post('/api/login/email')
         .send(body);
 
       expect(response.body).toEqual({
@@ -46,7 +46,7 @@ describe('EmailLogin', () => {
       };
 
       const response = await request(app.getHttpServer())
-        .post('/api/login/basic')
+        .post('/api/login/email')
         .send(body);
 
       expect(response.body).toEqual({
@@ -66,7 +66,7 @@ describe('EmailLogin', () => {
       };
 
       const response = await request(app.getHttpServer())
-        .post('/api/login/basic')
+        .post('/api/login/email')
         .send(body);
 
       expect(response.statusCode).toEqual(HttpStatus.CREATED);

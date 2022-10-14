@@ -20,9 +20,9 @@ interface IRequest extends ExpressRequest {
 }
 
 @Injectable()
-export class EmailLoginStrategy extends PassportStrategy(Strategy, 'local') {
+export class EmailLoginStrategy extends PassportStrategy(Strategy, 'email') {
   public constructor(
-    private readonly basicAuthService: EmailLoginService,
+    private readonly emailLoginService: EmailLoginService,
     private readonly systemErrorFactory: SystemErrorFactory,
     private readonly validationErrorFactory: ValidationErrorFactory,
     private readonly moduleRef: ModuleRef,
@@ -31,7 +31,7 @@ export class EmailLoginStrategy extends PassportStrategy(Strategy, 'local') {
   }
 
   /**
-   * Валидация по email и пароль.
+   * Валидация по email и паролю.
    */
   public async validate(request: IRequest): Promise<User> {
     const contextId = ContextIdFactory.getByRequest(request);
@@ -70,7 +70,7 @@ export class EmailLoginStrategy extends PassportStrategy(Strategy, 'local') {
       });
     }
 
-    const user = await this.basicAuthService.validateUser(
+    const user = await this.emailLoginService.validateUser(
       body.email,
       body.password,
     );

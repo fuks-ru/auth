@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, Length } from 'class-validator';
+import { IsPhoneNumber, Length } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
 export class ConfirmRequest {
@@ -13,14 +13,11 @@ export class ConfirmRequest {
   public confirmCode!: string;
 
   /**
-   * Phone.
+   * Телефон.
    */
   @ApiProperty()
-  @IsEmail(
-    {},
-    {
-      message: i18nValidationMessage('incorrectPhoneFormat'),
-    },
-  )
+  @IsPhoneNumber('RU', {
+    message: i18nValidationMessage('incorrectPhoneFormat'),
+  })
   public phone!: string;
 }

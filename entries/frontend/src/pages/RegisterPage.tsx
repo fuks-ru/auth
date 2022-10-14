@@ -6,6 +6,7 @@ import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { EmailRegister } from 'frontend/features/EmailRegister';
 import { PhoneRegister } from 'frontend/features/PhoneRegister';
+import { LoginTelegram } from 'frontend/features/LoginTelegram';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -51,6 +52,7 @@ const RegisterPage: FC<IProps> = ({
           </Space>
         </Card>
         <LoginGoogle />
+        <LoginTelegram />
       </Space>
     </>
   );

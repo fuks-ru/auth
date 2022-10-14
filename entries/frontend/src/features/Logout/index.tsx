@@ -1,5 +1,5 @@
 import { Schemas } from '@fuks-ru/auth-client';
-import { Button, Form } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -27,7 +27,29 @@ export const Logout: FC<IProps> = ({ user }) => {
 
   return (
     <Form form={form} onFinish={onFinish}>
-      <Form.Item>{t('userInfo', user)}</Form.Item>
+      {user.email && (
+        <Form.Item label={t('email')}>
+          <Input value={user.phone} readOnly={true} />
+        </Form.Item>
+      )}
+      {user.phone && (
+        <Form.Item label={t('phone')}>
+          <Input value={user.phone} readOnly={true} disabled={true} />
+        </Form.Item>
+      )}
+      {user.firstName && (
+        <Form.Item label={t('firstName')}>
+          <Input value={user.firstName} readOnly={true} disabled={true} />
+        </Form.Item>
+      )}
+      {user.lastName && (
+        <Form.Item label={t('lastName')}>
+          <Input value={user.lastName} readOnly={true} disabled={true} />
+        </Form.Item>
+      )}
+      <Form.Item label={t('role')}>
+        <Input value={user.role} readOnly={true} disabled={true} />
+      </Form.Item>
       <Form.Item noStyle={true}>
         <Button
           type='primary'

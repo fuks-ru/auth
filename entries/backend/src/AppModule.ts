@@ -13,6 +13,9 @@ import { ForgotPasswordModule } from 'backend/ForgotPassword/ForgotPasswordModul
 import { RoleModule } from 'backend/Role/RoleModule';
 import { ConfigModule } from 'backend/Config/ConfigModule';
 import { LogoutModule } from 'backend/Logout/LogoutModule';
+import { PhoneLoginModule } from 'backend/PhoneLogin/PhoneLoginModule';
+import { TelegramLoginModule } from 'backend/TelegramLogin/TelegramLoginModule';
+import { FrontendSettingsModule } from 'backend/FrontendSettings/FrontendSettingsModule';
 
 @Module({
   imports: [
@@ -35,10 +38,6 @@ import { LogoutModule } from 'backend/Logout/LogoutModule';
       useFactory: (configGetter: ConfigGetter) =>
         configGetter.getTypeOrmConfig(),
     }),
-    GoogleLoginModule,
-    RegisterModule,
-    EmailLoginModule,
-    AuthModule,
     MailerModule.forRootAsync({
       inject: [ConfigGetter, EnvGetter],
       useFactory: (configGetter: ConfigGetter) => ({
@@ -53,9 +52,16 @@ import { LogoutModule } from 'backend/Logout/LogoutModule';
       useFactory: (configGetter: ConfigGetter) =>
         configGetter.getRecaptchaOptions(),
     }),
+    GoogleLoginModule,
+    RegisterModule,
+    EmailLoginModule,
+    AuthModule,
     ForgotPasswordModule,
     RoleModule,
     LogoutModule,
+    PhoneLoginModule,
+    TelegramLoginModule,
+    FrontendSettingsModule,
   ],
 })
 export class AppModule {}

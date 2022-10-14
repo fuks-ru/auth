@@ -2,7 +2,7 @@
   "enterEmail": "Введите email",
   "incorrectEmailFormat": "Некорректный формат email",
   "enterPassword": "Введите пароль",
-  "incorrectEmailOrPassword": "Неверный логин или пароль",
+  "incorrectEmailOrPassword": "Неверный email или пароль",
   "minLength": "Минимальная длина: {constraints.0}",
   "passwordEqual": "Пароли должны совпадать",
   "emptyToken": "Отсутствует токен",
@@ -25,5 +25,8 @@
   "moderator": "Модератор",
   "lengthEqual": "Длина должна соответствовать: {constraints.0}",
   "alreadyAuth": "Пользователь уже авторизован",
-  "incorrectPhoneFormat": "Некорректный формат телефона"
+  "incorrectPhoneFormat": "Некорректный формат телефона",
+  "enterPhone": "Введите телефон",
+  "incorrectPhoneOrPassword": "Неверный телефон или пароль",
+  "telegramHashNotValid": "Невалидный хеш телеграм"
 }

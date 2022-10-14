@@ -7,6 +7,7 @@ import {
   useState,
   useTransition,
 } from 'react';
+import { css } from '@linaria/core';
 
 import { ThemeContext, TTheme } from 'frontend/entities/theme';
 
@@ -56,8 +57,20 @@ export const ThemeProvider: FC<IProps> = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={context}>
-      {theme === 'light' ? <LightTheme /> : <DarkTheme />}
-      {children}
+      <div className={theme === 'light' ? containerLight : containerDark}>
+        {theme === 'light' ? <LightTheme /> : <DarkTheme />}
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 };
+
+const containerDark = css`
+  height: 100%;
+  --border-color: transparent;
+`;
+
+const containerLight = css`
+  height: 100%;
+  --border-color: #f0f0f0;
+`;

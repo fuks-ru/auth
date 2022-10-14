@@ -13,7 +13,11 @@ export interface IMockedUser {
   /**
    * Email.
    */
-  email: string;
+  email?: string;
+  /**
+   * Телефон.
+   */
+  phone?: string;
   /**
    * Пароль.
    */

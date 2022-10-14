@@ -46,6 +46,33 @@ export class User {
   public phone?: string;
 
   /**
+   * Телефон.
+   */
+  @Column({
+    unique: true,
+    nullable: true,
+  })
+  public telegramId?: number;
+
+  /**
+   * Имя.
+   */
+  @Column({
+    unique: true,
+    nullable: true,
+  })
+  public firstName?: string;
+
+  /**
+   * Фамилия.
+   */
+  @Column({
+    unique: true,
+    nullable: true,
+  })
+  public lastName?: string;
+
+  /**
    * Подтвержден ли пользователь.
    */
   @Column({

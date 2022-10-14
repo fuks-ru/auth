@@ -12,8 +12,42 @@ export class UserVerifyResponse {
   /**
    * Email.
    */
-  @ApiProperty()
-  public email!: string;
+  @ApiProperty({
+    required: false,
+  })
+  public email?: string;
+
+  /**
+   * Телефон.
+   */
+  @ApiProperty({
+    required: false,
+  })
+  public phone?: string;
+
+  /**
+   * Имя.
+   */
+  @ApiProperty({
+    required: false,
+  })
+  public firstName?: string;
+
+  /**
+   * Фамилия.
+   */
+  @ApiProperty({
+    required: false,
+  })
+  public lastName?: string;
+
+  /**
+   * Id в телеграм.
+   */
+  @ApiProperty({
+    required: false,
+  })
+  public telegramId?: number;
 
   /**
    * Роль.

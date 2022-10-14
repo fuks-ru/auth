@@ -4,6 +4,12 @@ on:
       domain-name:
         required: true
         type: string
+      talagram-bot:
+        required: true
+        type: string
+      telegram-bot-token:
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -60,6 +66,8 @@ jobs:
           backend-container: ${{ env.BACKEND_CONTAINER }}
           postgres-container: ${{ env.POSTGRES_CONTAINER }}
           secret-context: ${{ toJson(secrets) }}
+          telegram-bot: ${{ inputs.telegram-bot }}
+          telegram-bot-token: ${{ inputs.telegram-bot-token }}
           script: yarn prod:migration:run
 
       - name: Run node
@@ -69,6 +77,8 @@ jobs:
           backend-container: ${{ env.BACKEND_CONTAINER }}
           postgres-container: ${{ env.POSTGRES_CONTAINER }}
           secret-context: ${{ toJson(secrets) }}
+          telegram-bot: ${{ inputs.telegram-bot }}
+          telegram-bot-token: ${{ inputs.telegram-bot-token }}
           detached: true
           script: yarn prod
 

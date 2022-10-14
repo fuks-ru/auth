@@ -26,8 +26,10 @@
   "resend": "Отправить снова",
   "loginSuccess": "Вы успешно авторизовались",
   "logout": "Выйти",
-  "userInfo": "Email {{ email }}, роль: {{ role }}",
+  "role": "Роль",
   "phone": "Телефон",
   "byEmail": "По email",
-  "byPhone": "По телефону"
+  "byPhone": "По телефону",
+  "firstName": "Имя",
+  "lastName": "Фамилия"
 }

@@ -18,6 +18,11 @@ interface IRequest extends Request {
   };
 }
 
+interface IZadarmaOptions {
+  apiUserKey: string;
+  apiSecretKey: string;
+}
+
 @Injectable()
 export class ConfigGetter {
   /**
@@ -33,6 +38,9 @@ export class ConfigGetter {
     [ErrorCode.FORGOT_PASSWORD_NOT_EXIST]: HttpStatus.NOT_FOUND,
     [ErrorCode.FORGOT_PASSWORD_CODE_TIMEOUT]: HttpStatus.TOO_MANY_REQUESTS,
     [ErrorCode.USER_INCORRECT_EMAIL_OR_PASSWORD]: HttpStatus.UNAUTHORIZED,
+    [ErrorCode.USER_INCORRECT_PHONE_OR_PASSWORD]: HttpStatus.UNAUTHORIZED,
+    [ErrorCode.CONFIRM_CODE_PHONE_EMPTY]: HttpStatus.UNPROCESSABLE_ENTITY,
+    [ErrorCode.TELEGRAM_HASH_NOT_VALID]: HttpStatus.UNAUTHORIZED,
   };
 
   public constructor(private readonly envGetter: EnvGetter) {}
@@ -174,7 +182,7 @@ export class ConfigGetter {
    */
   public getAuthDomainWithScheme(): string {
     return this.envGetter.isDev()
-      ? 'http://localhost:3002'
+      ? 'https://4d52-94-180-203-146.eu.ngrok.io'
       : `https://auth.${this.envGetter.getEnv('DOMAIN')}`;
   }
 
@@ -185,6 +193,39 @@ export class ConfigGetter {
     return this.envGetter.isDev()
       ? ['http://localhost:3000']
       : [`https://admin.${this.envGetter.getEnv('DOMAIN')}`];
+  }
+
+  /**
+   * Получает токен телеграм бота.
+   */
+  public getTelegramBotToken(): string {
+    return this.envGetter.isDev()
+      ? ''
+      : this.envGetter.getEnv('TELEGRAM_BOT_TOKEN');
+  }
+
+  /**
+   * Получает конфиг для звонков.
+   */
+  public getZadarmaOptions(): IZadarmaOptions {
+    return this.envGetter.isDev()
+      ? {
+          apiSecretKey: '',
+          apiUserKey: '',
+        }
+      : {
+          apiSecretKey: this.envGetter.getEnv('ZADARMA_SECRET_KEY'),
+          apiUserKey: this.envGetter.getEnv('ZADARMA_USER_KEY'),
+        };
+  }
+
+  /**
+   * Получает токен телеграм бота.
+   */
+  public getTelegramBotName(): string {
+    return this.envGetter.isDev()
+      ? ''
+      : this.envGetter.getEnv('TELEGRAM_BOT_NAME');
   }
 
   private getProdTypeOrmConfig(): TypeOrmModuleOptions {

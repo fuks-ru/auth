@@ -1,19 +1,28 @@
-import { SMSRu } from 'node-sms-ru';
 import { Injectable } from '@nestjs/common';
+import { api } from 'zadarma';
+
+import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 
 @Injectable()
 export class SmsSenderService {
-  private readonly smsRu = new SMSRu('FEC2BD02-34A6-A469-101E-A7B4C38FDB0A');
+  public constructor(private readonly configGetter: ConfigGetter) {}
 
   /**
    * Отправляет sms.
    */
   public async send(to: string, text: string): Promise<void> {
-    const response = await this.smsRu.sendSms({
-      to,
-      msg: text,
-    });
+    const options = this.configGetter.getZadarmaOptions();
 
-    console.log(response);
+    await api({
+      api_method: '/v1/request/checknumber/',
+      api_user_key: options.apiUserKey,
+      api_secret_key: options.apiSecretKey,
+      params: {
+        caller_id: '+78432126076',
+        to: '+79531964913',
+        code: text,
+        lang: 'ru',
+      },
+    });
   }
 }
