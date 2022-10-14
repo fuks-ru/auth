@@ -88,6 +88,10 @@ export class UserController {
       id: user.id,
       role: user.role,
       email: user.email,
+      phone: user.phone,
+      telegramId: user.telegramId,
+      firstName: user.firstName,
+      lastName: user.lastName,
       isConfirmed: user.isConfirmed,
     };
   }
@@ -97,6 +101,10 @@ export class UserController {
       id: user.id,
       role: user.role,
       email: user.email,
+      phone: user.phone,
+      telegramId: user.telegramId,
+      firstName: user.firstName,
+      lastName: user.lastName,
       isConfirmed: user.isConfirmed,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
