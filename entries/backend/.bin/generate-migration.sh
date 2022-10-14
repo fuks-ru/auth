@@ -12,6 +12,8 @@ docker run --name auth-postgres \
   -p 5432:5432 \
   postgres:14.2-alpine
 
+sleep 5
+
 yarn dev:typeorm migration:run
 
 yarn dev:typeorm migration:generate "$(pwd)/src/__migration__/$1"
