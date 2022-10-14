@@ -18,8 +18,8 @@ export class SmsSenderService {
       api_user_key: options.apiUserKey,
       api_secret_key: options.apiSecretKey,
       params: {
-        caller_id: '+78432126076',
-        to: '+79531964913',
+        caller_id: options.callerId,
+        to,
         code: text,
         lang: 'ru',
       },

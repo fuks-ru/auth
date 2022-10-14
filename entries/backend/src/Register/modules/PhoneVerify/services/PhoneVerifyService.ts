@@ -32,6 +32,6 @@ export class PhoneVerifyService {
       );
     }
 
-    await this.smsSender.send(user.phone, confirmCode.value);
+    await this.smsSender.send(`+${user.phone}`, confirmCode.value);
   }
 }

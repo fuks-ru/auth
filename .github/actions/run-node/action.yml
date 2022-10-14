@@ -49,6 +49,7 @@ runs:
           -e MAILER_HOST="${{ fromJson(inputs.secret-context).MAILER_HOST }}" \
           -e ZADARMA_SECRET_KEY="${{ fromJson(inputs.secret-context).ZADARMA_SECRET_KEY }}" \
           -e ZADARMA_USER_KEY="${{ fromJson(inputs.secret-context).ZADARMA_USER_KEY }}" \
+          -e ZADARMA_CALLER_ID="${{ fromJson(inputs.secret-context).ZADARMA_CALLER_ID }}" \
           -e DOMAIN="${{ inputs.domain }}" \
           -e TELEGRAM_BOT_NAME="${{ inputs.telegram-bot }}" \
           -e TELEGRAM_BOT_TOKEN="${{ inputs.telegram-bot-token }}" \

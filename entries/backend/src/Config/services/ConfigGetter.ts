@@ -21,6 +21,7 @@ interface IRequest extends Request {
 interface IZadarmaOptions {
   apiUserKey: string;
   apiSecretKey: string;
+  callerId: string;
 }
 
 @Injectable()
@@ -212,10 +213,12 @@ export class ConfigGetter {
       ? {
           apiSecretKey: '',
           apiUserKey: '',
+          callerId: '',
         }
       : {
           apiSecretKey: this.envGetter.getEnv('ZADARMA_SECRET_KEY'),
           apiUserKey: this.envGetter.getEnv('ZADARMA_USER_KEY'),
+          callerId: this.envGetter.getEnv('ZADARMA_CALLER_ID'),
         };
   }
 
