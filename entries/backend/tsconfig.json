@@ -1,6 +1,5 @@
 {
   "extends": "../../tsconfig.packages.json",
-  "files": ["./src/__types__/zadarma.d.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "isolatedModules": false,
