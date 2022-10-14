@@ -134,8 +134,6 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       domain-name: fuks
-      telegram-bot: fuksblogbot
-      telegram-bot-token: ${{ secrets.FUKS_BLOG_TELEGRAM_BOT_TOKEN }}
     secrets: inherit
 
   deploy-esenin:
@@ -144,8 +142,6 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       domain-name: esenin-family
-      telegram-bot: EseninFamilyBot
-      telegram-bot-token: ${{ secrets.ESENIN_TELEGRAM_BOT_TOKEN }}
     secrets: inherit
 
 
