@@ -74,8 +74,8 @@ jobs:
           backend-container: ${{ env.BACKEND_CONTAINER }}
           postgres-container: ${{ env.POSTGRES_CONTAINER }}
           secret-context: ${{ toJson(secrets) }}
-          telegram-bot: ${{ inputs.telegram-bot }}
-          telegram-bot-token: ${{ inputs.telegram-bot-token }}
+          telegram-bot: ${{ env.TELEGRAM_BOT }}
+          telegram-bot-token: ${{ env.TELEGRAM_BOT_TOKEN }}
           detached: true
           script: yarn prod
 
