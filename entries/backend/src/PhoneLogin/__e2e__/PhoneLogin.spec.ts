@@ -50,7 +50,7 @@ describe('PhoneLogin', () => {
         .send(body);
 
       expect(response.body).toEqual({
-        code: ErrorCode.USER_INCORRECT_EMAIL_OR_PASSWORD,
+        code: ErrorCode.USER_INCORRECT_PHONE_OR_PASSWORD,
         message: expect.any(String),
       });
       expect(response.statusCode).toEqual(HttpStatus.UNAUTHORIZED);

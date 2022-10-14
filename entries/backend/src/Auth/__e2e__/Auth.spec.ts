@@ -27,7 +27,7 @@ describe('Auth', () => {
       };
 
       const loginResponse = await request(app.getHttpServer())
-        .post('/api/login/basic')
+        .post('/api/login/email')
         .send(body);
 
       const response = await request(app.getHttpServer())
