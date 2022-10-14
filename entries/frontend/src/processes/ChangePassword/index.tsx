@@ -1,13 +1,17 @@
 import { FC, lazy, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { routes } from 'frontend/processes/Registration/lib/routes';
+import { routes } from 'frontend/processes/ChangePassword/lib/routes';
 import { useNavigate } from 'frontend/shared/lib';
 
-const RegisterPage = lazy(() => import('frontend/pages/RegisterPage'));
-const ConfirmPage = lazy(() => import('frontend/pages/ConfirmPage'));
+const ForgotPasswordPage = lazy(
+  () => import('frontend/pages/ForgotPasswordPage'),
+);
+const ChangePasswordPage = lazy(
+  () => import('frontend/pages/ChangePasswordPage'),
+);
 
-const Registration: FC = () => {
+const ChangePassword: FC = () => {
   const [confirmData, setConfirmData] = useState<{
     type: 'phone' | 'email';
     value: string;
@@ -19,7 +23,7 @@ const Registration: FC = () => {
       <Route
         path={routes.root}
         element={
-          <RegisterPage
+          <ForgotPasswordPage
             onFinishPhone={(phone) => {
               setConfirmData({ type: 'phone', value: phone });
             }}
@@ -34,7 +38,7 @@ const Registration: FC = () => {
       />
       <Route
         path={routes.confirm}
-        element={confirmData && <ConfirmPage data={confirmData} />}
+        element={confirmData && <ChangePasswordPage data={confirmData} />}
       />
     </Routes>
   );
@@ -43,4 +47,4 @@ const Registration: FC = () => {
 /**
  * Процесс регистрации, объединяющий регистрацию и подтверждение email.
  */
-export default Registration;
+export default ChangePassword;

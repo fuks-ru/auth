@@ -2,15 +2,24 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Head } from 'frontend/shared/ui';
-import { ChangePassword } from 'frontend/features/ChangePassword';
+import { ChangePasswordEmail } from 'frontend/features/ChangePasswordEmail';
+import { ChangePasswordPhone } from 'frontend/features/ChangePasswordPhone';
 
-const ChangePasswordPage: FC = () => {
+interface IProps {
+  data: { type: 'email' | 'phone'; value: string };
+}
+
+const ChangePasswordPage: FC<IProps> = ({ data }) => {
   const { t } = useTranslation();
 
   return (
     <>
       <Head title={t('changePassword')} />
-      <ChangePassword />
+      {data.type === 'phone' ? (
+        <ChangePasswordPhone phone={data.value} />
+      ) : (
+        <ChangePasswordEmail email={data.value} />
+      )}
     </>
   );
 };

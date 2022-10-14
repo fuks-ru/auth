@@ -17,7 +17,7 @@
   "toConfirm": "Confirmation code: {code}",
   "forgotPasswordCodeNotExist": "Forgot password code not exist",
   "passwordRecovery": "Password recovery",
-  "toChangePassword": "To change password, follow the link: {link}",
+  "toChangePassword": "Change password code: {code}",
   "incorrectRole": "Incorrect role",
   "mustBeBoolean": "Must be boolean",
   "admin": "Admin",

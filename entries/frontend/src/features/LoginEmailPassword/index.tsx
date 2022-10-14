@@ -48,7 +48,7 @@ export const LoginEmailPassword: FC = () => {
       </Form.Item>
       <Form.Item noStyle={true}>
         <Typography.Text>
-          <Link route={routes.forgotPassword}>{t('forgotPassword')}</Link>
+          <Link route={routes.changePassword}>{t('forgotPassword')}</Link>
         </Typography.Text>
       </Form.Item>
     </Form>

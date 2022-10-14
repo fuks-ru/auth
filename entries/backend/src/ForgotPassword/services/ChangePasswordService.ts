@@ -1,9 +1,11 @@
 import { EncodingService } from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
 
-import { ChangePasswordRequest } from 'backend/ForgotPassword/dto/ChangePasswordRequest';
+import { ChangePasswordEmailRequest } from 'backend/ForgotPassword/dto/ChangePasswordEmailRequest';
 import { UserService } from 'backend/User/services/UserService';
 import { ForgotPasswordCodeService } from 'backend/ForgotPassword/services/ForgotPasswordCodeService';
+import { User } from 'backend/User/entities/User';
+import { ChangePasswordPhoneRequest } from 'backend/ForgotPassword/dto/ChangePasswordPhoneRequest';
 
 @Injectable()
 export class ChangePasswordService {
@@ -14,18 +16,36 @@ export class ChangePasswordService {
   ) {}
 
   /**
-   * Смена пароля.
+   * Смена пароля по email.
    */
-  public async change(
-    changePasswordRequest: ChangePasswordRequest,
+  public async changeByEmail(
+    request: ChangePasswordEmailRequest,
   ): Promise<void> {
-    const forgotPasswordCode = await this.forgotPasswordCodeService.getByValue(
-      changePasswordRequest.forgotPasswordCode,
-    );
+    const user = await this.userService.getConfirmedByEmail(request.email);
 
-    const hashedPassword = await this.encodingService.hash(
-      changePasswordRequest.password,
-    );
+    await this.change(user, request.forgotPasswordCode, request.password);
+  }
+
+  /**
+   * Смена пароля по телефону.
+   */
+  public async changeByPhone(
+    request: ChangePasswordPhoneRequest,
+  ): Promise<void> {
+    const user = await this.userService.getUnConfirmedByPhone(request.phone);
+
+    await this.change(user, request.forgotPasswordCode, request.password);
+  }
+
+  private async change(
+    user: User,
+    code: string,
+    password: string,
+  ): Promise<void> {
+    const forgotPasswordCode =
+      await this.forgotPasswordCodeService.getByValueAndUser(user, code);
+
+    const hashedPassword = await this.encodingService.hash(password);
 
     await this.userService.changePasswordByForgotPasswordCode(
       forgotPasswordCode,

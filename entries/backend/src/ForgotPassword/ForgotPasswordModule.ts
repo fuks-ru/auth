@@ -8,12 +8,14 @@ import { ForgotPasswordCodeService } from 'backend/ForgotPassword/services/Forgo
 import { UserModule } from 'backend/User/UserModule';
 import { ChangePasswordService } from 'backend/ForgotPassword/services/ChangePasswordService';
 import { ForgotPasswordController } from 'backend/ForgotPassword/controllers/ForgotPasswordController';
+import { SmsSenderModule } from 'backend/SmsSender/SmsSenderModule';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([ForgotPasswordCode]),
     EncodingModule,
     UserModule,
+    SmsSenderModule,
   ],
   providers: [
     ForgotPasswordService,

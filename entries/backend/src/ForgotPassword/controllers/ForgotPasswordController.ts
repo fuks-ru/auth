@@ -6,9 +6,11 @@ import { AuthGuard } from '@nestjs/passport';
 import { Public } from 'backend/Auth/decorators/Public';
 import { ForgotPasswordService } from 'backend/ForgotPassword/services/ForgotPasswordService';
 import { ChangePasswordService } from 'backend/ForgotPassword/services/ChangePasswordService';
-import { ForgotPasswordRequest } from 'backend/ForgotPassword/dto/ForgotPasswordRequest';
+import { ForgotPasswordEmailRequest } from 'backend/ForgotPassword/dto/ForgotPasswordEmailRequest';
 import { UserService } from 'backend/User/services/UserService';
-import { ChangePasswordRequest } from 'backend/ForgotPassword/dto/ChangePasswordRequest';
+import { ChangePasswordEmailRequest } from 'backend/ForgotPassword/dto/ChangePasswordEmailRequest';
+import { ForgotPasswordPhoneRequest } from 'backend/ForgotPassword/dto/ForgotPasswordPhoneRequest';
+import { ChangePasswordPhoneRequest } from 'backend/ForgotPassword/dto/ChangePasswordPhoneRequest';
 
 @Controller('/forgot-password')
 @ApiTags('ForgotPassword')
@@ -20,32 +22,70 @@ export class ForgotPasswordController {
   ) {}
 
   /**
-   * Маршрут для отправки кода восстановления.
+   * Маршрут для отправки кода восстановления по email.
    */
-  @Post('/send')
+  @Post('/send/email')
   @ApiOperation({
-    operationId: 'forgotPasswordSend',
+    operationId: 'forgotPasswordSendEmail',
   })
   @Recaptcha()
   @Public()
   @UseGuards(AuthGuard('not-auth'))
-  public async send(@Body() body: ForgotPasswordRequest): Promise<void> {
+  public async sendByEmail(
+    @Body() body: ForgotPasswordEmailRequest,
+  ): Promise<void> {
     const user = await this.userService.getConfirmedByEmail(body.email);
 
-    await this.forgotPasswordService.send(user, body.redirectFrom);
+    await this.forgotPasswordService.sendByEmail(user);
   }
 
   /**
-   * Маршрут для смены пароля.
+   * Маршрут для отправки кода восстановления.
    */
-  @Post('/changePassword')
+  @Post('/send/phone')
   @ApiOperation({
-    operationId: 'forgotPasswordChange',
+    operationId: 'forgotPasswordSendPhone',
   })
   @Recaptcha()
   @Public()
   @UseGuards(AuthGuard('not-auth'))
-  public async change(@Body() body: ChangePasswordRequest): Promise<void> {
-    await this.changePasswordService.change(body);
+  public async sendByPhone(
+    @Body() body: ForgotPasswordPhoneRequest,
+  ): Promise<void> {
+    const user = await this.userService.getUnConfirmedByPhone(body.phone);
+
+    await this.forgotPasswordService.sendByPhone(user);
+  }
+
+  /**
+   * Маршрут для смены пароля по email.
+   */
+  @Post('/change/email')
+  @ApiOperation({
+    operationId: 'changePasswordEmail',
+  })
+  @Recaptcha()
+  @Public()
+  @UseGuards(AuthGuard('not-auth'))
+  public async changeByEmail(
+    @Body() body: ChangePasswordEmailRequest,
+  ): Promise<void> {
+    await this.changePasswordService.changeByEmail(body);
+  }
+
+  /**
+   * Маршрут для смены пароля по телефону.
+   */
+  @Post('/change/phone')
+  @ApiOperation({
+    operationId: 'changePasswordPhone',
+  })
+  @Recaptcha()
+  @Public()
+  @UseGuards(AuthGuard('not-auth'))
+  public async changePhone(
+    @Body() body: ChangePasswordPhoneRequest,
+  ): Promise<void> {
+    await this.changePasswordService.changeByPhone(body);
   }
 }

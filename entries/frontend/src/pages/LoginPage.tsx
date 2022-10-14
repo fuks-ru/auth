@@ -1,5 +1,5 @@
 import { Card, Segmented, Space } from 'antd';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Head } from 'frontend/shared/ui';
@@ -8,12 +8,12 @@ import { LoginEmailPassword } from 'frontend/features/LoginEmailPassword';
 import { useCheckAlreadyAuth } from 'frontend/shared/lib';
 import { LoginPhonePassword } from 'frontend/features/LoginPhonePassword';
 import { LoginTelegram } from 'frontend/features/LoginTelegram';
-
-type TLoginType = 'phone' | 'email';
+import { useLoginType } from 'frontend/entities/loginType';
+import { TLoginType } from 'frontend/entities/loginType/model/LoginTypeContext';
 
 const LoginPage: FC = () => {
   const { t } = useTranslation();
-  const [type, setType] = useState<TLoginType>('phone');
+  const { type, changeType, types } = useLoginType();
 
   useCheckAlreadyAuth();
 
@@ -24,11 +24,8 @@ const LoginPage: FC = () => {
         <Space direction='vertical' size={16}>
           <Segmented
             value={type}
-            onChange={(newType) => setType(newType as TLoginType)}
-            options={[
-              { label: t('byPhone'), value: 'phone' },
-              { label: t('byEmail'), value: 'email' },
-            ]}
+            onChange={(newType) => changeType(newType as TLoginType)}
+            options={types}
           />
           {type === 'email' ? <LoginEmailPassword /> : <LoginPhonePassword />}
         </Space>

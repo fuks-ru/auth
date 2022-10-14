@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Card, Segmented, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -7,6 +7,8 @@ import { LoginGoogle } from 'frontend/features/LoginGoogle';
 import { EmailRegister } from 'frontend/features/EmailRegister';
 import { PhoneRegister } from 'frontend/features/PhoneRegister';
 import { LoginTelegram } from 'frontend/features/LoginTelegram';
+import { useLoginType } from 'frontend/entities/loginType';
+import { TLoginType } from 'frontend/entities/loginType/model/LoginTypeContext';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -14,15 +16,13 @@ interface IProps {
   onSuccess: () => void;
 }
 
-type TRegisterType = 'phone' | 'email';
-
 const RegisterPage: FC<IProps> = ({
   onFinishEmail,
   onFinishPhone,
   onSuccess,
 }) => {
   const { t } = useTranslation();
-  const [type, setType] = useState<TRegisterType>('phone');
+  const { type, changeType, types } = useLoginType();
 
   return (
     <>
@@ -32,11 +32,8 @@ const RegisterPage: FC<IProps> = ({
           <Space direction='vertical' size={16}>
             <Segmented
               value={type}
-              onChange={(newType) => setType(newType as TRegisterType)}
-              options={[
-                { label: t('byPhone'), value: 'phone' },
-                { label: t('byEmail'), value: 'email' },
-              ]}
+              onChange={(newType) => changeType(newType as TLoginType)}
+              options={types}
             />
             {type === 'email' ? (
               <EmailRegister

@@ -183,7 +183,7 @@ export class ConfigGetter {
    */
   public getAuthDomainWithScheme(): string {
     return this.envGetter.isDev()
-      ? 'https://4d52-94-180-203-146.eu.ngrok.io'
+      ? 'http://localhost:3002'
       : `https://auth.${this.envGetter.getEnv('DOMAIN')}`;
   }
 

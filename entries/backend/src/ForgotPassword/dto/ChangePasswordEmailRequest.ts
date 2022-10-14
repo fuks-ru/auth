@@ -1,9 +1,9 @@
 import { Match } from '@fuks-ru/common-backend';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, MinLength, ValidateIf } from 'class-validator';
+import { IsEmail, IsString, MinLength, ValidateIf } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
-export class ChangePasswordRequest {
+export class ChangePasswordEmailRequest {
   /**
    * Код восстановления пароля.
    */
@@ -11,6 +11,18 @@ export class ChangePasswordRequest {
     message: i18nValidationMessage('incorrectForgotPasswordCode'),
   })
   public forgotPasswordCode!: string;
+
+  /**
+   * Email.
+   */
+  @ApiProperty()
+  @IsEmail(
+    {},
+    {
+      message: i18nValidationMessage('incorrectEmailFormat'),
+    },
+  )
+  public email!: string;
 
   /**
    * Пароль.
@@ -26,7 +38,7 @@ export class ChangePasswordRequest {
    */
   @ApiProperty()
   @ValidateIf(
-    (o: Partial<ChangePasswordRequest>) =>
+    (o: Partial<ChangePasswordEmailRequest>) =>
       !!o.password && o.password.length >= 8,
   )
   @Match('password', {

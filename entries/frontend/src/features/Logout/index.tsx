@@ -29,7 +29,7 @@ export const Logout: FC<IProps> = ({ user }) => {
     <Form form={form} onFinish={onFinish}>
       {user.email && (
         <Form.Item label={t('email')}>
-          <Input value={user.phone} readOnly={true} />
+          <Input value={user.email} readOnly={true} disabled={true} />
         </Form.Item>
       )}
       {user.phone && (

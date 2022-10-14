@@ -1,7 +1,6 @@
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { v4 } from 'uuid';
 import { differenceInSeconds } from 'date-fns';
 import { Injectable } from '@nestjs/common';
 
@@ -30,7 +29,7 @@ export class ForgotPasswordCodeService {
       },
     });
 
-    const newValue = v4();
+    const newValue = this.generateCode();
 
     if (!existCode) {
       const forgotPasswordCode = new ForgotPasswordCode();
@@ -67,10 +66,16 @@ export class ForgotPasswordCodeService {
   /**
    * Получает код по его значению.
    */
-  public async getByValue(value: string): Promise<ForgotPasswordCode> {
+  public async getByValueAndUser(
+    user: User,
+    value: string,
+  ): Promise<ForgotPasswordCode> {
     const forgotPasswordCode =
       await this.forgotPasswordCodeRepository.findOneBy({
         value,
+        user: {
+          id: user.id,
+        },
       });
 
     if (!forgotPasswordCode) {
@@ -92,5 +97,17 @@ export class ForgotPasswordCodeService {
     await this.forgotPasswordCodeRepository.delete({
       id,
     });
+  }
+
+  private generateCode(): string {
+    const generateSymbol = (): string =>
+      Math.floor(Math.random() * 10).toString();
+
+    return [
+      generateSymbol(),
+      generateSymbol(),
+      generateSymbol(),
+      generateSymbol(),
+    ].join('');
   }
 }

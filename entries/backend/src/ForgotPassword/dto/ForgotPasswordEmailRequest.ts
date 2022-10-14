@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsOptional } from 'class-validator';
+import { IsEmail } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
-export class ForgotPasswordRequest {
+export class ForgotPasswordEmailRequest {
   /**
    * Email.
    */
@@ -14,13 +14,4 @@ export class ForgotPasswordRequest {
     },
   )
   public email!: string;
-
-  /**
-   * Путь для перенаправления.
-   */
-  @ApiProperty({
-    required: false,
-  })
-  @IsOptional()
-  public redirectFrom?: string;
 }

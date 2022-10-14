@@ -17,7 +17,7 @@
   "toConfirm": "Код подтверждения: {code}",
   "forgotPasswordCodeNotExist": "Некорректный код восстановления",
   "passwordRecovery": "Восстановления пароля",
-  "toChangePassword": "Для восстановления пароля перейдите по ссылке: {link}",
+  "toChangePassword": "Код для смены пароля: {code}",
   "incorrectRole": "Некорректная роль",
   "mustBeBoolean": "Должен быть boolean",
   "admin": "Админ",
