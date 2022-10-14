@@ -17,8 +17,7 @@ jobs:
       POSTGRES_CONTAINER: auth-${{ inputs.domain-name }}-postgres
       DOMAIN: ${{ inputs.domain-name }}.ru
       AUTH_DOMAIN: auth.${{ inputs.domain-name }}.ru
-      TELEGRAM_BOT_TOKEN: |
-        ${{ inputs.domain-name == 'fuks' && secrets.FUKS_BLOG_TELEGRAM_BOT_TOKEN || secrets.ESENIN_TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_BOT_TOKEN: ${{ inputs.domain-name == 'fuks' && secrets.FUKS_BLOG_TELEGRAM_BOT_TOKEN || secrets.ESENIN_TELEGRAM_BOT_TOKEN }}
       TELEGRAM_BOT: ${{ inputs.domain-name == 'fuks' && 'fuksblogbot' || 'EseninFamilyBot' }}
 
     steps:
