@@ -145,7 +145,7 @@ jobs:
     with:
       domain-name: esenin-family
       telegram-bot: EseninFamilyBot
-      telegram-bot-token: ${{ secrets.ESENIN_TELEGRAM_BOT_TOKEN }
+      telegram-bot-token: ${{ secrets.ESENIN_TELEGRAM_BOT_TOKEN }}
     secrets: inherit
 
 
