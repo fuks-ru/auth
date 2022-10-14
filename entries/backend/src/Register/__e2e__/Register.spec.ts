@@ -29,7 +29,7 @@ describe('EmailRegister', () => {
       };
 
       const response = await request(app.getHttpServer())
-        .post('/api/register/basic')
+        .post('/api/register/email')
         .send(body);
 
       expect(response.body).toEqual({
@@ -55,7 +55,7 @@ describe('EmailRegister', () => {
       };
 
       const response = await request(app.getHttpServer())
-        .post('/api/register/basic')
+        .post('/api/register/email')
         .send(body);
 
       expect(response.body).toEqual({
@@ -81,7 +81,7 @@ describe('EmailRegister', () => {
       };
 
       const response = await request(app.getHttpServer())
-        .post('/api/register/basic')
+        .post('/api/register/email')
         .send(body);
 
       expect(response.body).toEqual({
@@ -101,7 +101,7 @@ describe('EmailRegister', () => {
   describe('When a user entered an valid email and password', () => {
     it('should return ok', async () => {
       const response = await request(app.getHttpServer())
-        .post('/api/register/basic')
+        .post('/api/register/email')
         .send({
           email: 'testvalidemailandpassword@test.ru',
           password: '1234567890',
@@ -115,7 +115,7 @@ describe('EmailRegister', () => {
 
     it('should return conflict if user exists', async () => {
       const response = await request(app.getHttpServer())
-        .post('/api/register/basic')
+        .post('/api/register/email')
         .send({
           email: existUser.email,
           password: 'some-correct-password',
