@@ -3,6 +3,7 @@ import { LockOutlined } from '@ant-design/icons';
 import { FC, useEffect } from 'react';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
+import { styled } from '@linaria/react';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useNavigate } from 'frontend/shared/lib';
@@ -28,7 +29,7 @@ export const ChangePasswordEmail: FC<IProps> = ({ email }) => {
   }, [status, navigate]);
 
   return (
-    <Card title={t('changePassword')}>
+    <SCard title={t('changePassword')}>
       <Space direction='vertical' size={32}>
         <ResendForgotPassword email={email} />
 
@@ -37,7 +38,7 @@ export const ChangePasswordEmail: FC<IProps> = ({ email }) => {
             <Input />
           </Form.Item>
           <Form.Item name='forgotPasswordCode'>
-            <Input />
+            <Input placeholder={t('code')} />
           </Form.Item>
           <Form.Item name='password'>
             <Input
@@ -64,9 +65,13 @@ export const ChangePasswordEmail: FC<IProps> = ({ email }) => {
           </Form.Item>
         </Form>
       </Space>
-    </Card>
+    </SCard>
   );
 };
+
+const SCard = styled(Card)`
+  max-width: 400px;
+`;
 
 const opacityIcon = css`
   opacity: 0.3;

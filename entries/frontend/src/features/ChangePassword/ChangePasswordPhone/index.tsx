@@ -8,6 +8,7 @@ import { useAuthForm } from 'frontend/shared/api';
 import { useNavigate } from 'frontend/shared/lib';
 import { routes } from 'frontend/shared/config';
 import { ResendForgotPassword } from 'frontend/features/ChangePassword/ChangePasswordPhone/ui/ResendForgotPassword';
+import { styled } from '@linaria/react';
 
 interface IProps {
   phone: string;
@@ -17,7 +18,7 @@ interface IProps {
  * Форма смены пароля.
  */
 export const ChangePasswordPhone: FC<IProps> = ({ phone }) => {
-  const [form, onFinish, status] = useAuthForm('changePasswordEmail');
+  const [form, onFinish, status] = useAuthForm('changePasswordPhone');
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ export const ChangePasswordPhone: FC<IProps> = ({ phone }) => {
   }, [status, navigate]);
 
   return (
-    <Card title={t('changePassword')}>
+    <SCard title={t('changePassword')}>
       <Space direction='vertical' size={32}>
         <ResendForgotPassword phone={phone} />
 
@@ -37,7 +38,7 @@ export const ChangePasswordPhone: FC<IProps> = ({ phone }) => {
             <Input />
           </Form.Item>
           <Form.Item name='forgotPasswordCode'>
-            <Input />
+            <Input placeholder={t('code')} />
           </Form.Item>
           <Form.Item name='password'>
             <Input
@@ -64,9 +65,13 @@ export const ChangePasswordPhone: FC<IProps> = ({ phone }) => {
           </Form.Item>
         </Form>
       </Space>
-    </Card>
+    </SCard>
   );
 };
+
+const SCard = styled(Card)`
+  max-width: 400px;
+`;
 
 const opacityIcon = css`
   opacity: 0.3;
