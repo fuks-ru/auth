@@ -3,12 +3,12 @@ import { LockOutlined } from '@ant-design/icons';
 import { FC, useEffect } from 'react';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
+import { styled } from '@linaria/react';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useNavigate } from 'frontend/shared/lib';
 import { routes } from 'frontend/shared/config';
 import { ResendForgotPassword } from 'frontend/features/ChangePassword/ChangePasswordPhone/ui/ResendForgotPassword';
-import { styled } from '@linaria/react';
 
 interface IProps {
   phone: string;
