@@ -2,7 +2,7 @@ import { CookieSetterService } from '@fuks-ru/common-backend';
 import { Controller, Post } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 
-import { JWT_TOKEN_COOKIE_NAME } from 'backend/Login/utils/constants';
+import { JWT_TOKEN_COOKIE_NAME } from 'backend/SetJwtCookie/utils/constants';
 import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 
 @Controller('logout')

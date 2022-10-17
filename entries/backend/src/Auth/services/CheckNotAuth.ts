@@ -2,7 +2,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Injectable } from '@nestjs/common';
 
 import { IRequest } from 'backend/Auth/types/IRequest';
-import { IJwtPayload } from 'backend/Login/dto/IJwtPayload';
+import { IJwtPayload } from 'backend/SetJwtCookie/dto/IJwtPayload';
 import { UserService } from 'backend/User/services/UserService';
 
 @Injectable()

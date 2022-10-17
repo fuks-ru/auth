@@ -3,10 +3,10 @@ import { Card, Segmented, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import { Head } from 'frontend/shared/ui';
-import { LoginGoogle } from 'frontend/features/LoginGoogle';
-import { EmailRegister } from 'frontend/features/EmailRegister';
-import { PhoneRegister } from 'frontend/features/PhoneRegister';
-import { LoginTelegram } from 'frontend/features/LoginTelegram';
+import { LoginGoogle } from 'frontend/features/Login/LoginGoogle';
+import { EmailRegister } from 'frontend/features/Register/EmailRegister';
+import { PhoneRegister } from 'frontend/features/Register/PhoneRegister';
+import { LoginTelegram } from 'frontend/features/Login/LoginTelegram';
 import { useLoginType } from 'frontend/entities/loginType';
 import { TLoginType } from 'frontend/entities/loginType/model/LoginTypeContext';
 

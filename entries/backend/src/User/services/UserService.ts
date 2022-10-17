@@ -10,7 +10,7 @@ import { DeepPartial, Repository } from 'typeorm';
 import { ConfirmCode } from 'backend/ConfirmCode/entities/ConfirmCode';
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 import { User } from 'backend/User/entities/User';
-import { ForgotPasswordCode } from 'backend/ForgotPassword/entities/ForgotPasswordCode';
+import { ForgotPasswordCode } from 'backend/ForgotPasswordCode/entities/ForgotPasswordCode';
 
 @Injectable()
 export class UserService {
@@ -203,9 +203,12 @@ export class UserService {
   }
 
   /**
-   * Активирует пользователя по коду подтверждения.
+   * Подтверждает email пользователя по коду подтверждения.
    */
-  public async confirmByConfirmCode(confirmCode: ConfirmCode): Promise<User> {
+  public async confirmEmailByConfirmCode(
+    confirmCode: ConfirmCode,
+    email: string,
+  ): Promise<User> {
     const user = await this.userRepository.findOneBy({
       confirmCode: {
         id: confirmCode.id,
@@ -217,6 +220,30 @@ export class UserService {
     }
 
     user.isConfirmed = true;
+    user.email = email;
+
+    return this.userRepository.save(user);
+  }
+
+  /**
+   * Подтверждает телефон пользователя по коду подтверждения.
+   */
+  public async confirmPhoneByConfirmCode(
+    confirmCode: ConfirmCode,
+    phone: string,
+  ): Promise<User> {
+    const user = await this.userRepository.findOneBy({
+      confirmCode: {
+        id: confirmCode.id,
+      },
+    });
+
+    if (!user) {
+      throw await this.getNotFoundError();
+    }
+
+    user.isConfirmed = true;
+    user.phone = phone;
 
     return this.userRepository.save(user);
   }

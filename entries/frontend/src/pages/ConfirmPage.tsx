@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ConfirmEmail } from 'frontend/features/ConfirmEmail';
+import { ConfirmEmail } from 'frontend/features/Confirm/ConfirmEmail';
 import { Head } from 'frontend/shared/ui';
-import { ConfirmPhone } from 'frontend/features/ConfirmPhone';
+import { ConfirmPhone } from 'frontend/features/Confirm/ConfirmPhone';
 
 interface IProps {
   data: { type: 'email' | 'phone'; value: string };

@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 import type { ConfirmCode } from 'backend/ConfirmCode/entities/ConfirmCode';
-import type { ForgotPasswordCode } from 'backend/ForgotPassword/entities/ForgotPasswordCode';
+import type { ForgotPasswordCode } from 'backend/ForgotPasswordCode/entities/ForgotPasswordCode';
 
 /**
  * Описывает роли пользователя.

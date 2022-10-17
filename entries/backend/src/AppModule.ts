@@ -5,17 +5,21 @@ import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
 import { MailerModule } from '@nestjs-modules/mailer';
 
 import { AuthModule } from 'backend/Auth/AuthModule';
-import { EmailLoginModule } from 'backend/EmailLogin/EmailLoginModule';
+import { EmailLoginModule } from 'backend/Login/EmailLogin/EmailLoginModule';
 import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
-import { GoogleLoginModule } from 'backend/GoogleLogin/GoogleLoginModule';
-import { RegisterModule } from 'backend/Register/RegisterModule';
-import { ForgotPasswordModule } from 'backend/ForgotPassword/ForgotPasswordModule';
+import { GoogleLoginModule } from 'backend/Login/GoogleLogin/GoogleLoginModule';
 import { RoleModule } from 'backend/Role/RoleModule';
 import { ConfigModule } from 'backend/Config/ConfigModule';
 import { LogoutModule } from 'backend/Logout/LogoutModule';
-import { PhoneLoginModule } from 'backend/PhoneLogin/PhoneLoginModule';
-import { TelegramLoginModule } from 'backend/TelegramLogin/TelegramLoginModule';
+import { PhoneLoginModule } from 'backend/Login/PhoneLogin/PhoneLoginModule';
+import { TelegramLoginModule } from 'backend/Login/TelegramLogin/TelegramLoginModule';
 import { FrontendSettingsModule } from 'backend/FrontendSettings/FrontendSettingsModule';
+import { SendForgotPasswordCodeEmailModule } from 'backend/SendForgotPasswordCode/SendForgotPasswordCodeEmail/SendForgotPasswordCodeEmailModule';
+import { SendForgotPasswordCodePhoneModule } from 'backend/SendForgotPasswordCode/SendForgotPasswordCodePhone/SendForgotPasswordCodeEmailModule';
+import { ChangePasswordPhoneModule } from 'backend/ChangePassword/ChangePasswordPhone/ChangePasswordPhoneModule';
+import { ChangePasswordEmailModule } from 'backend/ChangePassword/ChangePasswordEmail/ChangePasswordEmailModule';
+import { EmailRegisterModule } from 'backend/Register/EmailRegister/EmailRegisterModule';
+import { PhoneRegisterModule } from 'backend/Register/PhoneRegister/PhoneRegisterModule';
 
 @Module({
   imports: [
@@ -53,10 +57,14 @@ import { FrontendSettingsModule } from 'backend/FrontendSettings/FrontendSetting
         configGetter.getRecaptchaOptions(),
     }),
     GoogleLoginModule,
-    RegisterModule,
     EmailLoginModule,
     AuthModule,
-    ForgotPasswordModule,
+    SendForgotPasswordCodeEmailModule,
+    SendForgotPasswordCodePhoneModule,
+    ChangePasswordEmailModule,
+    ChangePasswordPhoneModule,
+    EmailRegisterModule,
+    PhoneRegisterModule,
     RoleModule,
     LogoutModule,
     PhoneLoginModule,

@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Head } from 'frontend/shared/ui';
-import { ChangePasswordEmail } from 'frontend/features/ChangePasswordEmail';
-import { ChangePasswordPhone } from 'frontend/features/ChangePasswordPhone';
+import { ChangePasswordEmail } from 'frontend/features/ChangePassword/ChangePasswordEmail';
+import { ChangePasswordPhone } from 'frontend/features/ChangePassword/ChangePasswordPhone';
 
 interface IProps {
   data: { type: 'email' | 'phone'; value: string };

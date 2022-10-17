@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { IJwtPayload } from 'backend/Login/dto/IJwtPayload';
+import { IJwtPayload } from 'backend/SetJwtCookie/dto/IJwtPayload';
 import { UserService } from 'backend/User/services/UserService';
 import { IRequest } from 'backend/Auth/types/IRequest';
 import { User } from 'backend/User/entities/User';

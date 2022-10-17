@@ -3,11 +3,11 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Head } from 'frontend/shared/ui';
-import { LoginGoogle } from 'frontend/features/LoginGoogle';
-import { LoginEmailPassword } from 'frontend/features/LoginEmailPassword';
+import { LoginGoogle } from 'frontend/features/Login/LoginGoogle';
+import { LoginEmailPassword } from 'frontend/features/Login/LoginEmailPassword';
 import { useCheckAlreadyAuth } from 'frontend/shared/lib';
-import { LoginPhonePassword } from 'frontend/features/LoginPhonePassword';
-import { LoginTelegram } from 'frontend/features/LoginTelegram';
+import { LoginPhonePassword } from 'frontend/features/Login/LoginPhonePassword';
+import { LoginTelegram } from 'frontend/features/Login/LoginTelegram';
 import { useLoginType } from 'frontend/entities/loginType';
 import { TLoginType } from 'frontend/entities/loginType/model/LoginTypeContext';
 

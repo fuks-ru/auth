@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Card, Segmented, Space } from 'antd';
 
 import { Head } from 'frontend/shared/ui';
-import { SendPasswordEmailChange } from 'frontend/features/SendPasswordEmailChange';
+import { SendForgotPasswordCodeEmail } from 'frontend/features/SendForgotPasswordCode/SendForgotPasswordCodeEmail';
 import { useLoginType } from 'frontend/entities/loginType';
-import { SendPasswordPhoneChange } from 'frontend/features/SendPasswordPhoneChange';
+import { SendForgotPasswordCodePhone } from 'frontend/features/SendForgotPasswordCode/SendForgotPasswordCodePhone';
 import { TLoginType } from 'frontend/entities/loginType/model/LoginTypeContext';
 
 interface IProps {
@@ -34,12 +34,12 @@ const ForgotPasswordPage: FC<IProps> = ({
             options={types}
           />
           {type === 'phone' ? (
-            <SendPasswordPhoneChange
+            <SendForgotPasswordCodePhone
               onFinishPhone={onFinishPhone}
               onSuccess={onSuccess}
             />
           ) : (
-            <SendPasswordEmailChange
+            <SendForgotPasswordCodeEmail
               onFinishEmail={onFinishEmail}
               onSuccess={onSuccess}
             />
