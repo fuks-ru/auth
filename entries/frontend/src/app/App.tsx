@@ -6,9 +6,9 @@ import { routes } from 'frontend/shared/config';
 import { Layout } from 'frontend/widgets/Layout';
 
 const Registration = lazy(() => import('frontend/processes/Registration'));
-const LoginSuccessPage = lazy(() => import('frontend/pages/LoginSuccessPage'));
 const LoginPage = lazy(() => import('frontend/pages/LoginPage'));
 const ChangePassword = lazy(() => import('frontend/processes/ChangePassword'));
+const ConfirmContact = lazy(() => import('frontend/processes/ConfirmContact'));
 
 /**
  * Главный компонент авторизации.
@@ -18,6 +18,6 @@ export const App: FC = () => (
     <Route path={routes.login} element={<LoginPage />} />
     <Route path={`${routes.registration}/*`} element={<Registration />} />
     <Route path={`${routes.changePassword}/*`} element={<ChangePassword />} />
-    <Route path={routes.loginSuccess} element={<LoginSuccessPage />} />
+    <Route path={`${routes.loginSuccess}/*`} element={<ConfirmContact />} />
   </AppProvider>
 );

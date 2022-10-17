@@ -1,13 +1,14 @@
 import { PhoneOutlined, LockOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Button, Form, Input } from 'antd';
-import { FC, SyntheticEvent, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { MaskedInput } from 'antd-mask-input';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
+import { getValueFromMaskedInput } from 'frontend/shared/lib';
 
 interface IProps {
   onFinishPhone: (phone: string) => void;
@@ -36,12 +37,7 @@ export const PhoneRegister: FC<IProps> = ({ onFinishPhone, onSuccess }) => {
         onFinishPhone(body.phone);
       }}
     >
-      <Form.Item
-        name='phone'
-        getValueFromEvent={(
-          e: SyntheticEvent & { maskedValue: string; unmaskedValue: string },
-        ) => e.unmaskedValue}
-      >
+      <Form.Item name='phone' getValueFromEvent={getValueFromMaskedInput}>
         <MaskedInput
           mask='+{7} (000) 000-00-00'
           placeholder={t('phone')}
@@ -67,7 +63,6 @@ export const PhoneRegister: FC<IProps> = ({ onFinishPhone, onSuccess }) => {
           <Button
             type='primary'
             htmlType='submit'
-            className='login-form-button'
             disabled={status === 'pending'}
           >
             Register

@@ -2,12 +2,16 @@ import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Recaptcha } from '@nestlab/google-recaptcha';
+import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 
+import { User as UserEntity } from 'backend/User/entities/User';
 import { Public } from 'backend/Auth/decorators/Public';
 import { ConfirmPhoneRequest } from 'backend/Confirm/ConfirmPhone/dto/ConfirmPhoneRequest';
 import { ConfirmPhoneService } from 'backend/Confirm/ConfirmPhone/services/ConfirmPhoneService';
-import { ResendConfirmEmailRequest } from 'backend/Confirm/ConfirmEmail/dto/ResendConfirmEmailRequest';
 import { UserService } from 'backend/User/services/UserService';
+import { SendConfirmPhoneRequest } from 'backend/Confirm/ConfirmPhone/dto/SendConfirmPhoneRequest';
+import { User } from 'backend/Auth/decorators/User';
+import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 
 @Controller('/confirm/phone')
 @ApiTags('Confirm')
@@ -15,36 +19,82 @@ export class ConfirmPhoneController {
   public constructor(
     private readonly confirmPhoneService: ConfirmPhoneService,
     private readonly userService: UserService,
+    private readonly i18nResolver: I18nResolver,
+    private readonly systemErrorFactory: SystemErrorFactory,
   ) {}
 
   /**
-   * Маршрут для подтверждения по телефону.
+   * Отправка кода подтверждения по телефону для зарегистрированного
+   * пользователя.
    */
-  @Post('/')
+  @Post('/send-for-registered')
   @ApiOperation({
-    operationId: 'confirmPhone',
+    operationId: 'sendPhoneConfirmCodeForRegistered',
   })
-  @Public()
-  @UseGuards(AuthGuard('not-auth'))
-  public async confirm(@Body() body: ConfirmPhoneRequest): Promise<void> {
-    await this.confirmPhoneService.confirm(body);
+  @Recaptcha()
+  public async sendToRegistered(
+    @Body() body: SendConfirmPhoneRequest,
+    @User() user: UserEntity,
+  ): Promise<void> {
+    await this.confirmPhoneService.send(user, body.phone);
   }
 
   /**
-   * Повторная отправка кода подтверждения по email.
+   * Отправка кода подтверждения по телефону.
    */
-  @Post('/resend')
+  @Post('/send-for-unregistered')
   @ApiOperation({
-    operationId: 'confirmPhoneResend',
+    operationId: 'sendPhoneConfirmCodeForUnregistered',
   })
   @Recaptcha()
   @Public()
   @UseGuards(AuthGuard('not-auth'))
-  public async resendByEmail(
-    @Body() body: ResendConfirmEmailRequest,
+  public async sendToUnregistered(
+    @Body() body: SendConfirmPhoneRequest,
   ): Promise<void> {
-    const user = await this.userService.getUnConfirmedByEmail(body.email);
+    const user = await this.userService.getUnConfirmedByPhone(body.phone);
 
-    await this.confirmPhoneService.send(user);
+    if (!user.phone) {
+      const i18n = await this.i18nResolver.resolve();
+
+      throw this.systemErrorFactory.create(
+        ErrorCode.CONFIRM_CODE_PHONE_EMPTY,
+        i18n.t('incorrectPhoneFormat'),
+      );
+    }
+
+    await this.confirmPhoneService.send(user, user.phone);
+  }
+
+  /**
+   * Маршрут для подтверждения по телефону для незарегистрированного
+   * пользователя.
+   */
+  @Post('/confirm-user')
+  @ApiOperation({
+    operationId: 'confirmUserByPhone',
+  })
+  @Public()
+  @UseGuards(AuthGuard('not-auth'))
+  public async confirmUserByPhone(
+    @Body() body: ConfirmPhoneRequest,
+  ): Promise<void> {
+    const user = await this.userService.getUnConfirmedByPhone(body.phone);
+
+    await this.confirmPhoneService.confirmUser(body, user);
+  }
+
+  /**
+   * Маршрут для подтверждения по телефону для зарегистрированного пользователя.
+   */
+  @Post('/confirm-phone')
+  @ApiOperation({
+    operationId: 'confirmPhone',
+  })
+  public async confirmRegistered(
+    @Body() body: ConfirmPhoneRequest,
+    @User() user: UserEntity,
+  ): Promise<void> {
+    await this.confirmPhoneService.confirmPhone(body, user);
   }
 }

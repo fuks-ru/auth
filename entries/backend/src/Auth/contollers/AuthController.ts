@@ -1,15 +1,11 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { Request as ExpressRequest } from 'express';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 import { UserVerifyResponse } from 'backend/Auth/dto/UserVerifyResponse';
 import { Public } from 'backend/Auth/decorators/Public';
-import { User } from 'backend/User/entities/User';
-
-interface IRequest extends ExpressRequest {
-  user: User;
-}
+import { User as UserEntity } from 'backend/User/entities/User';
+import { User } from 'backend/Auth/decorators/User';
 
 @Controller('/auth')
 @ApiTags('Auth')
@@ -24,8 +20,8 @@ export class AuthController {
   @ApiOkResponse({
     type: UserVerifyResponse,
   })
-  public verify(@Req() request: IRequest): UserVerifyResponse {
-    const { hashedPassword, ...response } = request.user;
+  public verify(@User() user: UserEntity): UserVerifyResponse {
+    const { hashedPassword, ...response } = user;
 
     return response;
   }

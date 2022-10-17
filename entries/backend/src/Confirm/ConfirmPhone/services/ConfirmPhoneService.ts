@@ -15,47 +15,71 @@ export class ConfirmPhoneService {
     private readonly confirmCodeService: ConfirmCodeService,
     private readonly smsSender: SmsSenderService,
     private readonly systemErrorFactory: SystemErrorFactory,
-    private readonly i18nResolver: I18nResolver,
     private readonly userService: UserService,
     private readonly setJwtCookieService: SetJwtCookieService,
+    private readonly i18nResolver: I18nResolver,
   ) {}
 
   /**
    * Отправляет код подтверждения пользователю.
    */
-  public async send(user: User): Promise<void> {
-    const confirmCode = await this.confirmCodeService.addConfirmCodeToUser(
-      user,
+  public async send(user: User, phone: string): Promise<void> {
+    const userWithThisPhone = await this.userService.findConfirmedByPhone(
+      phone,
     );
 
-    if (!user.phone) {
+    if (userWithThisPhone) {
       const i18n = await this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
-        ErrorCode.CONFIRM_CODE_PHONE_EMPTY,
-        i18n.t('incorrectPhoneFormat'),
+        ErrorCode.USER_ALREADY_EXISTS,
+        i18n.t('userAlreadyExists'),
       );
     }
 
-    await this.smsSender.send(`+${user.phone}`, confirmCode.value);
+    const confirmCode = await this.confirmCodeService.addConfirmCodeToUser(
+      user,
+      phone,
+    );
+
+    await this.smsSender.send(`+${phone}`, confirmCode.value);
   }
 
   /**
-   * Подтверждает телефон пользователя, активирует его и осуществляет вход.
+   * Подтверждает пользователя, активирует его и осуществляет вход.
    */
-  public async confirm(data: ConfirmPhoneRequest): Promise<void> {
+  public async confirmUser(
+    data: ConfirmPhoneRequest,
+    user: User,
+  ): Promise<void> {
     const confirmCode = await this.confirmCodeService.getByValueAndPhone(
       data.confirmCode,
       data.phone,
+      user,
     );
 
-    const user = await this.userService.confirmPhoneByConfirmCode(
-      confirmCode,
-      data.phone,
-    );
+    await this.userService.confirmUser(confirmCode);
 
     await this.confirmCodeService.removeById(confirmCode.id);
 
     this.setJwtCookieService.login(user);
+  }
+
+  /**
+   * Подтверждает телефон пользователя.
+   */
+  public async confirmPhone(
+    data: ConfirmPhoneRequest,
+    user: User,
+  ): Promise<void> {
+    const confirmCode = await this.confirmCodeService.getByValueAndPhone(
+      data.confirmCode,
+      data.phone,
+      user,
+    );
+
+    await this.userService.changePhone(user, data.phone);
+
+    await this.confirmCodeService.removeById(confirmCode.id);
   }
 }

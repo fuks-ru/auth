@@ -2,12 +2,16 @@ import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { Recaptcha } from '@nestlab/google-recaptcha';
+import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 
 import { Public } from 'backend/Auth/decorators/Public';
 import { ConfirmEmailRequest } from 'backend/Confirm/ConfirmEmail/dto/ConfirmEmailRequest';
 import { ConfirmEmailService } from 'backend/Confirm/ConfirmEmail/services/ConfirmEmailService';
-import { ResendConfirmEmailRequest } from 'backend/Confirm/ConfirmEmail/dto/ResendConfirmEmailRequest';
+import { SendConfirmEmailRequest } from 'backend/Confirm/ConfirmEmail/dto/SendConfirmEmailRequest';
 import { UserService } from 'backend/User/services/UserService';
+import { User } from 'backend/Auth/decorators/User';
+import { User as UserEntity } from 'backend/User/entities/User';
+import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 
 @Controller('/confirm/email')
 @ApiTags('Confirm')
@@ -15,36 +19,80 @@ export class ConfirmEmailController {
   public constructor(
     private readonly confirmEmailService: ConfirmEmailService,
     private readonly userService: UserService,
+    private readonly i18nResolver: I18nResolver,
+    private readonly systemErrorFactory: SystemErrorFactory,
   ) {}
 
   /**
-   * Маршрут для подтверждения email.
+   * Отправка кода подтверждения по email для зарегистрированного пользователя.
    */
-  @Post('/')
+  @Post('/send-for-registered')
   @ApiOperation({
-    operationId: 'confirmEmail',
+    operationId: 'sendEmailConfirmCodeForRegistered',
   })
-  @Public()
-  @UseGuards(AuthGuard('not-auth'))
-  public async confirm(@Body() body: ConfirmEmailRequest): Promise<void> {
-    await this.confirmEmailService.confirm(body);
+  @Recaptcha()
+  public async sendToRegistered(
+    @Body() body: SendConfirmEmailRequest,
+    @User() user: UserEntity,
+  ): Promise<void> {
+    await this.confirmEmailService.send(user, body.email);
   }
 
   /**
-   * Повторная отправка кода подтверждения по email.
+   * Отправка кода подтверждения по email.
    */
-  @Post('/resend')
+  @Post('/send-for-unregistered')
   @ApiOperation({
-    operationId: 'confirmEmailResend',
+    operationId: 'sendEmailConfirmCodeForUnregistered',
   })
   @Recaptcha()
   @Public()
   @UseGuards(AuthGuard('not-auth'))
-  public async resendByEmail(
-    @Body() body: ResendConfirmEmailRequest,
+  public async sendToUnregistered(
+    @Body() body: SendConfirmEmailRequest,
   ): Promise<void> {
     const user = await this.userService.getUnConfirmedByEmail(body.email);
 
-    await this.confirmEmailService.send(user);
+    if (!user.email) {
+      const i18n = await this.i18nResolver.resolve();
+
+      throw this.systemErrorFactory.create(
+        ErrorCode.CONFIRM_CODE_PHONE_EMPTY,
+        i18n.t('incorrectPhoneFormat'),
+      );
+    }
+
+    await this.confirmEmailService.send(user, user.email);
+  }
+
+  /**
+   * Маршрут для подтверждения по email для незарегистрированного пользователя.
+   */
+  @Post('/confirm-user')
+  @ApiOperation({
+    operationId: 'confirmUserByEmail',
+  })
+  @Public()
+  @UseGuards(AuthGuard('not-auth'))
+  public async confirmUserByEmail(
+    @Body() body: ConfirmEmailRequest,
+  ): Promise<void> {
+    const user = await this.userService.getUnConfirmedByEmail(body.email);
+
+    await this.confirmEmailService.confirmUser(body, user);
+  }
+
+  /**
+   * Маршрут для подтверждения по email для зарегистрированного пользователя.
+   */
+  @Post('/confirm-email')
+  @ApiOperation({
+    operationId: 'confirmEmail',
+  })
+  public async confirmRegistered(
+    @Body() body: ConfirmEmailRequest,
+    @User() user: UserEntity,
+  ): Promise<void> {
+    await this.confirmEmailService.confirmEmail(body, user);
   }
 }

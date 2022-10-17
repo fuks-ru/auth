@@ -32,5 +32,7 @@
   "byEmail": "По email",
   "byPhone": "По телефону",
   "firstName": "Имя",
-  "lastName": "Фамилия"
+  "lastName": "Фамилия",
+  "confirm": "Подтвердить",
+  "save": "Сохранить"
 }

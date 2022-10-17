@@ -19,8 +19,8 @@ interface IProps {
 export const AppProvider: FC<IProps> = ({ children, Wrapper }) => (
   <BrowserRouter>
     <Suspense fallback={<Preloader />}>
-      <GoogleRecaptchaProvider>
-        <ThemeProvider>
+      <ThemeProvider>
+        <GoogleRecaptchaProvider>
           <Wrapper>
             <SettingsProvider>
               <LoginTypeProvider>
@@ -30,8 +30,8 @@ export const AppProvider: FC<IProps> = ({ children, Wrapper }) => (
               </LoginTypeProvider>
             </SettingsProvider>
           </Wrapper>
-        </ThemeProvider>
-      </GoogleRecaptchaProvider>
+        </GoogleRecaptchaProvider>
+      </ThemeProvider>
     </Suspense>
   </BrowserRouter>
 );

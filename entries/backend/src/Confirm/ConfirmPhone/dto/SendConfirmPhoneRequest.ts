@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsPhoneNumber } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
-export class ResendConfirmPhoneRequest {
+export class SendConfirmPhoneRequest {
   /**
    * Телефон для отправки кода подтверждения.
    */

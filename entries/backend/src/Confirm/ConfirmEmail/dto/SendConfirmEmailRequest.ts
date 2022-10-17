@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
-export class ResendConfirmEmailRequest {
+export class SendConfirmEmailRequest {
   /**
    * Email для отправки кода подтверждения.
    */

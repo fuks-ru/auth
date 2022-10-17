@@ -54,7 +54,7 @@ export const useAuthApi = <
         return;
       } catch (error) {
         if (error instanceof ValidationError || error instanceof SystemError) {
-          await message.error(error.message);
+          void message.error(error.message);
 
           setStatus('failed');
 
@@ -82,7 +82,7 @@ export const useAuthApi = <
           return;
         }
 
-        await message.error(t('unknownError'));
+        void message.error(t('unknownError'));
 
         setStatus('failed');
       }

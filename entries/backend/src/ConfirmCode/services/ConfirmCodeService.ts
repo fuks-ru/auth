@@ -20,7 +20,10 @@ export class ConfirmCodeService {
   /**
    * Добавляет код подтверждения в БД. Или обновляет, если он уже существует.
    */
-  public async addConfirmCodeToUser(user: User): Promise<ConfirmCode> {
+  public async addConfirmCodeToUser(
+    user: User,
+    data: string,
+  ): Promise<ConfirmCode> {
     const existCode = await this.confirmCodeRepository.findOneBy({
       user: {
         id: user.id,
@@ -34,6 +37,7 @@ export class ConfirmCodeService {
 
       confirmCode.value = newValue;
       confirmCode.user = user;
+      confirmCode.data = data;
 
       return this.confirmCodeRepository.save(confirmCode);
     }
@@ -57,6 +61,7 @@ export class ConfirmCodeService {
     }
 
     existCode.value = newValue;
+    existCode.data = data;
 
     return this.confirmCodeRepository.save(existCode);
   }
@@ -67,11 +72,13 @@ export class ConfirmCodeService {
   public async getByValueAndEmail(
     value: string,
     email: string,
+    user: User,
   ): Promise<ConfirmCode> {
     const confirmCode = await this.confirmCodeRepository.findOneBy({
       value,
+      data: email,
       user: {
-        email,
+        id: user.id,
       },
     });
 
@@ -93,11 +100,13 @@ export class ConfirmCodeService {
   public async getByValueAndPhone(
     value: string,
     phone: string,
+    user: User,
   ): Promise<ConfirmCode> {
     const confirmCode = await this.confirmCodeRepository.findOneBy({
       value,
+      data: phone,
       user: {
-        phone,
+        id: user.id,
       },
     });
 

@@ -66,7 +66,7 @@ export const useAuthForm = <
             Object.entries(data).map(([name, errors]) => ({ name, errors })),
           );
 
-          await message.error(error.message);
+          void message.error(error.message);
 
           setStatus('failed');
 
@@ -95,14 +95,14 @@ export const useAuthForm = <
         }
 
         if (error instanceof SystemError) {
-          await message.error(error.message);
+          void message.error(error.message);
 
           setStatus('failed');
 
           return;
         }
 
-        await message.error(t('unknownError'));
+        void message.error(t('unknownError'));
 
         setStatus('failed');
       }

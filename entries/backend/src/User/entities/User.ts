@@ -31,7 +31,6 @@ export class User {
    * Email.
    */
   @Column({
-    unique: true,
     nullable: true,
   })
   public email?: string;
@@ -40,7 +39,6 @@ export class User {
    * Телефон.
    */
   @Column({
-    unique: true,
     nullable: true,
   })
   public phone?: string;
@@ -49,7 +47,6 @@ export class User {
    * Телефон.
    */
   @Column({
-    unique: true,
     nullable: true,
   })
   public telegramId?: number;
@@ -58,7 +55,6 @@ export class User {
    * Имя.
    */
   @Column({
-    unique: true,
     nullable: true,
   })
   public firstName?: string;
@@ -67,7 +63,6 @@ export class User {
    * Фамилия.
    */
   @Column({
-    unique: true,
     nullable: true,
   })
   public lastName?: string;

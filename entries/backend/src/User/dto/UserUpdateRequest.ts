@@ -1,23 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsEmail, IsEnum, IsOptional } from 'class-validator';
+import { IsBoolean, IsEnum, IsOptional } from 'class-validator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 
 import { Role } from 'backend/User/entities/User';
 
 export class UserUpdateRequest {
-  /**
-   * Email.
-   */
-  @ApiProperty()
-  @IsOptional()
-  @IsEmail(
-    {},
-    {
-      message: i18nValidationMessage('incorrectEmailFormat'),
-    },
-  )
-  public email?: string;
-
   /**
    * Роль.
    */
@@ -29,7 +16,21 @@ export class UserUpdateRequest {
   public role?: Role;
 
   /**
-   * Подтвержден ли пользователь по email.
+   * Имя.
+   */
+  @ApiProperty()
+  @IsOptional()
+  public firstName?: string;
+
+  /**
+   * Фамилия.
+   */
+  @ApiProperty()
+  @IsOptional()
+  public lastName?: string;
+
+  /**
+   * Подтвержден ли пользователь.
    */
   @ApiProperty()
   @IsOptional()

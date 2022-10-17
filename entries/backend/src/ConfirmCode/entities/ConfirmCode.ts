@@ -35,6 +35,12 @@ export class ConfirmCode {
   public user!: User;
 
   /**
+   * Данные для подтверждения.
+   */
+  @Column()
+  public data!: string;
+
+  /**
    * Время обновления.
    */
   @UpdateDateColumn()

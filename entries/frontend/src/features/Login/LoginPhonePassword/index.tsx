@@ -1,6 +1,6 @@
 import { Button, Form, Input, Typography } from 'antd';
 import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
-import { FC, SyntheticEvent } from 'react';
+import { FC } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
 import { MaskedInput } from 'antd-mask-input';
@@ -8,7 +8,10 @@ import { MaskedInput } from 'antd-mask-input';
 import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
-import { useNavigateToSuccess } from 'frontend/shared/lib';
+import {
+  getValueFromMaskedInput,
+  useNavigateToSuccess,
+} from 'frontend/shared/lib';
 
 /**
  * Форма входа.
@@ -21,12 +24,7 @@ export const LoginPhonePassword: FC = () => {
 
   return (
     <Form form={form} onFinish={onFinish}>
-      <Form.Item
-        name='phone'
-        getValueFromEvent={(
-          e: SyntheticEvent & { maskedValue: string; unmaskedValue: string },
-        ) => e.unmaskedValue}
-      >
+      <Form.Item name='phone' getValueFromEvent={getValueFromMaskedInput}>
         <MaskedInput
           mask='+{7} (000) 000-00-00'
           placeholder={t('phone')}

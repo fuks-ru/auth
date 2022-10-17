@@ -4,19 +4,25 @@ import { useTranslation } from 'react-i18next';
 import { styled } from '@linaria/react';
 
 import { useAuthForm } from 'frontend/shared/api';
-import { ResendConfirmEmail } from 'frontend/features/Confirm/ConfirmEmail/ui/ResendConfirmEmail';
+import {
+  ResendConfirmEmail,
+  TConfirmEmailMethods,
+} from 'frontend/features/Confirm/ConfirmEmail/ui/ResendConfirmEmail';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
 
 interface IProps {
   email: string;
+  method: TConfirmEmailMethods;
 }
 
 /**
  * Страница для отправки данных для активации пользователя по коду
  * подтверждения.
  */
-export const ConfirmEmail: FC<IProps> = ({ email }) => {
-  const [form, onFinish, status] = useAuthForm('confirmEmail');
+export const ConfirmEmail: FC<IProps> = ({ email, method }) => {
+  const [form, onFinish, status] = useAuthForm(
+    method === 'confirmUser' ? 'confirmUserByEmail' : 'confirmEmail',
+  );
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);
@@ -24,7 +30,7 @@ export const ConfirmEmail: FC<IProps> = ({ email }) => {
   return (
     <SCard title={t('confirmation')}>
       <Space direction='vertical' size={32}>
-        <ResendConfirmEmail email={email} />
+        <ResendConfirmEmail email={email} method={method} />
 
         <Form initialValues={{ email }} form={form} onFinish={onFinish}>
           <Form.Item hidden={true} name='email'>
@@ -39,7 +45,7 @@ export const ConfirmEmail: FC<IProps> = ({ email }) => {
               htmlType='submit'
               disabled={status === 'pending'}
             >
-              {t('register')}
+              {t('confirm')}
             </Button>
           </Form.Item>
         </Form>

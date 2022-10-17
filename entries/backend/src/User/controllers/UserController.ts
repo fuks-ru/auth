@@ -7,6 +7,8 @@ import { UserResponse } from 'backend/User/dto/UserResponse';
 import { UserUpdateRequest } from 'backend/User/dto/UserUpdateRequest';
 import { Role, User } from 'backend/User/entities/User';
 import { UserService } from 'backend/User/services/UserService';
+import { UserUpdateNameRequest } from 'backend/User/dto/UserUpdateNameRequest';
+import { User as UserDecorator } from 'backend/Auth/decorators/User';
 
 @Controller('/user')
 @ApiTags('User')
@@ -46,6 +48,23 @@ export class UserController {
     const user = await this.userService.getById(id);
 
     return this.getUserDetailResponse(user);
+  }
+
+  /**
+   * Маршрут для обновления имени пользователя.
+   */
+  @Patch('/update-name')
+  @ApiOperation({
+    operationId: 'userUpdateName',
+  })
+  public async updateName(
+    @Body() body: UserUpdateNameRequest,
+    @UserDecorator() user: User,
+  ): Promise<void> {
+    await this.userService.addOrUpdateUser({
+      ...user,
+      ...body,
+    });
   }
 
   /**

@@ -5,10 +5,10 @@ import { routes } from 'frontend/processes/Registration/lib/routes';
 import { useNavigate } from 'frontend/shared/lib';
 import { TConfirmPageData } from 'frontend/pages/ConfirmPage';
 
-const RegisterPage = lazy(() => import('frontend/pages/RegisterPage'));
+const LoginSuccessPage = lazy(() => import('frontend/pages/LoginSuccessPage'));
 const ConfirmPage = lazy(() => import('frontend/pages/ConfirmPage'));
 
-const Registration: FC = () => {
+const ConfirmContact: FC = () => {
   const [confirmData, setConfirmData] = useState<TConfirmPageData | null>();
   const navigate = useNavigate();
 
@@ -17,19 +17,19 @@ const Registration: FC = () => {
       <Route
         path={routes.root}
         element={
-          <RegisterPage
+          <LoginSuccessPage
             onFinishPhone={(phone) => {
               setConfirmData({
                 type: 'phone',
                 value: phone,
-                method: 'confirmUser',
+                method: 'confirmContact',
               });
             }}
             onFinishEmail={(email) => {
               setConfirmData({
                 type: 'email',
                 value: email,
-                method: 'confirmUser',
+                method: 'confirmContact',
               });
             }}
             onSuccess={() => {
@@ -49,4 +49,4 @@ const Registration: FC = () => {
 /**
  * Процесс регистрации, объединяющий регистрацию и подтверждение email.
  */
-export default Registration;
+export default ConfirmContact;

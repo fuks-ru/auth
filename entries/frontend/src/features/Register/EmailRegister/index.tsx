@@ -60,7 +60,6 @@ export const EmailRegister: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
           <Button
             type='primary'
             htmlType='submit'
-            className='login-form-button'
             disabled={status === 'pending'}
           >
             Register

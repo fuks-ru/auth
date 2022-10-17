@@ -30,7 +30,7 @@ export class PhoneRegisterService {
 
     const createdUser = await this.userService.addUserIfNotConfirmed(user);
 
-    await this.phoneVerifyService.send(createdUser);
+    await this.phoneVerifyService.send(createdUser, user.phone);
 
     return user;
   }

@@ -30,7 +30,7 @@ export class EmailRegisterService {
 
     const createdUser = await this.userService.addUserIfNotConfirmed(user);
 
-    await this.confirmEmailService.send(createdUser);
+    await this.confirmEmailService.send(createdUser, registerRequest.email);
 
     return user;
   }

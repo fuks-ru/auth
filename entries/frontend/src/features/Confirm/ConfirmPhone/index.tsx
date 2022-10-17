@@ -5,18 +5,24 @@ import { styled } from '@linaria/react';
 
 import { useAuthForm } from 'frontend/shared/api';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
-import { ResendConfirmPhone } from 'frontend/features/Confirm/ConfirmPhone/ui/ResendConfirmPhone';
+import {
+  ResendConfirmPhone,
+  TConfirmPhoneMethods,
+} from 'frontend/features/Confirm/ConfirmPhone/ui/ResendConfirmPhone';
 
 interface IProps {
   phone: string;
+  method: TConfirmPhoneMethods;
 }
 
 /**
  * Страница для отправки данных для активации пользователя по коду
  * подтверждения.
  */
-export const ConfirmPhone: FC<IProps> = ({ phone }) => {
-  const [form, onFinish, status] = useAuthForm('confirmPhone');
+export const ConfirmPhone: FC<IProps> = ({ phone, method }) => {
+  const [form, onFinish, status] = useAuthForm(
+    method === 'confirmUser' ? 'confirmUserByPhone' : 'confirmPhone',
+  );
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);
@@ -24,7 +30,7 @@ export const ConfirmPhone: FC<IProps> = ({ phone }) => {
   return (
     <SCard title={t('confirmation')}>
       <Space direction='vertical' size={32}>
-        <ResendConfirmPhone phone={phone} />
+        <ResendConfirmPhone phone={phone} method={method} />
 
         <Form initialValues={{ phone }} form={form} onFinish={onFinish}>
           <Form.Item hidden={true} name='phone'>
@@ -39,7 +45,7 @@ export const ConfirmPhone: FC<IProps> = ({ phone }) => {
               htmlType='submit'
               disabled={status === 'pending'}
             >
-              {t('register')}
+              {t('confirm')}
             </Button>
           </Form.Item>
         </Form>

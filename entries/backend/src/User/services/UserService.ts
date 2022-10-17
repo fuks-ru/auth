@@ -226,12 +226,9 @@ export class UserService {
   }
 
   /**
-   * Подтверждает телефон пользователя по коду подтверждения.
+   * Подтверждает пользователя по телефону.
    */
-  public async confirmPhoneByConfirmCode(
-    confirmCode: ConfirmCode,
-    phone: string,
-  ): Promise<User> {
+  public async confirmUser(confirmCode: ConfirmCode): Promise<User> {
     const user = await this.userRepository.findOneBy({
       confirmCode: {
         id: confirmCode.id,
@@ -243,9 +240,28 @@ export class UserService {
     }
 
     user.isConfirmed = true;
-    user.phone = phone;
 
     return this.userRepository.save(user);
+  }
+
+  /**
+   * Изменяет телефон пользователя.
+   */
+  public async changePhone(user: User, phone: string): Promise<User> {
+    return this.userRepository.save({
+      ...user,
+      phone,
+    });
+  }
+
+  /**
+   * Изменяет email пользователя.
+   */
+  public async changeEmail(user: User, email: string): Promise<User> {
+    return this.userRepository.save({
+      ...user,
+      email,
+    });
   }
 
   /**

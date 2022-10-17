@@ -28,6 +28,8 @@ const SHeader = styled.header`
   justify-content: flex-end;
   padding: 10px 10px 0;
   gap: 10px;
+  position: fixed;
+  width: 100%;
 `;
 
 const SMain = styled.main`
