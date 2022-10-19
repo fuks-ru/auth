@@ -87,6 +87,7 @@ export class ConfirmEmailController {
   @ApiOperation({
     operationId: 'confirmEmail',
   })
+  @UseGuards(AuthGuard('auth-jwt'))
   public async confirmRegistered(
     @Body() body: ConfirmEmailRequest,
     @User() user: UserEntity,

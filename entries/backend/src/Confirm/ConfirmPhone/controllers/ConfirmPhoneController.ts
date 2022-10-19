@@ -89,6 +89,7 @@ export class ConfirmPhoneController {
   @ApiOperation({
     operationId: 'confirmPhone',
   })
+  @UseGuards(AuthGuard('auth-jwt'))
   public async confirmRegistered(
     @Body() body: ConfirmPhoneRequest,
     @User() user: UserEntity,
