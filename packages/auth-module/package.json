@@ -1,7 +1,7 @@
 {
   "name": "@fuks-ru/auth-module",
   "author": "Dmitry Fuks",
-  "version": "0.0.11",
+  "version": "0.1.0",
   "description": "Auth module",
   "repository": "https://github.com/fuks-ru/auth",
   "license": "ISC",
@@ -19,7 +19,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "@fuks-ru/auth-client": "workspace:0.8.0",
+    "@fuks-ru/auth-client": "workspace:0.9.0",
     "@nestjs/passport": "^9.0.0",
     "passport": "^0.6.0",
     "passport-custom": "^1.1.1"
