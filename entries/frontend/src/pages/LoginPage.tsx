@@ -31,7 +31,7 @@ const LoginPage: FC = () => {
         </Space>
       </Card>
       <LoginGoogle />
-      <LoginTelegram />
+      <LoginTelegram method='loginTelegram' />
     </Space>
   );
 };

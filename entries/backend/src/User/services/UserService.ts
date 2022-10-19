@@ -83,7 +83,7 @@ export class UserService {
   }
 
   /**
-   * Ищет подтвержденного пользователя по email.
+   * Ищет подтвержденного пользователя по telegramId.
    */
   public async findConfirmedByTelegramId(id: number): Promise<User | null> {
     return this.userRepository.findOneBy({
@@ -251,6 +251,16 @@ export class UserService {
     return this.userRepository.save({
       ...user,
       phone,
+    });
+  }
+
+  /**
+   * Изменяет telegramId пользователя.
+   */
+  public async changeTelegramId(user: User, id: number): Promise<User> {
+    return this.userRepository.save({
+      ...user,
+      telegramId: id,
     });
   }
 

@@ -6,9 +6,10 @@ import { TelegramLoginService } from 'backend/Login/TelegramLogin/services/Teleg
 import { TelegramLoginStrategy } from 'backend/Login/TelegramLogin/strategies/TelegramLoginStrategy';
 import { SetJwtCookieModule } from 'backend/SetJwtCookie/SetJwtCookieModule';
 import { UserModule } from 'backend/User/UserModule';
+import { LinkTelegramModule } from 'backend/LinkTelegram/LinkTelegramModule';
 
 @Module({
-  imports: [UserModule, SetJwtCookieModule, EncodingModule],
+  imports: [UserModule, SetJwtCookieModule, EncodingModule, LinkTelegramModule],
   providers: [TelegramLoginService, TelegramLoginStrategy],
   controllers: [TelegramLoginController],
 })

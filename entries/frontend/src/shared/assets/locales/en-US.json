@@ -34,5 +34,6 @@
   "firstName": "First name",
   "lastName": "Last name",
   "confirm": "Confirm",
-  "save": "Save"
+  "save": "Save",
+  "linkTelegram": "Link Telegram"
 }

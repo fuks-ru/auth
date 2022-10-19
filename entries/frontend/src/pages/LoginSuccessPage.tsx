@@ -1,6 +1,8 @@
-import { Card, Typography } from 'antd';
+import { Button, Card, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
+import Icon from '@ant-design/icons';
+import { styled } from '@linaria/react';
 
 import { Head } from 'frontend/shared/ui';
 import { useAuthApi } from 'frontend/shared/api';
@@ -8,6 +10,8 @@ import { Logout } from 'frontend/features/Logout';
 import { SendEmailConfirmCode } from 'frontend/features/SendConfirmCode/SendEmailConfirmCode';
 import { SendPhoneConfirmCode } from 'frontend/features/SendConfirmCode/SendPhoneConfirmCode';
 import { UpdateName } from 'frontend/features/UpdateName';
+import { TelegramIcon } from 'frontend/shared/ui/TelegramIcon';
+import { LoginTelegram } from 'frontend/features/Login/LoginTelegram';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -22,6 +26,7 @@ const LoginSuccessPage: FC<IProps> = ({
 }) => {
   const { t } = useTranslation();
   const [getCurrentUser, user] = useAuthApi('authVerify');
+  const [isLinkTelegram, setIsLinkTelegram] = useState(false);
 
   useEffect(() => {
     void getCurrentUser(null);
@@ -49,6 +54,23 @@ const LoginSuccessPage: FC<IProps> = ({
                 initialValue={user.phone}
               />
 
+              {!user.telegramId && !isLinkTelegram && (
+                <STelegramLinkWrapper>
+                  <Button
+                    icon={<Icon component={TelegramIcon} />}
+                    onClick={() => setIsLinkTelegram(true)}
+                  >
+                    {t('linkTelegram')}
+                  </Button>
+                </STelegramLinkWrapper>
+              )}
+
+              {isLinkTelegram && (
+                <STelegramLinkWrapper>
+                  <LoginTelegram method='linkTelegram' />
+                </STelegramLinkWrapper>
+              )}
+
               <UpdateName user={user} />
 
               <Logout />
@@ -59,6 +81,10 @@ const LoginSuccessPage: FC<IProps> = ({
     </>
   );
 };
+
+const STelegramLinkWrapper = styled.div`
+  margin-bottom: 24px;
+`;
 
 /**
  * Страница завершения входа.

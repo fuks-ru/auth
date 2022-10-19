@@ -1,15 +1,11 @@
-import { Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Request as ExpressRequest } from 'express';
 
 import { Public } from 'backend/Auth/decorators/Public';
 import { SetJwtCookieService } from 'backend/SetJwtCookie/SetJwtCookieService';
-import { User } from 'backend/User/entities/User';
-
-interface IRequest extends ExpressRequest {
-  user: User;
-}
+import { User as UserEntity } from 'backend/User/entities/User';
+import { User } from 'backend/Auth/decorators/User';
 
 @Controller()
 @ApiTags('TelegramLogin')
@@ -25,7 +21,7 @@ export class TelegramLoginController {
   })
   @Public()
   @UseGuards(AuthGuard('not-auth'), AuthGuard('telegram'))
-  public auth(@Request() { user }: IRequest): void {
+  public auth(@User() user: UserEntity): void {
     this.loginService.login(user);
   }
 }

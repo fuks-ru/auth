@@ -49,7 +49,7 @@ const RegisterPage: FC<IProps> = ({
           </Space>
         </Card>
         <LoginGoogle />
-        <LoginTelegram />
+        <LoginTelegram method='loginTelegram' />
       </Space>
     </>
   );

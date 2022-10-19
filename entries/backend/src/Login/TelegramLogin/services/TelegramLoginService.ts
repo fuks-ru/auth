@@ -32,7 +32,7 @@ export class TelegramLoginService {
   ) {}
 
   /**
-   * Авторизуют пользователя по google профилю.
+   * Авторизуют пользователя по telegram профилю.
    */
   public async auth(body: IRegisterData): Promise<User> {
     return (

@@ -17,11 +17,17 @@ type ITelegramWindow = Window &
     onTelegramAuth: (user: ITelegramResponse) => void;
   };
 
+type TTelegramMethod = 'loginTelegram' | 'linkTelegram';
+
+interface IProps {
+  method: TTelegramMethod;
+}
+
 /**
  * Осуществляет вход через телеграм.
  */
-export const LoginTelegram: FC = () => {
-  const [send, , status] = useAuthApi('loginTelegram');
+export const LoginTelegram: FC<IProps> = ({ method }) => {
+  const [send, , status] = useAuthApi(method);
   const { i18n } = useTranslation();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const settings = useSettings();
