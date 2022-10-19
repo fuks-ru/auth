@@ -6,12 +6,12 @@ import { Strategy } from 'passport-custom';
 
 import { User } from 'backend/User/entities/User';
 import { TelegramLoginService } from 'backend/Login/TelegramLogin/services/TelegramLoginService';
-import { TelegramLoginRequest } from 'backend/Login/TelegramLogin/dto/TelegramLoginRequest';
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 import { LinkTelegramService } from 'backend/LinkTelegram/LinkTelegramService';
+import { LinkTelegramRequest } from 'backend/LinkTelegram/dto/LinkTelegramRequest';
 
 interface IRequest extends ExpressRequest {
-  body: TelegramLoginRequest;
+  body: LinkTelegramRequest;
 }
 
 @Injectable()
