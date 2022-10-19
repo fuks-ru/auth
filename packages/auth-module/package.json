@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@fuks-ru/auth-client": "workspace:0.9.0",
+    "@nestjs/passport": "^9.0.0",
     "passport": "^0.6.0",
     "passport-custom": "^1.1.1"
   },
@@ -42,7 +43,6 @@
     "@fuks-ru/common-backend": "0.3.7",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
-    "@nestjs/passport": "^9.0.0",
     "rxjs": "^7.5.7"
   }
 }
