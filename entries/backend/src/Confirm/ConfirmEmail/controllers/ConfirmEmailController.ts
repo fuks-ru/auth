@@ -4,7 +4,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { Recaptcha } from '@nestlab/google-recaptcha';
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { ConfirmEmailRequest } from 'backend/Confirm/ConfirmEmail/dto/ConfirmEmailRequest';
 import { ConfirmEmailService } from 'backend/Confirm/ConfirmEmail/services/ConfirmEmailService';
 import { SendConfirmEmailRequest } from 'backend/Confirm/ConfirmEmail/dto/SendConfirmEmailRequest';
@@ -31,6 +30,7 @@ export class ConfirmEmailController {
     operationId: 'sendEmailConfirmCodeForRegistered',
   })
   @Recaptcha()
+  @UseGuards(AuthGuard('auth-jwt'))
   public async sendToRegistered(
     @Body() body: SendConfirmEmailRequest,
     @User() user: UserEntity,
@@ -46,7 +46,6 @@ export class ConfirmEmailController {
     operationId: 'sendEmailConfirmCodeForUnregistered',
   })
   @Recaptcha()
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async sendToUnregistered(
     @Body() body: SendConfirmEmailRequest,
@@ -72,7 +71,6 @@ export class ConfirmEmailController {
   @ApiOperation({
     operationId: 'confirmUserByEmail',
   })
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async confirmUserByEmail(
     @Body() body: ConfirmEmailRequest,

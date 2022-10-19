@@ -1,6 +1,7 @@
 import { CookieSetterService } from '@fuks-ru/common-backend';
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 import { JWT_TOKEN_COOKIE_NAME } from 'backend/SetJwtCookie/utils/constants';
 import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
@@ -19,6 +20,7 @@ export class LogoutController {
   @ApiOperation({
     operationId: 'logout',
   })
+  @UseGuards(AuthGuard('auth-jwt'))
   public logout(): void {
     this.cookieSetterService.clearCookie(JWT_TOKEN_COOKIE_NAME, {
       domain: this.configGetter.getCookieDomain(),

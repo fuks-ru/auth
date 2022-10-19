@@ -1,5 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 import { Roles } from 'backend/Auth/decorators/Roles';
 import { UserDetailResponse } from 'backend/User/dto/UserDetailResponse';
@@ -9,6 +18,7 @@ import { Role, User } from 'backend/User/entities/User';
 import { UserService } from 'backend/User/services/UserService';
 import { UserUpdateNameRequest } from 'backend/User/dto/UserUpdateNameRequest';
 import { User as UserDecorator } from 'backend/Auth/decorators/User';
+import { RolesGuard } from 'backend/Auth/guards/RolesGuard';
 
 @Controller('/user')
 @ApiTags('User')
@@ -27,6 +37,7 @@ export class UserController {
     isArray: true,
   })
   @Roles(Role.MODERATOR, Role.ADMIN)
+  @UseGuards(AuthGuard('auth-jwt'), RolesGuard)
   public async list(): Promise<UserResponse[]> {
     const userList = await this.userService.getList();
 
@@ -44,6 +55,7 @@ export class UserController {
     type: UserDetailResponse,
   })
   @Roles(Role.MODERATOR, Role.ADMIN)
+  @UseGuards(AuthGuard('auth-jwt'), RolesGuard)
   public async get(@Param('id') id: string): Promise<UserDetailResponse> {
     const user = await this.userService.getById(id);
 
@@ -57,6 +69,7 @@ export class UserController {
   @ApiOperation({
     operationId: 'userUpdateName',
   })
+  @UseGuards(AuthGuard('auth-jwt'))
   public async updateName(
     @Body() body: UserUpdateNameRequest,
     @UserDecorator() user: User,
@@ -78,6 +91,7 @@ export class UserController {
     type: UserDetailResponse,
   })
   @Roles(Role.ADMIN)
+  @UseGuards(AuthGuard('auth-jwt'), RolesGuard)
   public async update(
     @Body() body: UserUpdateRequest,
     @Param('id') id: string,
@@ -98,6 +112,7 @@ export class UserController {
     operationId: 'userDelete',
   })
   @Roles(Role.ADMIN)
+  @UseGuards(AuthGuard('auth-jwt'), RolesGuard)
   public delete(@Param('id') id: string): Promise<void> {
     return this.userService.deleteById(id);
   }

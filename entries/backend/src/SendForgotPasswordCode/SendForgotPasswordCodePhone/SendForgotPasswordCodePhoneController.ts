@@ -3,7 +3,6 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Recaptcha } from '@nestlab/google-recaptcha';
 import { AuthGuard } from '@nestjs/passport';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { UserService } from 'backend/User/services/UserService';
 import { SendForgotPasswordCodePhoneRequest } from 'backend/SendForgotPasswordCode/SendForgotPasswordCodePhone/dto/SendForgotPasswordCodePhoneRequest';
 import { SendForgotPasswordCodePhoneService } from 'backend/SendForgotPasswordCode/SendForgotPasswordCodePhone/SendForgotPasswordCodePhoneService';
@@ -24,7 +23,6 @@ export class SendForgotPasswordCodePhoneController {
     operationId: 'sendForgotPasswordCodePhone',
   })
   @Recaptcha()
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async sendByPhone(
     @Body() body: SendForgotPasswordCodePhoneRequest,

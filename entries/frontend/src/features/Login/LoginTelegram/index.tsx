@@ -21,18 +21,25 @@ type TTelegramMethod = 'loginTelegram' | 'linkTelegram';
 
 interface IProps {
   method: TTelegramMethod;
+  onSuccess?: () => void;
 }
 
 /**
  * Осуществляет вход через телеграм.
  */
-export const LoginTelegram: FC<IProps> = ({ method }) => {
+export const LoginTelegram: FC<IProps> = ({ method, onSuccess }) => {
   const [send, , status] = useAuthApi(method);
   const { i18n } = useTranslation();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const settings = useSettings();
 
   useNavigateToSuccess(status);
+
+  useEffect(() => {
+    if (onSuccess && status === 'success') {
+      onSuccess();
+    }
+  }, [onSuccess, status]);
 
   const handleTelegramResponse = useCallback(
     (user: ITelegramResponse) => {

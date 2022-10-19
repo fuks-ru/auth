@@ -69,7 +69,10 @@ const LoginSuccessPage: FC<IProps> = ({
 
               {isLinkTelegram && (
                 <STelegramLinkWrapper>
-                  <LoginTelegram method='linkTelegram' />
+                  <LoginTelegram
+                    method='linkTelegram'
+                    onSuccess={() => setIsLinkTelegram(false)}
+                  />
                 </STelegramLinkWrapper>
               )}
 

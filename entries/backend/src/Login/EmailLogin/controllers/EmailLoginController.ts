@@ -4,7 +4,6 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
 import { Request as ExpressRequest } from 'express';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { SetJwtCookieService } from 'backend/SetJwtCookie/SetJwtCookieService';
 import { User as UserEntity } from 'backend/User/entities/User';
 
@@ -24,8 +23,11 @@ export class EmailLoginController {
   @ApiOperation({
     operationId: 'loginEmail',
   })
-  @UseGuards(AuthGuard('not-auth'), GoogleRecaptchaGuard, AuthGuard('email'))
-  @Public()
+  @UseGuards(
+    GoogleRecaptchaGuard,
+    AuthGuard('not-auth'),
+    AuthGuard('login-email'),
+  )
   public login(@Request() { user }: IRequest): void {
     this.loginService.login(user);
   }

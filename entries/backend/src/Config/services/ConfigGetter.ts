@@ -231,6 +231,15 @@ export class ConfigGetter {
       : this.envGetter.getEnv('TELEGRAM_BOT_NAME');
   }
 
+  /**
+   * Получает токен для внутренних запросов между сервисами.
+   */
+  public getInternalRequestToken(): string {
+    return this.envGetter.isDev()
+      ? ''
+      : this.envGetter.getEnv('INTERNAL_REQUEST_TOKEN');
+  }
+
   private getProdTypeOrmConfig(): TypeOrmModuleOptions {
     return {
       ...ormConfig,

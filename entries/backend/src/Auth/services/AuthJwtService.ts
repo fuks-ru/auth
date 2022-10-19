@@ -7,7 +7,7 @@ import { IRequest } from 'backend/Auth/types/IRequest';
 import { User } from 'backend/User/entities/User';
 
 @Injectable()
-export class AuthService {
+export class AuthJwtService {
   public constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,

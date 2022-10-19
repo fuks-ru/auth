@@ -1,13 +1,10 @@
 import { Module } from '@nestjs/common';
-import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 
-import { AuthGuard } from 'backend/Auth/guards/AuthGuard';
-import { RolesGuard } from 'backend/Auth/guards/RolesGuard';
-import { AuthStrategy } from 'backend/Auth/strategies/AuthStrategy';
+import { AuthJwtStrategy } from 'backend/Auth/strategies/AuthJwtStrategy';
 import { ConfigGetter } from 'backend/Config/services/ConfigGetter';
 import { AuthController } from 'backend/Auth/contollers/AuthController';
-import { AuthService } from 'backend/Auth/services/AuthService';
+import { AuthJwtService } from 'backend/Auth/services/AuthJwtService';
 import { UserModule } from 'backend/User/UserModule';
 import { NotAuthStrategy } from 'backend/Auth/strategies/NotAuthStrategy';
 import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';
@@ -21,19 +18,6 @@ import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [
-    AuthService,
-    AuthStrategy,
-    NotAuthStrategy,
-    CheckNotAuth,
-    {
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
-  ],
+  providers: [AuthJwtService, AuthJwtStrategy, NotAuthStrategy, CheckNotAuth],
 })
 export class AuthModule {}

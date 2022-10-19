@@ -3,7 +3,6 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Recaptcha } from '@nestlab/google-recaptcha';
 import { AuthGuard } from '@nestjs/passport';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { ChangePasswordRequest } from 'backend/ChangePassword/ChangePasswordPhone/dto/ChangePasswordRequest';
 import { ChangePasswordPhoneService } from 'backend/ChangePassword/ChangePasswordPhone/ChangePasswordPhoneService';
 
@@ -22,7 +21,6 @@ export class ChangePasswordPhoneController {
     operationId: 'changePasswordPhone',
   })
   @Recaptcha()
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async changeByEmail(
     @Body() body: ChangePasswordRequest,

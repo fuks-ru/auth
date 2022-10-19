@@ -20,7 +20,10 @@ interface IRequest extends ExpressRequest {
 }
 
 @Injectable()
-export class GoogleLoginStrategy extends PassportStrategy(Strategy, 'google') {
+export class GoogleLoginStrategy extends PassportStrategy(
+  Strategy,
+  'login-google',
+) {
   private readonly client: OAuth2Client;
 
   public constructor(

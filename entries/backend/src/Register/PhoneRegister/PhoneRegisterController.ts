@@ -3,7 +3,6 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Recaptcha } from '@nestlab/google-recaptcha';
 import { AuthGuard } from '@nestjs/passport';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { PhoneRegisterService } from 'backend/Register/PhoneRegister/PhoneRegisterService';
 import { PhoneRegisterRequest } from 'backend/Register/PhoneRegister/dto/PhoneRegisterRequest';
 
@@ -22,7 +21,6 @@ export class PhoneRegisterController {
     operationId: 'registerPhone',
   })
   @Recaptcha()
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async phone(@Body() body: PhoneRegisterRequest): Promise<void> {
     await this.phoneRegisterService.register(body);

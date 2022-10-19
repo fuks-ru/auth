@@ -3,7 +3,6 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Recaptcha } from '@nestlab/google-recaptcha';
 import { AuthGuard } from '@nestjs/passport';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { EmailRegisterRequest } from 'backend/Register/EmailRegister/dto/EmailRegisterRequest';
 import { EmailRegisterService } from 'backend/Register/EmailRegister/EmailRegisterService';
 
@@ -22,7 +21,6 @@ export class EmailRegisterController {
     operationId: 'registerEmail',
   })
   @Recaptcha()
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async email(@Body() body: EmailRegisterRequest): Promise<void> {
     await this.emailRegisterService.register(body);

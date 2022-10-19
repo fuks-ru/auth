@@ -17,7 +17,7 @@ interface IRequest extends ExpressRequest {
 @Injectable()
 export class TelegramLoginStrategy extends PassportStrategy(
   Strategy,
-  'telegram',
+  'login-telegram',
 ) {
   public constructor(
     private readonly linkTelegramService: LinkTelegramService,

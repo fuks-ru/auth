@@ -15,10 +15,7 @@ interface IRequest extends ExpressRequest {
 }
 
 @Injectable()
-export class AuthClientStrategy extends PassportStrategy(
-  Strategy,
-  'auth-client',
-) {
+export class AuthJwtStrategy extends PassportStrategy(Strategy, 'auth-jwt') {
   private authApi!: Client;
 
   public constructor(

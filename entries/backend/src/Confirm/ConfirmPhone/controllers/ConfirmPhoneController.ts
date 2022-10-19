@@ -5,7 +5,6 @@ import { Recaptcha } from '@nestlab/google-recaptcha';
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 
 import { User as UserEntity } from 'backend/User/entities/User';
-import { Public } from 'backend/Auth/decorators/Public';
 import { ConfirmPhoneRequest } from 'backend/Confirm/ConfirmPhone/dto/ConfirmPhoneRequest';
 import { ConfirmPhoneService } from 'backend/Confirm/ConfirmPhone/services/ConfirmPhoneService';
 import { UserService } from 'backend/User/services/UserService';
@@ -32,6 +31,7 @@ export class ConfirmPhoneController {
     operationId: 'sendPhoneConfirmCodeForRegistered',
   })
   @Recaptcha()
+  @UseGuards(AuthGuard('auth-jwt'))
   public async sendToRegistered(
     @Body() body: SendConfirmPhoneRequest,
     @User() user: UserEntity,
@@ -47,7 +47,6 @@ export class ConfirmPhoneController {
     operationId: 'sendPhoneConfirmCodeForUnregistered',
   })
   @Recaptcha()
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async sendToUnregistered(
     @Body() body: SendConfirmPhoneRequest,
@@ -74,7 +73,6 @@ export class ConfirmPhoneController {
   @ApiOperation({
     operationId: 'confirmUserByPhone',
   })
-  @Public()
   @UseGuards(AuthGuard('not-auth'))
   public async confirmUserByPhone(
     @Body() body: ConfirmPhoneRequest,

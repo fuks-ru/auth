@@ -1,9 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { APP_GUARD } from '@nestjs/core';
 
-import { AuthClientStrategy } from 'auth-module/strategies/AuthClientStrategy';
-import { RolesGuard } from 'auth-module/guards/RolesGuard';
-import { AuthClientGuard } from 'auth-module/guards/AuthClientGuard';
+import { AuthJwtStrategy } from 'auth-module/strategies/AuthJwtStrategy';
 import {
   IAuthModuleAsyncOptions,
   IAuthModuleOptions,
@@ -19,15 +16,7 @@ export class AuthModule {
       module: AuthModule,
       global: true,
       providers: [
-        AuthClientStrategy,
-        {
-          provide: APP_GUARD,
-          useClass: AuthClientGuard,
-        },
-        {
-          provide: APP_GUARD,
-          useClass: RolesGuard,
-        },
+        AuthJwtStrategy,
         {
           provide: 'AUTH_MODULE_OPTIONS',
           useValue: options,
@@ -45,15 +34,7 @@ export class AuthModule {
       imports: options.imports,
       global: true,
       providers: [
-        AuthClientStrategy,
-        {
-          provide: APP_GUARD,
-          useClass: AuthClientGuard,
-        },
-        {
-          provide: APP_GUARD,
-          useClass: RolesGuard,
-        },
+        AuthJwtStrategy,
         {
           provide: 'AUTH_MODULE_OPTIONS',
           inject: options.inject,

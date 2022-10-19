@@ -20,7 +20,10 @@ interface IRequest extends ExpressRequest {
 }
 
 @Injectable()
-export class EmailLoginStrategy extends PassportStrategy(Strategy, 'email') {
+export class EmailLoginStrategy extends PassportStrategy(
+  Strategy,
+  'login-email',
+) {
   public constructor(
     private readonly emailLoginService: EmailLoginService,
     private readonly systemErrorFactory: SystemErrorFactory,

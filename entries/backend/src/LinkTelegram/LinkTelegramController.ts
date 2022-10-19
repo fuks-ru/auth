@@ -1,6 +1,7 @@
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
+import { AuthGuard } from '@nestjs/passport';
 
 import { LinkTelegramService } from 'backend/LinkTelegram/LinkTelegramService';
 import { User } from 'backend/Auth/decorators/User';
@@ -20,12 +21,13 @@ export class LinkTelegramController {
   ) {}
 
   /**
-   * Маршрут для авторизации.
+   * Маршрут для привязки телеграм.
    */
   @Post('/link-telegram')
   @ApiOperation({
     operationId: 'linkTelegram',
   })
+  @UseGuards(AuthGuard('auth-jwt'))
   public async link(
     @User() user: UserEntity,
     @Body() body: LinkTelegramRequest,

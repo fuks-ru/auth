@@ -1,9 +1,8 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard, AuthGuard as BaseAuthGuard } from '@nestjs/passport';
 
 import { UserVerifyResponse } from 'backend/Auth/dto/UserVerifyResponse';
-import { Public } from 'backend/Auth/decorators/Public';
 import { User as UserEntity } from 'backend/User/entities/User';
 import { User } from 'backend/Auth/decorators/User';
 
@@ -20,7 +19,26 @@ export class AuthController {
   @ApiOkResponse({
     type: UserVerifyResponse,
   })
-  public verify(@User() user: UserEntity): UserVerifyResponse {
+  @UseGuards(AuthGuard('auth-jwt'))
+  public verifyJwt(@User() user: UserEntity): UserVerifyResponse {
+    const { hashedPassword, ...response } = user;
+
+    return response;
+  }
+
+  /**
+   * Маршрут для получения пользователя по телеграм id.
+   */
+  @Get('/verify/telegram')
+  @ApiOperation({
+    operationId: 'authVerifyTelegram',
+  })
+  @ApiOkResponse({
+    type: UserVerifyResponse,
+  })
+  @UseGuards(AuthGuard('auth-telegram'))
+  // eslint-disable-next-line sonarjs/no-identical-functions
+  public verifyTelegram(@User() user: UserEntity): UserVerifyResponse {
     const { hashedPassword, ...response } = user;
 
     return response;
@@ -33,7 +51,6 @@ export class AuthController {
   @ApiOperation({
     operationId: 'authCheckNot',
   })
-  @Public()
-  @UseGuards(AuthGuard('not-auth'))
+  @UseGuards(BaseAuthGuard('not-auth'))
   public checkNot(): void {}
 }

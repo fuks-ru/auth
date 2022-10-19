@@ -4,15 +4,15 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-custom';
 import { CommonErrorCode } from '@fuks-ru/common';
 
-import { AuthService } from 'backend/Auth/services/AuthService';
+import { AuthJwtService } from 'backend/Auth/services/AuthJwtService';
 import { User } from 'backend/User/entities/User';
 import { IRequest } from 'backend/Auth/types/IRequest';
 
 @Injectable()
-export class AuthStrategy extends PassportStrategy(Strategy, 'auth') {
+export class AuthJwtStrategy extends PassportStrategy(Strategy, 'auth-jwt') {
   public constructor(
     private readonly systemErrorFactory: SystemErrorFactory,
-    private readonly authService: AuthService,
+    private readonly authService: AuthJwtService,
     private readonly i18nResolver: I18nResolver,
   ) {
     super();

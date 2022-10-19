@@ -3,7 +3,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Request as ExpressRequest } from 'express';
 
-import { Public } from 'backend/Auth/decorators/Public';
 import { SetJwtCookieService } from 'backend/SetJwtCookie/SetJwtCookieService';
 import { User } from 'backend/User/entities/User';
 
@@ -25,8 +24,7 @@ export class GoogleLoginController {
   @ApiOperation({
     operationId: 'loginGoogle',
   })
-  @Public()
-  @UseGuards(AuthGuard('not-auth'), AuthGuard('google'))
+  @UseGuards(AuthGuard('not-auth'), AuthGuard('login-google'))
   public auth(@Request() { user }: IRequest): void {
     this.setJwtCookieService.login(user);
   }
