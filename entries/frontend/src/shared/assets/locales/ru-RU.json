@@ -35,5 +35,6 @@
   "lastName": "Фамилия",
   "confirm": "Подтвердить",
   "save": "Сохранить",
-  "linkTelegram": "Привязать Телеграм"
+  "linkTelegram": "Привязать Телеграм",
+  "telegramLinked": "Телеграм привязан"
 }

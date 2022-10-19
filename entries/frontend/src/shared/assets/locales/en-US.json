@@ -35,5 +35,6 @@
   "lastName": "Last name",
   "confirm": "Confirm",
   "save": "Save",
-  "linkTelegram": "Link Telegram"
+  "linkTelegram": "Link Telegram",
+  "telegramLinked": "Telegram linked"
 }

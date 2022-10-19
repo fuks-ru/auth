@@ -54,13 +54,15 @@ const LoginSuccessPage: FC<IProps> = ({
                 initialValue={user.phone}
               />
 
-              {!user.telegramId && !isLinkTelegram && (
+              {!isLinkTelegram && (
                 <STelegramLinkWrapper>
                   <Button
                     icon={<Icon component={TelegramIcon} />}
                     onClick={() => setIsLinkTelegram(true)}
+                    disabled={!!user.telegramId}
+                    block={true}
                   >
-                    {t('linkTelegram')}
+                    {!user.telegramId ? t('linkTelegram') : t('telegramLinked')}
                   </Button>
                 </STelegramLinkWrapper>
               )}
