@@ -16,12 +16,16 @@ export class TelegramBotLoginRequest {
   /**
    * Имя.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: true,
+  })
   public firstName?: string;
 
   /**
    * Фамилия.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: true,
+  })
   public lastName?: string;
 }
