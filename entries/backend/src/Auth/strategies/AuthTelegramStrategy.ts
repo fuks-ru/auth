@@ -3,11 +3,11 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-custom';
 import { Request as ExpressRequest } from 'express';
+import { CommonErrorCode } from '@fuks-ru/common';
 
 import { User } from 'backend/User/entities/User';
 import { AuthTelegramService } from 'backend/Auth/services/AuthTelegramService';
 import { internalRequestTokenHeader } from 'backend/constants';
-import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 
 interface IRequest extends ExpressRequest {
   body: {
@@ -31,15 +31,15 @@ export class AuthTelegramStrategy extends PassportStrategy(
   private async validate(request: IRequest): Promise<User> {
     const user = await this.telegramAuthService.verify(
       request.body.id,
-      request.headers[internalRequestTokenHeader] as string,
+      request.get(internalRequestTokenHeader),
     );
 
     if (!user) {
       const i18n = await this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
-        ErrorCode.USER_INCORRECT_PHONE_OR_PASSWORD,
-        i18n.t('internalRequestTokenNotValid'),
+        CommonErrorCode.UNAUTHORIZED,
+        i18n.t('unauthorized'),
       );
     }
 

@@ -35,9 +35,9 @@ export class TelegramBotLoginStrategy extends PassportStrategy(
   /**
    * Валидация по внутреннему токену, telegramId и телефону.
    */
-  private async validate({ body: data, headers }: IRequest): Promise<User> {
+  private async validate(request: IRequest): Promise<User> {
     if (
-      headers[internalRequestTokenHeader] !==
+      request.get(internalRequestTokenHeader) !==
       this.configGetter.getInternalRequestToken()
     ) {
       const i18n = await this.i18nResolver.resolve();
@@ -48,6 +48,6 @@ export class TelegramBotLoginStrategy extends PassportStrategy(
       );
     }
 
-    return this.telegramBotLoginService.auth(data);
+    return this.telegramBotLoginService.auth(request.body);
   }
 }
