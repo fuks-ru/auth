@@ -7,7 +7,7 @@ import { User as UserEntity } from 'backend/User/entities/User';
 import { User } from 'backend/Auth/decorators/User';
 
 @Controller()
-@ApiTags('TelegramLogin')
+@ApiTags('Login')
 export class TelegramLoginController {
   public constructor(private readonly loginService: SetJwtCookieService) {}
 

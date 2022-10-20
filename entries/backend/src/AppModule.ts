@@ -20,6 +20,7 @@ import { ChangePasswordPhoneModule } from 'backend/ChangePassword/ChangePassword
 import { ChangePasswordEmailModule } from 'backend/ChangePassword/ChangePasswordEmail/ChangePasswordEmailModule';
 import { EmailRegisterModule } from 'backend/Register/EmailRegister/EmailRegisterModule';
 import { PhoneRegisterModule } from 'backend/Register/PhoneRegister/PhoneRegisterModule';
+import { TelegramBotLoginModule } from 'backend/Login/TelegramBotLogin/TelegramBotLoginModule';
 
 @Module({
   imports: [
@@ -70,6 +71,7 @@ import { PhoneRegisterModule } from 'backend/Register/PhoneRegister/PhoneRegiste
     PhoneLoginModule,
     TelegramLoginModule,
     FrontendSettingsModule,
+    TelegramBotLoginModule,
   ],
 })
 export class AppModule {}

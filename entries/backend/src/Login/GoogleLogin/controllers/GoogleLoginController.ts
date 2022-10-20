@@ -1,17 +1,14 @@
-import { Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Request as ExpressRequest } from 'express';
 
 import { SetJwtCookieService } from 'backend/SetJwtCookie/SetJwtCookieService';
-import { User } from 'backend/User/entities/User';
-
-interface IRequest extends ExpressRequest {
-  user: User;
-}
+import { User as UserEntity } from 'backend/User/entities/User';
+import { User } from 'backend/Auth/decorators/User';
+import { GoogleLoginRequest } from 'backend/Login/GoogleLogin/dto/GoogleLoginRequest';
 
 @Controller()
-@ApiTags('GoogleLogin')
+@ApiTags('Login')
 export class GoogleLoginController {
   public constructor(
     private readonly setJwtCookieService: SetJwtCookieService,
@@ -25,7 +22,7 @@ export class GoogleLoginController {
     operationId: 'loginGoogle',
   })
   @UseGuards(AuthGuard('not-auth'), AuthGuard('login-google'))
-  public auth(@Request() { user }: IRequest): void {
+  public auth(@User() user: UserEntity, @Body() _: GoogleLoginRequest): void {
     this.setJwtCookieService.login(user);
   }
 }

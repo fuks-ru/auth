@@ -43,10 +43,6 @@ export class TelegramLoginStrategy extends PassportStrategy(
       );
     }
 
-    return this.telegramLoginAuth.auth({
-      id: data.id,
-      firstName: data.first_name,
-      lastName: data.last_name,
-    });
+    return this.telegramLoginAuth.auth(data);
   }
 }

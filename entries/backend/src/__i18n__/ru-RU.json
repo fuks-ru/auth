@@ -28,5 +28,6 @@
   "incorrectPhoneFormat": "Некорректный формат телефона",
   "enterPhone": "Введите телефон",
   "incorrectPhoneOrPassword": "Неверный телефон или пароль",
-  "telegramHashNotValid": "Невалидный хеш телеграм"
+  "telegramHashNotValid": "Невалидный хеш телеграм",
+  "internalRequestTokenNotValid": "Неверный токен внутренних запросов"
 }

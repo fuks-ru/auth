@@ -4,24 +4,7 @@ import { v4 } from 'uuid';
 
 import { Role, User } from 'backend/User/entities/User';
 import { UserService } from 'backend/User/services/UserService';
-
-/**
- * Данные для регистрации через telegram.
- */
-export interface IRegisterData {
-  /**
-   * Id.
-   */
-  id: number;
-  /**
-   * Имя.
-   */
-  firstName?: string;
-  /**
-   * Фамилия.
-   */
-  lastName?: string;
-}
+import { LinkTelegramRequest } from 'backend/LinkTelegram/dto/LinkTelegramRequest';
 
 @Injectable()
 export class TelegramLoginService {
@@ -34,7 +17,7 @@ export class TelegramLoginService {
   /**
    * Авторизуют пользователя по telegram профилю.
    */
-  public async auth(body: IRegisterData): Promise<User> {
+  public async auth(body: LinkTelegramRequest): Promise<User> {
     return (
       (await this.userService.findConfirmedByTelegramId(body.id)) ||
       (await this.register(body))
@@ -44,15 +27,15 @@ export class TelegramLoginService {
   /**
    * Регистрирует пользователя.
    */
-  private async register(data: IRegisterData): Promise<User> {
+  private async register(data: LinkTelegramRequest): Promise<User> {
     const hashedPassword = await this.encodingService.hash(v4());
 
     const user = new User();
 
     user.hashedPassword = hashedPassword;
     user.telegramId = data.id;
-    user.firstName = data.firstName;
-    user.lastName = data.lastName;
+    user.firstName = data.first_name;
+    user.lastName = data.last_name;
     user.role = Role.USER;
     user.isConfirmed = true;
 

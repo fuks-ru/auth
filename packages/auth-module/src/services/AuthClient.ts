@@ -1,4 +1,4 @@
-import { Client, getApi } from '@fuks-ru/auth-client/dist/client/axios';
+import { Client, getApi } from '@fuks-ru/auth-client';
 import { Inject, Injectable } from '@nestjs/common';
 
 import { IAuthModuleOptions } from 'auth-module/types/IAuthModuleOptions';

@@ -42,6 +42,7 @@ export class ConfigGetter {
     [ErrorCode.USER_INCORRECT_PHONE_OR_PASSWORD]: HttpStatus.UNAUTHORIZED,
     [ErrorCode.CONFIRM_CODE_PHONE_EMPTY]: HttpStatus.UNPROCESSABLE_ENTITY,
     [ErrorCode.TELEGRAM_HASH_NOT_VALID]: HttpStatus.UNAUTHORIZED,
+    [ErrorCode.INTERNAL_REQUEST_TOKEN_NOT_VALID]: HttpStatus.UNAUTHORIZED,
   };
 
   public constructor(private readonly envGetter: EnvGetter) {}

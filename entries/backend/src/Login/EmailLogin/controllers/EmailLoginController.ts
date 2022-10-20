@@ -1,18 +1,15 @@
-import { Controller, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
-import { Request as ExpressRequest } from 'express';
 
 import { SetJwtCookieService } from 'backend/SetJwtCookie/SetJwtCookieService';
 import { User as UserEntity } from 'backend/User/entities/User';
-
-interface IRequest extends ExpressRequest {
-  user: UserEntity;
-}
+import { EmailLoginRequest } from 'backend/Login/EmailLogin/dto/EmailLoginRequest';
+import { User } from 'backend/Auth/decorators/User';
 
 @Controller()
-@ApiTags('EmailLogin')
+@ApiTags('Login')
 export class EmailLoginController {
   public constructor(private readonly loginService: SetJwtCookieService) {}
 
@@ -28,7 +25,7 @@ export class EmailLoginController {
     AuthGuard('not-auth'),
     AuthGuard('login-email'),
   )
-  public login(@Request() { user }: IRequest): void {
+  public login(@User() user: UserEntity, @Body() _: EmailLoginRequest): void {
     this.loginService.login(user);
   }
 }
