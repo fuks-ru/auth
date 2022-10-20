@@ -24,6 +24,7 @@ export class AuthModule {
           useValue: options,
         },
       ],
+      exports: [AuthClient],
     };
   }
 
@@ -44,6 +45,7 @@ export class AuthModule {
           useFactory: options.useFactory,
         },
       ],
+      exports: [AuthClient],
     };
   }
 }
