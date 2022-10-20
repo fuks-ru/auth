@@ -17,7 +17,7 @@ export class TelegramBotLoginRequest {
    * Имя.
    */
   @ApiProperty({
-    required: true,
+    required: false,
   })
   public firstName?: string;
 
@@ -25,7 +25,7 @@ export class TelegramBotLoginRequest {
    * Фамилия.
    */
   @ApiProperty({
-    required: true,
+    required: false,
   })
   public lastName?: string;
 }

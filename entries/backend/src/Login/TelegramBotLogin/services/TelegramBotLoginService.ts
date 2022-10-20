@@ -26,18 +26,34 @@ export class TelegramBotLoginService {
     const isPhoneExists = telegramUser?.phone || phoneUser;
 
     if (telegramUser && isPhoneExists) {
-      return telegramUser;
+      return this.updateName(telegramUser, body);
     }
 
     if (telegramUser && !isPhoneExists) {
-      return this.userService.changePhone(telegramUser, body.phone);
+      const user = await this.userService.changePhone(telegramUser, body.phone);
+
+      return this.updateName(user, body);
     }
 
     if (!telegramUser && phoneUser) {
-      return this.userService.changeTelegramId(phoneUser, body.id);
+      const user = await this.userService.changeTelegramId(phoneUser, body.id);
+
+      return this.updateName(user, body);
     }
 
     return this.register(body);
+  }
+
+  private async updateName(
+    telegramUser: User,
+    body: TelegramBotLoginRequest,
+  ): Promise<User> {
+    return this.userService.addOrUpdateUser({
+      ...telegramUser,
+      telegramId: body.id,
+      firstName: telegramUser.firstName || body.firstName,
+      lastName: telegramUser.lastName || body.lastName,
+    });
   }
 
   /**
