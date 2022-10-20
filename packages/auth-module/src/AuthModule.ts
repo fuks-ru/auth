@@ -5,6 +5,7 @@ import {
   IAuthModuleAsyncOptions,
   IAuthModuleOptions,
 } from 'auth-module/types/IAuthModuleOptions';
+import { AuthClient } from 'auth-module/services/AuthClient';
 
 @Module({})
 export class AuthModule {
@@ -17,6 +18,7 @@ export class AuthModule {
       global: true,
       providers: [
         AuthJwtStrategy,
+        AuthClient,
         {
           provide: 'AUTH_MODULE_OPTIONS',
           useValue: options,
@@ -35,6 +37,7 @@ export class AuthModule {
       global: true,
       providers: [
         AuthJwtStrategy,
+        AuthClient,
         {
           provide: 'AUTH_MODULE_OPTIONS',
           inject: options.inject,

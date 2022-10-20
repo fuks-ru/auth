@@ -1,4 +1,4 @@
-import { Client, getApi, TApiResponse } from '@fuks-ru/auth-client';
+import { TApiResponse } from '@fuks-ru/auth-client';
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 import { CommonErrorCode, UnauthorizedError } from '@fuks-ru/common';
 import { Inject, Injectable } from '@nestjs/common';
@@ -7,6 +7,7 @@ import { Request as ExpressRequest } from 'express';
 import { Strategy } from 'passport-custom';
 
 import { IAuthModuleOptions } from 'auth-module/types/IAuthModuleOptions';
+import { AuthClient } from 'auth-module/services/AuthClient';
 
 interface IRequest extends ExpressRequest {
   cookies: {
@@ -16,31 +17,25 @@ interface IRequest extends ExpressRequest {
 
 @Injectable()
 export class AuthJwtStrategy extends PassportStrategy(Strategy, 'auth-jwt') {
-  private authApi!: Client;
-
   public constructor(
     private readonly systemErrorFactory: SystemErrorFactory,
     @Inject('AUTH_MODULE_OPTIONS')
     private readonly options: IAuthModuleOptions,
     private readonly i18nResolver: I18nResolver,
+    private readonly authClient: AuthClient,
   ) {
     super();
-
-    void this.initApi(options.authUrl);
-  }
-
-  private async initApi(authUrl: string): Promise<void> {
-    this.authApi = await getApi(authUrl);
   }
 
   private async validate(
     request: IRequest,
   ): Promise<TApiResponse<'authVerify'>> {
     try {
-      this.authApi.defaults.headers.common.cookie =
-        request.headers.cookie || '';
+      const authClient = this.authClient.getClient();
 
-      const response = await this.authApi.authVerify(null);
+      authClient.defaults.headers.common.cookie = request.headers.cookie || '';
+
+      const response = await authClient.authVerify(null);
 
       return response.data;
     } catch (error) {
