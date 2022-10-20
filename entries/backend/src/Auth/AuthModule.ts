@@ -8,6 +8,8 @@ import { AuthJwtService } from 'backend/Auth/services/AuthJwtService';
 import { UserModule } from 'backend/User/UserModule';
 import { NotAuthStrategy } from 'backend/Auth/strategies/NotAuthStrategy';
 import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';
+import { AuthTelegramStrategy } from 'backend/Auth/strategies/AuthTelegramStrategy';
+import { AuthTelegramService } from 'backend/Auth/services/AuthTelegramService';
 
 @Module({
   imports: [
@@ -18,6 +20,13 @@ import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [AuthJwtService, AuthJwtStrategy, NotAuthStrategy, CheckNotAuth],
+  providers: [
+    AuthJwtService,
+    AuthJwtStrategy,
+    NotAuthStrategy,
+    CheckNotAuth,
+    AuthTelegramStrategy,
+    AuthTelegramService,
+  ],
 })
 export class AuthModule {}
