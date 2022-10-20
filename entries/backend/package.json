@@ -20,7 +20,7 @@
     "prod:typeorm": "cross-env NODE_ENV=production node $(yarn bin typeorm) -d ./dist/build/Config/utils/ormconfig.js"
   },
   "files": [
-    "dist/lib/**/*",
+    "dist/client/axios/*",
     "README.md"
   ],
   "publishConfig": {
