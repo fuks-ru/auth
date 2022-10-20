@@ -1614,7 +1614,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fuks-ru/auth-client@workspace:0.9.0, @fuks-ru/auth-client@workspace:entries/backend":
+"@fuks-ru/auth-client@workspace:0.9.1, @fuks-ru/auth-client@workspace:entries/backend":
   version: 0.0.0-use.local
   resolution: "@fuks-ru/auth-client@workspace:entries/backend"
   dependencies:
@@ -1690,7 +1690,7 @@ __metadata:
     "@babel/preset-env": ^7.19.1
     "@babel/preset-react": ^7.18.6
     "@babel/preset-typescript": ^7.18.6
-    "@fuks-ru/auth-client": "workspace:0.9.0"
+    "@fuks-ru/auth-client": "workspace:0.9.1"
     "@fuks-ru/common": 0.1.0
     "@fuks-ru/common-frontend": 0.1.0
     "@linaria/core": ^4.1.2
@@ -1745,7 +1745,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fuks-ru/auth-module@workspace:packages/auth-module"
   dependencies:
-    "@fuks-ru/auth-client": "workspace:0.9.0"
+    "@fuks-ru/auth-client": "workspace:0.9.1"
     "@fuks-ru/common": 0.1.0
     "@fuks-ru/common-backend": 0.6.0
     "@nestjs/common": ^9.1.2
