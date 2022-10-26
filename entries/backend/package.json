@@ -1,7 +1,7 @@
 {
   "name": "@fuks-ru/auth-client",
   "author": "Dmitry Fuks",
-  "version": "0.10.4",
+  "version": "0.10.5",
   "repository": "https://github.com/fuks-ru/auth",
   "description": "Auth client",
   "license": "ISC",
