@@ -9,23 +9,26 @@ export class UserUpdateRequest {
    * Роль.
    */
   @ApiProperty()
-  @IsOptional()
   @IsEnum(Role, {
     message: i18nValidationMessage('incorrectRole'),
   })
-  public role?: Role;
+  public role!: Role;
 
   /**
    * Имя.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public firstName?: string;
 
   /**
    * Фамилия.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public lastName?: string;
 
