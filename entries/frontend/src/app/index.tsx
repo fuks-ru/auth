@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client';
+import { initApi, loginApi } from '@fuks-ru/auth-client';
 
-import { initAuthApi } from 'frontend/shared/api/initAuthApi';
-import { App } from 'frontend/app/App';
-import 'frontend/shared/config';
+// import { App } from 'frontend/app/App';
+import { backendUrl } from 'frontend/shared/config';
 
 const container = document.querySelector('#app');
 
@@ -10,10 +10,12 @@ if (!container) {
   throw new Error('container is not defined');
 }
 
-(async () => {
-  await initAuthApi();
+const FakeApp = () => <div>App is not ready yet</div>;
 
-  const root = createRoot(container);
+initApi({
+  baseUrl: backendUrl,
+});
 
-  root.render(<App />);
-})();
+const root = createRoot(container);
+
+root.render(<FakeApp />);

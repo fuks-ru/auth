@@ -5,7 +5,7 @@
   "repository": "https://github.com/fuks-ru/auth",
   "author": "Dmitry Fuks",
   "license": "MIT",
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@3.5.0",
   "workspaces": [
     "entries/*",
     "packages/*"
@@ -24,6 +24,9 @@
     "@rushstack/eslint-patch": "^1.2.0",
     "eslint": "^8.24.0",
     "eslint-config-fuks": "^1.9.2",
-    "typescript": "4.8.3"
+    "typescript": "4.7.4"
+  },
+  "resolutions": {
+    "typescript": "4.7.4"
   }
 }
