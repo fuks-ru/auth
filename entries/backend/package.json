@@ -26,12 +26,9 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "dependencies": {
-    "axios": "^0.27.2",
-    "openapi-client-axios": "^5.1.2"
-  },
   "peerDependencies": {
-    "@fuks-ru/common": "*"
+    "@fuks-ru/common": "*",
+    "@reduxjs/toolkit": "*"
   },
   "devDependencies": {
     "@fuks-ru/common": "portal:/Users/difuks/WebstormProjects/fuks-ru/common/packages/common",
@@ -47,7 +44,7 @@
     "@nestjs/testing": "^9.1.2",
     "@nestjs/typeorm": "^9.0.1",
     "@nestlab/google-recaptcha": "^3.1.9",
-    "@reduxjs/toolkit": "^1.9.4",
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.14",
     "@types/jest": "^29.0.3",
@@ -55,7 +52,6 @@
     "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.34",
     "@types/qs": "^6.9.7",
-    "@types/react": "^18.0.37",
     "@types/set-cookie-parser": "^2.4.2",
     "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
@@ -78,10 +74,6 @@
     "passport-custom": "^1.1.1",
     "pg": "^8.8.0",
     "qs": "^6.11.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "redux": "^4.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "set-cookie-parser": "^2.5.1",

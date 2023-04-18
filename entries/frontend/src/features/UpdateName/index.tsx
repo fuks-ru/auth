@@ -1,21 +1,27 @@
 import { FC } from 'react';
 import { Button, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { Schemas } from '@fuks-ru/auth-client';
+import {
+  UserVerifyResponse,
+  useUserUpdateNameMutation,
+} from '@fuks-ru/auth-client';
 import { UserOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 
-import { useAuthForm } from 'frontend/shared/api';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
-  user: Schemas.UserVerifyResponse;
+  user: UserVerifyResponse;
 }
 
 /**
  * Обновляет фамилию и имя.
  */
 export const UpdateName: FC<IProps> = ({ user }) => {
-  const [form, onFinish, status] = useAuthForm('userUpdateName');
+  const [onFinish, { status, form }] = useFormMutation(
+    useUserUpdateNameMutation,
+  );
+
   const { t } = useTranslation();
 
   return (

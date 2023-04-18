@@ -30,8 +30,8 @@ const LoginPage: FC = () => {
           {type === 'email' ? <LoginEmailPassword /> : <LoginPhonePassword />}
         </Space>
       </Card>
-      <LoginGoogle />
-      <LoginTelegram method='loginTelegram' />
+      {/*<LoginGoogle />*/}
+      {/*<LoginTelegram method='loginTelegram' />*/}
     </Space>
   );
 };

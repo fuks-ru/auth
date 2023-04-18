@@ -4,20 +4,21 @@ import { FC } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
 import { MaskedInput } from 'antd-mask-input';
+import { useLoginPhoneMutation } from '@fuks-ru/auth-client';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
 import {
   getValueFromMaskedInput,
   useNavigateToSuccess,
 } from 'frontend/shared/lib';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 /**
  * Форма входа.
  */
 export const LoginPhonePassword: FC = () => {
-  const [form, onFinish, status] = useAuthForm('loginPhone');
+  const [onFinish, { form, status }] = useFormMutation(useLoginPhoneMutation);
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);

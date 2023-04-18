@@ -1,11 +1,11 @@
 import { Button, Card, Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import Icon from '@ant-design/icons';
 import { styled } from '@linaria/react';
+import { useAuthVerifyQuery } from '@fuks-ru/auth-client';
 
 import { Head } from 'frontend/shared/ui';
-import { useAuthApi } from 'frontend/shared/api';
 import { Logout } from 'frontend/features/Logout';
 import { SendEmailConfirmCode } from 'frontend/features/SendConfirmCode/SendEmailConfirmCode';
 import { SendPhoneConfirmCode } from 'frontend/features/SendConfirmCode/SendPhoneConfirmCode';
@@ -25,12 +25,8 @@ const LoginSuccessPage: FC<IProps> = ({
   onSuccess,
 }) => {
   const { t } = useTranslation();
-  const [getCurrentUser, user] = useAuthApi('authVerify');
+  const { data: user } = useAuthVerifyQuery();
   const [isLinkTelegram, setIsLinkTelegram] = useState(false);
-
-  useEffect(() => {
-    void getCurrentUser(null);
-  }, [getCurrentUser]);
 
   return (
     <>

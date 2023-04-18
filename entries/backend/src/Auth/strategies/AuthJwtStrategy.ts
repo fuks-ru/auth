@@ -1,8 +1,11 @@
-import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
+import {
+  I18nResolver,
+  SystemErrorFactory,
+  CommonErrorCode,
+} from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-custom';
-import { CommonErrorCode } from '@fuks-ru/common';
 
 import { AuthJwtService } from 'backend/Auth/services/AuthJwtService';
 import { User } from 'backend/User/entities/User';

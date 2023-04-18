@@ -4,11 +4,13 @@ import { FC, useEffect } from 'react';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
 import { styled } from '@linaria/react';
+import { useChangePasswordEmailMutation } from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { useNavigate } from 'frontend/shared/lib';
 import { routes } from 'frontend/shared/config';
 import { ResendForgotPassword } from 'frontend/features/ChangePassword/ChangePasswordEmail/ui/ResendForgotPassword';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
   email: string;
@@ -18,12 +20,14 @@ interface IProps {
  * Форма смены пароля.
  */
 export const ChangePasswordEmail: FC<IProps> = ({ email }) => {
-  const [form, onFinish, status] = useAuthForm('changePasswordEmail');
+  const [onFinish, { form, status }] = useFormMutation(
+    useChangePasswordEmailMutation,
+  );
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (status === 'success') {
+    if (status === QueryStatus.fulfilled) {
       navigate(routes.login);
     }
   }, [status, navigate]);

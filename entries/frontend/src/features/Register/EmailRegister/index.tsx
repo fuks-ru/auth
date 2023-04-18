@@ -1,12 +1,14 @@
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Button, Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useRegisterEmailMutation } from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -17,11 +19,13 @@ interface IProps {
  * Форма регистрации.
  */
 export const EmailRegister: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
-  const [form, onFinish, status] = useAuthForm('registerEmail');
+  const [onFinish, { form, status }] = useFormMutation(
+    useRegisterEmailMutation,
+  );
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (status === 'success') {
+    if (status === QueryStatus.fulfilled) {
       onSuccess();
     }
   }, [onSuccess, status]);

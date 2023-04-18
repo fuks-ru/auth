@@ -3,23 +3,32 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
+import { useLoginEmailMutation } from '@fuks-ru/auth-client';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
-import { useNavigateToSuccess } from 'frontend/shared/lib';
+import { useExecuteRecaptcha, useNavigateToSuccess } from 'frontend/shared/lib';
 
 /**
  * Форма входа.
  */
 export const LoginEmailPassword: FC = () => {
-  const [form, onFinish, status] = useAuthForm('loginEmail');
+  const [onFinish, { status, form }] = useFormMutation(useLoginEmailMutation);
   const { t } = useTranslation();
+  const executeRecaptcha = useExecuteRecaptcha();
 
   useNavigateToSuccess(status);
 
   return (
-    <Form form={form} onFinish={onFinish}>
+    <Form
+      form={form}
+      onFinish={async (data) => {
+        const token = await executeRecaptcha();
+
+        await onFinish({ ...data, recaptcha: token });
+      }}
+    >
       <Form.Item name='email'>
         <Input
           prefix={<MailOutlined className={opacityIcon} />}

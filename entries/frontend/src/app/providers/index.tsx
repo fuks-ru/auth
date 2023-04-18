@@ -7,6 +7,7 @@ import { ThemeProvider } from 'frontend/app/providers/ThemeProvider';
 import { SettingsProvider } from 'frontend/app/providers/SettingsProvider';
 import { Preloader } from 'frontend/shared/ui';
 import { LoginTypeProvider } from 'frontend/app/providers/LoginTypeProvider';
+import { ReduxProvider } from 'frontend/app/providers/ReduxProvider';
 
 interface IProps {
   children: ReactNode;
@@ -17,21 +18,23 @@ interface IProps {
  * Провайдер для всего приложения.
  */
 export const AppProvider: FC<IProps> = ({ children, Wrapper }) => (
-  <BrowserRouter>
-    <Suspense fallback={<Preloader />}>
-      <ThemeProvider>
-        <GoogleRecaptchaProvider>
-          <Wrapper>
-            <SettingsProvider>
-              <LoginTypeProvider>
-                <RedirectFromProvider>
-                  <Routes>{children}</Routes>
-                </RedirectFromProvider>
-              </LoginTypeProvider>
-            </SettingsProvider>
-          </Wrapper>
-        </GoogleRecaptchaProvider>
-      </ThemeProvider>
-    </Suspense>
-  </BrowserRouter>
+  <ReduxProvider>
+    <BrowserRouter>
+      <Suspense fallback={<Preloader />}>
+        <ThemeProvider>
+          <GoogleRecaptchaProvider>
+            <Wrapper>
+              <SettingsProvider>
+                <LoginTypeProvider>
+                  <RedirectFromProvider>
+                    <Routes>{children}</Routes>
+                  </RedirectFromProvider>
+                </LoginTypeProvider>
+              </SettingsProvider>
+            </Wrapper>
+          </GoogleRecaptchaProvider>
+        </ThemeProvider>
+      </Suspense>
+    </BrowserRouter>
+  </ReduxProvider>
 );

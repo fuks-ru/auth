@@ -1675,7 +1675,7 @@ __metadata:
     "@nestjs/testing": ^9.1.2
     "@nestjs/typeorm": ^9.0.1
     "@nestlab/google-recaptcha": ^3.1.9
-    "@reduxjs/toolkit": ^1.9.4
+    "@reduxjs/toolkit": ^1.9.5
     "@types/cookie-parser": ^1.4.3
     "@types/express": ^4.17.14
     "@types/jest": ^29.0.3
@@ -1683,7 +1683,6 @@ __metadata:
     "@types/passport-jwt": ^3.0.6
     "@types/passport-local": ^1.0.34
     "@types/qs": ^6.9.7
-    "@types/react": ^18.0.37
     "@types/set-cookie-parser": ^2.4.2
     "@types/supertest": ^2.0.12
     "@types/uuid": ^8.3.4
@@ -1706,10 +1705,6 @@ __metadata:
     passport-custom: ^1.1.1
     pg: ^8.8.0
     qs: ^6.11.0
-    react: ^18.2.0
-    react-dom: ^18.2.0
-    react-redux: ^8.0.5
-    redux: ^4.2.1
     reflect-metadata: ^0.1.13
     rxjs: ^7.8.0
     set-cookie-parser: ^2.5.1
@@ -1728,6 +1723,7 @@ __metadata:
     zadarma: ^1.1.2
   peerDependencies:
     "@fuks-ru/common": "*"
+    "@reduxjs/toolkit": "*"
   languageName: unknown
   linkType: soft
 
@@ -1748,6 +1744,7 @@ __metadata:
     "@linaria/shaker": ^4.2.0
     "@linaria/webpack-loader": ^4.1.3
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.7
+    "@reduxjs/toolkit": ^1.9.5
     "@types/extract-domain": ^2.3.1
     "@types/js-cookie": ^3.0.2
     "@types/react": ^18.0.21
@@ -1777,6 +1774,7 @@ __metadata:
     react-google-login: ^5.2.2
     react-google-recaptcha-v3: ^1.10.0
     react-i18next: ^11.18.6
+    react-redux: ^8.0.5
     react-refresh: ^0.14.0
     react-router-dom: 6.4.1
     react-use: ^17.4.0
@@ -1888,10 +1886,13 @@ __metadata:
   peerDependencies:
     "@fuks-ru/common": "*"
     "@reduxjs/toolkit": ^1.8.6
+    antd: ^5.0.0 || ^4.0.0
     axios: ^0.27.2
     react: ^18.2.0
   peerDependenciesMeta:
     "@reduxjs/toolkit":
+      optional: true
+    antd:
       optional: true
     axios:
       optional: true
@@ -2832,9 +2833,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reduxjs/toolkit@npm:^1.9.4":
-  version: 1.9.4
-  resolution: "@reduxjs/toolkit@npm:1.9.4"
+"@reduxjs/toolkit@npm:^1.9.5":
+  version: 1.9.5
+  resolution: "@reduxjs/toolkit@npm:1.9.5"
   dependencies:
     immer: ^9.0.21
     redux: ^4.2.1
@@ -2848,7 +2849,7 @@ __metadata:
       optional: true
     react-redux:
       optional: true
-  checksum: 7cfc9c008a028c067a13e83e663a55daa53ebe62d2b6074db5426ad5cce2fc56547f98d489761c43599d4e48f24cefe1387c145fa774f7da0fdac66c4e64d319
+  checksum: 54672c5593d05208af577e948a338f23128d3aa01ef056ab0d40bcfa14400cf6566be99e11715388f12c1d7655cdf7c5c6b63cb92eb0fecf996c454a46a3914c
   languageName: node
   linkType: hard
 
@@ -3505,17 +3506,6 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 36c1a7c9d507e81e2e629c1ad3db51d7b84d8b010c2d5008da411874286c6a5ccc711ae1d4c470efc0bdc77153cc8804a40e927e929e5164c669ca41b84b846d
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^18.0.37":
-  version: 18.0.37
-  resolution: "@types/react@npm:18.0.37"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: 6a6c8feada1d6aa2d01a38c44ce09598d93688e97ed21511d5e34fd7fe748b760dd957a5ac0725f5643d8d7e1a0ade6478ebd4be96c9605c5d6816b17ad35d2d
   languageName: node
   linkType: hard
 

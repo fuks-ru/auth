@@ -4,8 +4,10 @@ import { MaskedInput } from 'antd-mask-input';
 import { PhoneOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
+import { useSendPhoneConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { getValueFromMaskedInput } from 'frontend/shared/lib';
 
 interface IProps {
@@ -23,12 +25,12 @@ export const SendPhoneConfirmCode: FC<IProps> = ({
   initialValue,
 }) => {
   const { t } = useTranslation();
-  const [form, onFinish, status] = useAuthForm(
-    'sendPhoneConfirmCodeForRegistered',
+  const [onFinish, { status, form }] = useFormMutation(
+    useSendPhoneConfirmCodeForRegisteredMutation,
   );
 
   useEffect(() => {
-    if (status === 'success') {
+    if (status === QueryStatus.fulfilled) {
       onSuccess();
     }
   }, [status, onSuccess]);

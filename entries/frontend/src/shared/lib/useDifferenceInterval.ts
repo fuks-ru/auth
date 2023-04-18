@@ -1,11 +1,10 @@
 import { useBoolean, useInterval } from 'react-use';
 import { differenceInSeconds } from 'date-fns';
 import { useEffect, useMemo, useState } from 'react';
-
-import { TStatus } from 'frontend/shared/api/initAuthApi';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
 interface IParams {
-  status: TStatus;
+  status: QueryStatus;
   timeout?: number;
 }
 
@@ -44,7 +43,7 @@ export const useDifferenceInterval = ({
   }, [lastUpdatedDifference, setIsRunning, timeout]);
 
   useEffect(() => {
-    if (status !== 'success') {
+    if (status !== QueryStatus.fulfilled) {
       return;
     }
 

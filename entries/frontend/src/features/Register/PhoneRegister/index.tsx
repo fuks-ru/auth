@@ -1,14 +1,16 @@
-import { PhoneOutlined, LockOutlined } from '@ant-design/icons';
+import { LockOutlined, PhoneOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Button, Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { MaskedInput } from 'antd-mask-input';
+import { useRegisterPhoneMutation } from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
 import { getValueFromMaskedInput } from 'frontend/shared/lib';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
   onFinishPhone: (phone: string) => void;
@@ -19,11 +21,13 @@ interface IProps {
  * Форма регистрации.
  */
 export const PhoneRegister: FC<IProps> = ({ onFinishPhone, onSuccess }) => {
-  const [form, onFinish, status] = useAuthForm('registerPhone');
+  const [onFinish, { form, status }] = useFormMutation(
+    useRegisterPhoneMutation,
+  );
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (status === 'success') {
+    if (status === QueryStatus.fulfilled) {
       onSuccess();
     }
   }, [onSuccess, status]);

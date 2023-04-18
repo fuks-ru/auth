@@ -2,9 +2,10 @@ import { Button, Form, Typography } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Input from 'antd/lib/input/Input';
+import { useSendForgotPasswordCodeEmailMutation } from '@fuks-ru/auth-client';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { useDifferenceInterval } from 'frontend/shared/lib';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
   email: string;
@@ -14,7 +15,9 @@ interface IProps {
  * Компонент для повторной отправки сообщения для смены пароля.
  */
 export const ResendForgotPassword: FC<IProps> = ({ email }) => {
-  const [form, onFinish, status] = useAuthForm('sendForgotPasswordCodeEmail');
+  const [onFinish, { status, form }] = useFormMutation(
+    useSendForgotPasswordCodeEmailMutation,
+  );
   const { t } = useTranslation();
 
   const { secondsToNextSend, isRunning } = useDifferenceInterval({ status });

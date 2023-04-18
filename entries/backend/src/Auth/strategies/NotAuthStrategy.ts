@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-custom';
-import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
-import { CommonErrorCode } from '@fuks-ru/common';
+import { I18nResolver, SystemErrorFactory, CommonErrorCode } from '@fuks-ru/common-backend';
 
 import { IRequest } from 'backend/Auth/types/IRequest';
 import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';

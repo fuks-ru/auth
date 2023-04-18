@@ -3,8 +3,10 @@ import { Button, Form, Input } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
+import { useSendEmailConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
-import { useAuthForm } from 'frontend/shared/api';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -21,12 +23,12 @@ export const SendEmailConfirmCode: FC<IProps> = ({
   onSuccess,
 }) => {
   const { t } = useTranslation();
-  const [form, onFinish, status] = useAuthForm(
-    'sendEmailConfirmCodeForRegistered',
+  const [onFinish, { form, status }] = useFormMutation(
+    useSendEmailConfirmCodeForRegisteredMutation,
   );
 
   useEffect(() => {
-    if (status === 'success') {
+    if (status === QueryStatus.fulfilled) {
       onSuccess();
     }
   }, [status, onSuccess]);

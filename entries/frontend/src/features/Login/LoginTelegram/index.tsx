@@ -1,8 +1,12 @@
 import { FC, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { styled } from '@linaria/react';
+import {
+  useLinkTelegramMutation,
+  useLoginTelegramMutation,
+} from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
-import { useAuthApi } from 'frontend/shared/api';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
 import { useSettings } from 'frontend/entities/settings';
 
@@ -24,11 +28,18 @@ interface IProps {
   onSuccess?: () => void;
 }
 
+const useApi = (method: TTelegramMethod) => {
+  const login = useLoginTelegramMutation();
+  const link = useLinkTelegramMutation();
+
+  return method === 'loginTelegram' ? login : link;
+};
+
 /**
  * Осуществляет вход через телеграм.
  */
 export const LoginTelegram: FC<IProps> = ({ method, onSuccess }) => {
-  const [send, , status] = useAuthApi(method);
+  const [send, { status }] = useApi(method);
   const { i18n } = useTranslation();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const settings = useSettings();
@@ -36,7 +47,7 @@ export const LoginTelegram: FC<IProps> = ({ method, onSuccess }) => {
   useNavigateToSuccess(status);
 
   useEffect(() => {
-    if (onSuccess && status === 'success') {
+    if (onSuccess && status === QueryStatus.fulfilled) {
       onSuccess();
     }
   }, [onSuccess, status]);

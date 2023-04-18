@@ -1,8 +1,9 @@
 import { createContext } from 'react';
-import { Schemas } from '@fuks-ru/auth-client';
+import { FrontendSettingsResponse } from '@fuks-ru/auth-client';
 
 /**
  * Контекст, хранящий конфиги фронтенда.
  */
-export const SettingsContext =
-  createContext<Schemas.FrontendSettingsResponse | null>(null);
+export const SettingsContext = createContext<FrontendSettingsResponse | null>(
+  null,
+);

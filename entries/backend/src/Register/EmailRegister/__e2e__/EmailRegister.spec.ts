@@ -1,6 +1,6 @@
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { CommonErrorCode } from '@fuks-ru/common';
+import { CommonErrorCode } from '@fuks-ru/common-backend';
 
 import { ErrorCode } from 'backend/Config/enums/ErrorCode';
 import { IMockedUser } from 'backend/__e2e__/dsl/UsersBuilder';

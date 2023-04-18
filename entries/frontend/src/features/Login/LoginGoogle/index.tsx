@@ -6,8 +6,8 @@ import GoogleLogin, {
 } from 'react-google-login';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
+import { useLoginGoogleMutation } from '@fuks-ru/auth-client';
 
-import { useAuthApi } from 'frontend/shared/api';
 import { useTheme } from 'frontend/entities/theme';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
 
@@ -15,7 +15,7 @@ import { useNavigateToSuccess } from 'frontend/shared/lib';
  * Страница авторизации.
  */
 export const LoginGoogle: FC = () => {
-  const [send, , status] = useAuthApi('loginGoogle');
+  const [send, { status }] = useLoginGoogleMutation();
   const { t } = useTranslation();
   const { theme } = useTheme();
 

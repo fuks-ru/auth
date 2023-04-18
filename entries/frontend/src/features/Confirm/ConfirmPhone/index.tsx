@@ -2,27 +2,36 @@ import { Button, Card, Form, Input, Space } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { styled } from '@linaria/react';
+import {
+  useConfirmUserByPhoneMutation,
+  useConfirmPhoneMutation,
+} from '@fuks-ru/auth-client';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
 import {
   ResendConfirmPhone,
   TConfirmPhoneMethods,
 } from 'frontend/features/Confirm/ConfirmPhone/ui/ResendConfirmPhone';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 interface IProps {
   phone: string;
   method: TConfirmPhoneMethods;
 }
 
+const useForm = (method: TConfirmPhoneMethods) => {
+  const confirmUser = useFormMutation(useConfirmUserByPhoneMutation);
+  const confirmPhone = useFormMutation(useConfirmPhoneMutation);
+
+  return method === 'confirmUser' ? confirmUser : confirmPhone;
+};
+
 /**
  * Страница для отправки данных для активации пользователя по коду
  * подтверждения.
  */
 export const ConfirmPhone: FC<IProps> = ({ phone, method }) => {
-  const [form, onFinish, status] = useAuthForm(
-    method === 'confirmUser' ? 'confirmUserByPhone' : 'confirmPhone',
-  );
+  const [onFinish, { form, status }] = useForm(method);
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);

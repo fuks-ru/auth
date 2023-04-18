@@ -1,6 +1,6 @@
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode } from 'react';
+import { useFrontendSettingsGetQuery } from '@fuks-ru/auth-client';
 
-import { useAuthApi } from 'frontend/shared/api';
 import { SettingsContext } from 'frontend/entities/settings';
 
 interface IProps {
@@ -11,11 +11,7 @@ interface IProps {
  * Провайдер, предоставляющий контекст для получения настроек.
  */
 export const SettingsProvider: FC<IProps> = ({ children }) => {
-  const [get, data] = useAuthApi('frontendSettingsGet');
-
-  useEffect(() => {
-    void get(null);
-  }, [get]);
+  const { data } = useFrontendSettingsGetQuery();
 
   return (
     <SettingsContext.Provider value={data || null}>

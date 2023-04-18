@@ -3,10 +3,12 @@ import { Button, Form, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
+import { useSendForgotPasswordCodePhoneMutation } from '@fuks-ru/auth-client';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
+import { useFormMutation } from '@fuks-ru/common-frontend';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
 interface IProps {
   onFinishPhone: (phone: string) => void;
@@ -20,11 +22,13 @@ export const SendForgotPasswordCodePhone: FC<IProps> = ({
   onFinishPhone,
   onSuccess,
 }) => {
-  const [form, onFinish, status] = useAuthForm('sendForgotPasswordCodePhone');
+  const [onFinish, { status, form }] = useFormMutation(
+    useSendForgotPasswordCodePhoneMutation,
+  );
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (status === 'success') {
+    if (status === QueryStatus.fulfilled) {
       onSuccess();
     }
   }, [onSuccess, status]);

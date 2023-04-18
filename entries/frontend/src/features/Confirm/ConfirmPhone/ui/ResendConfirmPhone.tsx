@@ -1,9 +1,13 @@
 import { Button, Form, Input, Typography } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  useSendPhoneConfirmCodeForUnregisteredMutation,
+  useSendPhoneConfirmCodeForRegisteredMutation,
+} from '@fuks-ru/auth-client';
 
-import { useAuthForm } from 'frontend/shared/api';
 import { useDifferenceInterval } from 'frontend/shared/lib';
+import { useFormMutation } from '@fuks-ru/common-frontend';
 
 /**
  * Методы для подтверждения телефона.
@@ -15,15 +19,22 @@ interface IProps {
   method: TConfirmPhoneMethods;
 }
 
+const useForm = (method: TConfirmPhoneMethods) => {
+  const confirmUnregistered = useFormMutation(
+    useSendPhoneConfirmCodeForUnregisteredMutation,
+  );
+  const confirmRegistered = useFormMutation(
+    useSendPhoneConfirmCodeForRegisteredMutation,
+  );
+
+  return method === 'confirmUser' ? confirmUnregistered : confirmRegistered;
+};
+
 /**
  * Компонент для повторной отправки кода подтверждения.
  */
 export const ResendConfirmPhone: FC<IProps> = ({ phone, method }) => {
-  const [form, onFinish, status] = useAuthForm(
-    method === 'confirmUser'
-      ? 'sendPhoneConfirmCodeForUnregistered'
-      : 'sendPhoneConfirmCodeForRegistered',
-  );
+  const [onFinish, { form, status }] = useForm(method);
   const { t } = useTranslation();
 
   const { secondsToNextSend, isRunning } = useDifferenceInterval({ status });

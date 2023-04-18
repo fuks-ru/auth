@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
-
-import { useAuthApi } from 'frontend/shared/api';
+import { useAuthCheckNotQuery } from '@fuks-ru/auth-client';
 
 /**
  * Проверяет, был ли пользователь уже авторизован.
  */
 export const useCheckAlreadyAuth = (): void => {
-  const [check] = useAuthApi('authCheckNot');
+  const { data, error } = useAuthCheckNotQuery();
 
   useEffect(() => {
-    void check(null);
-  }, [check]);
+    console.log({ data, error });
+  }, [data, error]);
 };
