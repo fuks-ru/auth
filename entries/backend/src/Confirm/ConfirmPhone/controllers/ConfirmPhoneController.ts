@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
-import { Recaptcha } from '@nestlab/google-recaptcha';
+import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 
 import { User as UserEntity } from 'backend/User/entities/User';
@@ -30,8 +30,10 @@ export class ConfirmPhoneController {
   @ApiOperation({
     operationId: 'sendPhoneConfirmCodeForRegistered',
   })
-  @Recaptcha()
-  @UseGuards(AuthGuard('auth-jwt'))
+  @ApiHeader({
+    name: 'recaptcha',
+  })
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('auth-jwt'))
   public async sendToRegistered(
     @Body() body: SendConfirmPhoneRequest,
     @User() user: UserEntity,
@@ -46,15 +48,17 @@ export class ConfirmPhoneController {
   @ApiOperation({
     operationId: 'sendPhoneConfirmCodeForUnregistered',
   })
-  @Recaptcha()
-  @UseGuards(AuthGuard('not-auth'))
+  @ApiHeader({
+    name: 'recaptcha',
+  })
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('not-auth'))
   public async sendToUnregistered(
     @Body() body: SendConfirmPhoneRequest,
   ): Promise<void> {
     const user = await this.userService.getUnConfirmedByPhone(body.phone);
 
     if (!user.phone) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.CONFIRM_CODE_PHONE_EMPTY,
@@ -73,7 +77,10 @@ export class ConfirmPhoneController {
   @ApiOperation({
     operationId: 'confirmUserByPhone',
   })
-  @UseGuards(AuthGuard('not-auth'))
+  @ApiHeader({
+    name: 'recaptcha',
+  })
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('not-auth'))
   public async confirmUserByPhone(
     @Body() body: ConfirmPhoneRequest,
   ): Promise<void> {
@@ -89,7 +96,10 @@ export class ConfirmPhoneController {
   @ApiOperation({
     operationId: 'confirmPhone',
   })
-  @UseGuards(AuthGuard('auth-jwt'))
+  @ApiHeader({
+    name: 'recaptcha',
+  })
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('auth-jwt'))
   public async confirmRegistered(
     @Body() body: ConfirmPhoneRequest,
     @User() user: UserEntity,

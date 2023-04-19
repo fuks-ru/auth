@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Recaptcha } from '@nestlab/google-recaptcha';
+import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
 import { AuthGuard } from '@nestjs/passport';
 
 import { UserService } from 'backend/User/services/UserService';
@@ -22,8 +22,10 @@ export class SendForgotPasswordCodePhoneController {
   @ApiOperation({
     operationId: 'sendForgotPasswordCodePhone',
   })
-  @Recaptcha()
-  @UseGuards(AuthGuard('not-auth'))
+  @ApiHeader({
+    name: 'recaptcha',
+  })
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('not-auth'))
   public async sendByPhone(
     @Body() body: SendForgotPasswordCodePhoneRequest,
   ): Promise<void> {

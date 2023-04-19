@@ -1,4 +1,8 @@
-import { SystemErrorFactory, I18nResolver, CommonErrorCode } from '@fuks-ru/common-backend';
+import {
+  SystemErrorFactory,
+  I18nResolver,
+  CommonErrorCode,
+} from '@fuks-ru/common-backend';
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 
@@ -16,7 +20,7 @@ export class RolesGuard implements CanActivate {
   /**
    * Проверяет, можно ли пускать пользователя с указанной ролью по маршруту.
    */
-  public async canActivate(context: ExecutionContext): Promise<boolean> {
+  public canActivate(context: ExecutionContext): boolean {
     const contextHandler = context.getHandler();
 
     const requiredRoles = this.reflector.get<Role[] | undefined>(
@@ -36,7 +40,7 @@ export class RolesGuard implements CanActivate {
     }>();
 
     if (user?.role === undefined || !requiredRoles.includes(user.role)) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         CommonErrorCode.FORBIDDEN,

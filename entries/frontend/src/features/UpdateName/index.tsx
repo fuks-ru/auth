@@ -8,7 +8,7 @@ import {
 import { UserOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   user: UserVerifyResponse;
@@ -18,8 +18,9 @@ interface IProps {
  * Обновляет фамилию и имя.
  */
 export const UpdateName: FC<IProps> = ({ user }) => {
-  const [onFinish, { status, form }] = useFormMutation(
+  const [onFinish, { status, form }] = useFormMutationWithRecaptcha(
     useUserUpdateNameMutation,
+    { bodyKey: 'userUpdateNameRequest' },
   );
 
   const { t } = useTranslation();

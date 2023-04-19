@@ -10,7 +10,7 @@ import { QueryStatus } from '@reduxjs/toolkit/query';
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
 import { getValueFromMaskedInput } from 'frontend/shared/lib';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   onFinishPhone: (phone: string) => void;
@@ -21,8 +21,9 @@ interface IProps {
  * Форма регистрации.
  */
 export const PhoneRegister: FC<IProps> = ({ onFinishPhone, onSuccess }) => {
-  const [onFinish, { form, status }] = useFormMutation(
+  const [onFinish, { form, status }] = useFormMutationWithRecaptcha(
     useRegisterPhoneMutation,
+    { bodyKey: 'phoneRegisterRequest' },
   );
   const { t } = useTranslation();
 

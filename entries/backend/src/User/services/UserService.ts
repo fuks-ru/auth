@@ -36,7 +36,7 @@ export class UserService {
     }
 
     if (existUser?.isConfirmed) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.USER_ALREADY_EXISTS,
@@ -129,7 +129,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     return user;
@@ -164,7 +164,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     return user;
@@ -180,7 +180,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     return user;
@@ -196,7 +196,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     return user;
@@ -216,7 +216,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     user.isConfirmed = true;
@@ -236,7 +236,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     user.isConfirmed = true;
@@ -288,7 +288,7 @@ export class UserService {
     });
 
     if (!user) {
-      throw await this.getNotFoundError();
+      throw this.getNotFoundError();
     }
 
     user.hashedPassword = hashedPassword;
@@ -303,8 +303,8 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  private async getNotFoundError(): Promise<SystemError> {
-    const i18n = await this.i18nResolver.resolve();
+  private getNotFoundError(): SystemError {
+    const i18n = this.i18nResolver.resolve();
 
     return this.systemErrorFactory.create(
       ErrorCode.USER_NOT_FOUND,

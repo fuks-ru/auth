@@ -7,8 +7,14 @@ import {
   Patch,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeader,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
 
 import { Roles } from 'backend/Auth/decorators/Roles';
 import { UserDetailResponse } from 'backend/User/dto/UserDetailResponse';
@@ -69,7 +75,10 @@ export class UserController {
   @ApiOperation({
     operationId: 'userUpdateName',
   })
-  @UseGuards(AuthGuard('auth-jwt'))
+  @ApiHeader({
+    name: 'recaptcha',
+  })
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('auth-jwt'))
   public async updateName(
     @Body() body: UserUpdateNameRequest,
     @UserDecorator() user: User,

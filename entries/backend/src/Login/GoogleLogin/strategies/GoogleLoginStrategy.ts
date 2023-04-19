@@ -44,10 +44,10 @@ export class GoogleLoginStrategy extends PassportStrategy(
    * Валидация по token.
    */
   private async validate({ body }: IRequest): Promise<User> {
-    const i18n = await this.i18nResolver.resolve();
+    const i18n = this.i18nResolver.resolve();
 
     if (!body.accessToken) {
-      throw await this.validationErrorFactory.createFromData({
+      throw this.validationErrorFactory.createFromData({
         accessToken: [i18n.t('emptyToken')],
       });
     }

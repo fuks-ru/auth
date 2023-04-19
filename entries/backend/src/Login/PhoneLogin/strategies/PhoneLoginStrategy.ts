@@ -1,12 +1,11 @@
 import {
+  I18nResolver,
   SystemErrorFactory,
   ValidationErrorFactory,
 } from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
-import { ContextIdFactory, ModuleRef } from '@nestjs/core';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request as ExpressRequest } from 'express';
-import { I18nRequestScopeService } from 'nestjs-i18n';
 import { Strategy } from 'passport-custom';
 import { isPhoneNumber } from 'class-validator';
 
@@ -28,7 +27,7 @@ export class PhoneLoginStrategy extends PassportStrategy(
     private readonly phoneLoginService: PhoneLoginService,
     private readonly systemErrorFactory: SystemErrorFactory,
     private readonly validationErrorFactory: ValidationErrorFactory,
-    private readonly moduleRef: ModuleRef,
+    private readonly i18nResolver: I18nResolver,
   ) {
     super();
   }
@@ -37,17 +36,7 @@ export class PhoneLoginStrategy extends PassportStrategy(
    * Валидация по телефону и паролю.
    */
   public async validate(request: IRequest): Promise<User> {
-    const contextId = ContextIdFactory.getByRequest(request);
-
-    this.moduleRef.registerRequestByContextId(request, contextId);
-
-    const i18n = await this.moduleRef.resolve(
-      I18nRequestScopeService,
-      contextId,
-      {
-        strict: false,
-      },
-    );
+    const i18n = this.i18nResolver.resolve();
 
     const phoneErrors: string[] = [];
     const passwordErrors: string[] = [];
@@ -67,7 +56,7 @@ export class PhoneLoginStrategy extends PassportStrategy(
     }
 
     if (phoneErrors.length > 0 || passwordErrors.length > 0) {
-      throw await this.validationErrorFactory.createFromData({
+      throw this.validationErrorFactory.createFromData({
         phone: phoneErrors,
         password: passwordErrors,
       });

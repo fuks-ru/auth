@@ -8,7 +8,7 @@ import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -19,8 +19,9 @@ interface IProps {
  * Форма регистрации.
  */
 export const EmailRegister: FC<IProps> = ({ onFinishEmail, onSuccess }) => {
-  const [onFinish, { form, status }] = useFormMutation(
+  const [onFinish, { form, status }] = useFormMutationWithRecaptcha(
     useRegisterEmailMutation,
+    { bodyKey: 'emailRegisterRequest' },
   );
   const { t } = useTranslation();
 

@@ -1,4 +1,8 @@
-import { I18nResolver, SystemErrorFactory, CommonErrorCode } from '@fuks-ru/common-backend';
+import {
+  I18nResolver,
+  SystemErrorFactory,
+  CommonErrorCode,
+} from '@fuks-ru/common-backend';
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-custom';
@@ -34,7 +38,7 @@ export class AuthTelegramStrategy extends PassportStrategy(
     );
 
     if (!user) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         CommonErrorCode.UNAUTHORIZED,

@@ -25,7 +25,7 @@ export class AuthJwtStrategy extends PassportStrategy(Strategy, 'auth-jwt') {
     const user = await this.authService.verify(request);
 
     if (!user) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         CommonErrorCode.UNAUTHORIZED,

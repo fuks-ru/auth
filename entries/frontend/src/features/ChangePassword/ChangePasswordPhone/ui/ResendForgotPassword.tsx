@@ -5,7 +5,7 @@ import Input from 'antd/lib/input/Input';
 import { useSendForgotPasswordCodePhoneMutation } from '@fuks-ru/auth-client';
 
 import { useDifferenceInterval } from 'frontend/shared/lib';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   phone: string;
@@ -15,8 +15,9 @@ interface IProps {
  * Компонент для повторной отправки сообщения для смены пароля.
  */
 export const ResendForgotPassword: FC<IProps> = ({ phone }) => {
-  const [onFinish, { form, status }] = useFormMutation(
+  const [onFinish, { form, status }] = useFormMutationWithRecaptcha(
     useSendForgotPasswordCodePhoneMutation,
+    { bodyKey: 'sendForgotPasswordCodePhoneRequest' },
   );
   const { t } = useTranslation();
 

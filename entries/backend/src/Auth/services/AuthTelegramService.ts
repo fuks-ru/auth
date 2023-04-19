@@ -27,7 +27,7 @@ export class AuthTelegramService {
     }
 
     if (internalToken !== this.configGetter.getInternalRequestToken()) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.INTERNAL_REQUEST_TOKEN_NOT_VALID,

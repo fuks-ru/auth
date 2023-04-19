@@ -12,16 +12,22 @@ import {
   ResendConfirmPhone,
   TConfirmPhoneMethods,
 } from 'frontend/features/Confirm/ConfirmPhone/ui/ResendConfirmPhone';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   phone: string;
   method: TConfirmPhoneMethods;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const useForm = (method: TConfirmPhoneMethods) => {
-  const confirmUser = useFormMutation(useConfirmUserByPhoneMutation);
-  const confirmPhone = useFormMutation(useConfirmPhoneMutation);
+  const confirmUser = useFormMutationWithRecaptcha(
+    useConfirmUserByPhoneMutation,
+    { bodyKey: 'confirmPhoneRequest' },
+  );
+  const confirmPhone = useFormMutationWithRecaptcha(useConfirmPhoneMutation, {
+    bodyKey: 'confirmPhoneRequest',
+  });
 
   return method === 'confirmUser' ? confirmUser : confirmPhone;
 };

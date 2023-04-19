@@ -29,7 +29,7 @@ export class ConfirmPhoneService {
     );
 
     if (userWithThisPhone) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.USER_ALREADY_EXISTS,

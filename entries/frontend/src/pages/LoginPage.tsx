@@ -1,11 +1,11 @@
 import { Card, Segmented, Space } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAuthCheckNotQuery } from '@fuks-ru/auth-client';
 
 import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/Login/LoginGoogle';
 import { LoginEmailPassword } from 'frontend/features/Login/LoginEmailPassword';
-import { useCheckAlreadyAuth } from 'frontend/shared/lib';
 import { LoginPhonePassword } from 'frontend/features/Login/LoginPhonePassword';
 import { LoginTelegram } from 'frontend/features/Login/LoginTelegram';
 import { useLoginType } from 'frontend/entities/loginType';
@@ -15,7 +15,7 @@ const LoginPage: FC = () => {
   const { t } = useTranslation();
   const { type, changeType, types } = useLoginType();
 
-  useCheckAlreadyAuth();
+  useAuthCheckNotQuery();
 
   return (
     <Space direction='vertical'>
@@ -30,8 +30,8 @@ const LoginPage: FC = () => {
           {type === 'email' ? <LoginEmailPassword /> : <LoginPhonePassword />}
         </Space>
       </Card>
-      {/*<LoginGoogle />*/}
-      {/*<LoginTelegram method='loginTelegram' />*/}
+      <LoginGoogle />
+      <LoginTelegram method='loginTelegram' />
     </Space>
   );
 };

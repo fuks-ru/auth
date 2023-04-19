@@ -12,16 +12,22 @@ import {
   TConfirmEmailMethods,
 } from 'frontend/features/Confirm/ConfirmEmail/ui/ResendConfirmEmail';
 import { useNavigateToSuccess } from 'frontend/shared/lib';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   email: string;
   method: TConfirmEmailMethods;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const useForm = (method: TConfirmEmailMethods) => {
-  const confirmUser = useFormMutation(useConfirmUserByEmailMutation);
-  const confirmEmail = useFormMutation(useConfirmEmailMutation);
+  const confirmUser = useFormMutationWithRecaptcha(
+    useConfirmUserByEmailMutation,
+    { bodyKey: 'confirmEmailRequest' },
+  );
+  const confirmEmail = useFormMutationWithRecaptcha(useConfirmEmailMutation, {
+    bodyKey: 'confirmEmailRequest',
+  });
 
   return method === 'confirmUser' ? confirmUser : confirmEmail;
 };

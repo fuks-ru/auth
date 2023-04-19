@@ -4,11 +4,11 @@ import { UserOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSendForgotPasswordCodePhoneMutation } from '@fuks-ru/auth-client';
+import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
-import { useFormMutation } from '@fuks-ru/common-frontend';
-import { QueryStatus } from '@reduxjs/toolkit/query';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   onFinishPhone: (phone: string) => void;
@@ -22,8 +22,9 @@ export const SendForgotPasswordCodePhone: FC<IProps> = ({
   onFinishPhone,
   onSuccess,
 }) => {
-  const [onFinish, { status, form }] = useFormMutation(
+  const [onFinish, { status, form }] = useFormMutationWithRecaptcha(
     useSendForgotPasswordCodePhoneMutation,
+    { bodyKey: 'sendForgotPasswordCodePhoneRequest' },
   );
   const { t } = useTranslation();
 

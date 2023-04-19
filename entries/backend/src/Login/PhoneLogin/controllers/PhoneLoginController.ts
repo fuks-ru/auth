@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
 
 import { SetJwtCookieService } from 'backend/SetJwtCookie/SetJwtCookieService';
@@ -19,6 +19,9 @@ export class PhoneLoginController {
   @Post('/login/phone')
   @ApiOperation({
     operationId: 'loginPhone',
+  })
+  @ApiHeader({
+    name: 'recaptcha',
   })
   @UseGuards(
     GoogleRecaptchaGuard,

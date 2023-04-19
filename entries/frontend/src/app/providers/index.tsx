@@ -8,6 +8,7 @@ import { SettingsProvider } from 'frontend/app/providers/SettingsProvider';
 import { Preloader } from 'frontend/shared/ui';
 import { LoginTypeProvider } from 'frontend/app/providers/LoginTypeProvider';
 import { ReduxProvider } from 'frontend/app/providers/ReduxProvider';
+import { GlobalNavigate } from 'frontend/shared/lib/navigate';
 
 interface IProps {
   children: ReactNode;
@@ -20,6 +21,7 @@ interface IProps {
 export const AppProvider: FC<IProps> = ({ children, Wrapper }) => (
   <ReduxProvider>
     <BrowserRouter>
+      <GlobalNavigate />
       <Suspense fallback={<Preloader />}>
         <ThemeProvider>
           <GoogleRecaptchaProvider>

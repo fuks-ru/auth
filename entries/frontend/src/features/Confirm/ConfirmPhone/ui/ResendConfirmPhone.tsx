@@ -6,8 +6,8 @@ import {
   useSendPhoneConfirmCodeForRegisteredMutation,
 } from '@fuks-ru/auth-client';
 
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 import { useDifferenceInterval } from 'frontend/shared/lib';
-import { useFormMutation } from '@fuks-ru/common-frontend';
 
 /**
  * Методы для подтверждения телефона.
@@ -19,12 +19,15 @@ interface IProps {
   method: TConfirmPhoneMethods;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const useForm = (method: TConfirmPhoneMethods) => {
-  const confirmUnregistered = useFormMutation(
+  const confirmUnregistered = useFormMutationWithRecaptcha(
     useSendPhoneConfirmCodeForUnregisteredMutation,
+    { bodyKey: 'sendConfirmPhoneRequest' },
   );
-  const confirmRegistered = useFormMutation(
+  const confirmRegistered = useFormMutationWithRecaptcha(
     useSendPhoneConfirmCodeForRegisteredMutation,
+    { bodyKey: 'sendConfirmPhoneRequest' },
   );
 
   return method === 'confirmUser' ? confirmUnregistered : confirmRegistered;

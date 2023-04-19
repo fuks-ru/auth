@@ -1,4 +1,5 @@
 import {
+  I18nResolver,
   SystemErrorFactory,
   ValidationErrorFactory,
 } from '@fuks-ru/common-backend';
@@ -6,7 +7,6 @@ import { Injectable } from '@nestjs/common';
 import { ContextIdFactory, ModuleRef } from '@nestjs/core';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request as ExpressRequest } from 'express';
-import { I18nRequestScopeService } from 'nestjs-i18n';
 import { Strategy } from 'passport-custom';
 import { isEmail } from 'class-validator';
 
@@ -29,6 +29,7 @@ export class EmailLoginStrategy extends PassportStrategy(
     private readonly systemErrorFactory: SystemErrorFactory,
     private readonly validationErrorFactory: ValidationErrorFactory,
     private readonly moduleRef: ModuleRef,
+    private readonly i18nResolver: I18nResolver,
   ) {
     super();
   }
@@ -41,13 +42,7 @@ export class EmailLoginStrategy extends PassportStrategy(
 
     this.moduleRef.registerRequestByContextId(request, contextId);
 
-    const i18n = await this.moduleRef.resolve(
-      I18nRequestScopeService,
-      contextId,
-      {
-        strict: false,
-      },
-    );
+    const i18n = this.i18nResolver.resolve();
 
     const emailErrors: string[] = [];
     const passwordErrors: string[] = [];
@@ -67,7 +62,7 @@ export class EmailLoginStrategy extends PassportStrategy(
     }
 
     if (emailErrors.length > 0 || passwordErrors.length > 0) {
-      throw await this.validationErrorFactory.createFromData({
+      throw this.validationErrorFactory.createFromData({
         email: emailErrors,
         password: passwordErrors,
       });

@@ -20,7 +20,7 @@ export class SendForgotPasswordCodePhoneService {
    */
   public async sendByPhone(user: User): Promise<void> {
     if (!user.phone) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.CONFIRM_CODE_PHONE_EMPTY,

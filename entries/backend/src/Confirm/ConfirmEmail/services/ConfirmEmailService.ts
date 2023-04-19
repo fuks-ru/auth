@@ -31,7 +31,7 @@ export class ConfirmEmailService {
     );
 
     if (userWithThisEmail) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.USER_ALREADY_EXISTS,
@@ -44,7 +44,7 @@ export class ConfirmEmailService {
       email,
     );
 
-    const i18n = await this.i18nResolver.resolve();
+    const i18n = this.i18nResolver.resolve();
 
     await this.mailerService.sendMail({
       to: email,

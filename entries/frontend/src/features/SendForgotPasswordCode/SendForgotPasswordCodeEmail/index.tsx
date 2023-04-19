@@ -8,7 +8,7 @@ import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -22,8 +22,9 @@ export const SendForgotPasswordCodeEmail: FC<IProps> = ({
   onFinishEmail,
   onSuccess,
 }) => {
-  const [onFinish, { status, form }] = useFormMutation(
+  const [onFinish, { status, form }] = useFormMutationWithRecaptcha(
     useSendForgotPasswordCodeEmailMutation,
+    { bodyKey: 'sendForgotPasswordCodeEmailRequest' },
   );
   const { t } = useTranslation();
 

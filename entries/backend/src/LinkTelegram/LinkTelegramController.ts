@@ -32,10 +32,10 @@ export class LinkTelegramController {
     @User() user: UserEntity,
     @Body() body: LinkTelegramRequest,
   ): Promise<void> {
-    const isValid = await this.linkTelegramService.validate(body);
+    const isValid = this.linkTelegramService.validate(body);
 
     if (!isValid) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.TELEGRAM_HASH_NOT_VALID,
@@ -47,7 +47,7 @@ export class LinkTelegramController {
       await this.userService.findConfirmedByTelegramId(body.id);
 
     if (userWithThisTelegramId) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.USER_ALREADY_EXISTS,

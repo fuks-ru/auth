@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useSendEmailConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   onFinishEmail: (email: string) => void;
@@ -23,8 +23,9 @@ export const SendEmailConfirmCode: FC<IProps> = ({
   onSuccess,
 }) => {
   const { t } = useTranslation();
-  const [onFinish, { form, status }] = useFormMutation(
+  const [onFinish, { form, status }] = useFormMutationWithRecaptcha(
     useSendEmailConfirmCodeForRegisteredMutation,
+    { bodyKey: 'sendConfirmEmailRequest' },
   );
 
   useEffect(() => {

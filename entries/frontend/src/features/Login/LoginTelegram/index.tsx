@@ -12,6 +12,7 @@ import { useSettings } from 'frontend/entities/settings';
 
 interface ITelegramResponse {
   id: number;
+  hash: string;
   first_name: string;
   last_name: string;
 }
@@ -28,6 +29,7 @@ interface IProps {
   onSuccess?: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const useApi = (method: TTelegramMethod) => {
   const login = useLoginTelegramMutation();
   const link = useLinkTelegramMutation();

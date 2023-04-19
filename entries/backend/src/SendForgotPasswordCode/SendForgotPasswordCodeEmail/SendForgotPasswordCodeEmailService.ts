@@ -20,7 +20,7 @@ export class SendForgotPasswordCodeEmailService {
     const forgotPasswordCode =
       await this.forgotPasswordCodeService.addForgotPasswordCodeToUser(user);
 
-    const i18n = await this.i18nResolver.resolve();
+    const i18n = this.i18nResolver.resolve();
 
     await this.mailerService.sendMail({
       to: user.email,

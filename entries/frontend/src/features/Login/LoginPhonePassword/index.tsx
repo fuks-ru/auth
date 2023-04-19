@@ -12,13 +12,16 @@ import {
   getValueFromMaskedInput,
   useNavigateToSuccess,
 } from 'frontend/shared/lib';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 /**
  * Форма входа.
  */
 export const LoginPhonePassword: FC = () => {
-  const [onFinish, { form, status }] = useFormMutation(useLoginPhoneMutation);
+  const [onFinish, { form, status }] = useFormMutationWithRecaptcha(
+    useLoginPhoneMutation,
+    { bodyKey: 'phoneLoginRequest' },
+  );
   const { t } = useTranslation();
 
   useNavigateToSuccess(status);

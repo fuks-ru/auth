@@ -19,35 +19,45 @@ export class LinkTelegramRequest {
   /**
    * Имя.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public first_name?: string;
 
   /**
    * Имя.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public last_name?: string;
 
   /**
    * Время авторизации.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public auth_date?: number;
 
   /**
    * Фото.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public photo_url?: string;
 
   /**
    * Имя пользователя.
    */
-  @ApiProperty()
+  @ApiProperty({
+    required: false,
+  })
   @IsOptional()
   public username?: string;
 }

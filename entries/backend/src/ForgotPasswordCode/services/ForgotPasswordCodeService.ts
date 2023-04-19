@@ -46,7 +46,7 @@ export class ForgotPasswordCodeService {
     );
 
     if (lastUpdatedAtDifference < 60) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.FORGOT_PASSWORD_CODE_TIMEOUT,
@@ -79,7 +79,7 @@ export class ForgotPasswordCodeService {
       });
 
     if (!forgotPasswordCode) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.FORGOT_PASSWORD_NOT_EXIST,
@@ -106,7 +106,7 @@ export class ForgotPasswordCodeService {
       });
 
     if (!forgotPasswordCode) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.FORGOT_PASSWORD_NOT_EXIST,

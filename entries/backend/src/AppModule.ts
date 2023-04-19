@@ -35,6 +35,7 @@ import { TelegramBotLoginModule } from 'backend/Login/TelegramBotLogin/TelegramB
         apiPrefix: configGetter.getApiPrefix(),
         swagger: {
           generators: ['rtk'],
+          apiName: 'authQueryApi',
         },
       }),
     }),

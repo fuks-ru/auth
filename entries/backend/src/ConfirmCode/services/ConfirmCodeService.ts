@@ -48,7 +48,7 @@ export class ConfirmCodeService {
     );
 
     if (lastUpdatedAtDifference < 60) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.CONFIRM_CODE_TIMEOUT,
@@ -83,7 +83,7 @@ export class ConfirmCodeService {
     });
 
     if (!confirmCode) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.CONFIRM_CODE_NOT_EXIST,
@@ -111,7 +111,7 @@ export class ConfirmCodeService {
     });
 
     if (!confirmCode) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.CONFIRM_CODE_NOT_EXIST,

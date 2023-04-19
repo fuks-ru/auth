@@ -7,7 +7,7 @@ import {
 } from '@fuks-ru/auth-client';
 
 import { useDifferenceInterval } from 'frontend/shared/lib';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 /**
  * Методы для подтверждения email.
@@ -19,12 +19,15 @@ interface IProps {
   method: TConfirmEmailMethods;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const useForm = (method: TConfirmEmailMethods) => {
-  const confirmUnregistered = useFormMutation(
+  const confirmUnregistered = useFormMutationWithRecaptcha(
     useSendEmailConfirmCodeForUnregisteredMutation,
+    { bodyKey: 'sendConfirmEmailRequest' },
   );
-  const confirmRegistered = useFormMutation(
+  const confirmRegistered = useFormMutationWithRecaptcha(
     useSendEmailConfirmCodeForRegisteredMutation,
+    { bodyKey: 'sendConfirmEmailRequest' },
   );
 
   return method === 'confirmUser' ? confirmUnregistered : confirmRegistered;

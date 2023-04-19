@@ -6,8 +6,8 @@ import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
 import { useSendPhoneConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client';
 import { QueryStatus } from '@reduxjs/toolkit/query';
-import { useFormMutation } from '@fuks-ru/common-frontend';
 
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 import { getValueFromMaskedInput } from 'frontend/shared/lib';
 
 interface IProps {
@@ -25,8 +25,9 @@ export const SendPhoneConfirmCode: FC<IProps> = ({
   initialValue,
 }) => {
   const { t } = useTranslation();
-  const [onFinish, { status, form }] = useFormMutation(
+  const [onFinish, { status, form }] = useFormMutationWithRecaptcha(
     useSendPhoneConfirmCodeForRegisteredMutation,
+    { bodyKey: 'sendConfirmPhoneRequest' },
   );
 
   useEffect(() => {

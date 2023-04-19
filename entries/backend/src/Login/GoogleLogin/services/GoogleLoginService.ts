@@ -24,7 +24,7 @@ export class GoogleLoginService {
    * Авторизуют пользователя по google профилю.
    */
   public async auth(tokenPayload: TokenPayload): Promise<User> {
-    const i18n = await this.i18nResolver.resolve();
+    const i18n = this.i18nResolver.resolve();
 
     if (!tokenPayload.email) {
       throw this.systemErrorFactory.create(

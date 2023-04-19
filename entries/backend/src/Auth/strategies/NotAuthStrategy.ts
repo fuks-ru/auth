@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-custom';
-import { I18nResolver, SystemErrorFactory, CommonErrorCode } from '@fuks-ru/common-backend';
+import {
+  I18nResolver,
+  SystemErrorFactory,
+  CommonErrorCode,
+} from '@fuks-ru/common-backend';
 
 import { IRequest } from 'backend/Auth/types/IRequest';
 import { CheckNotAuth } from 'backend/Auth/services/CheckNotAuth';
@@ -20,7 +24,7 @@ export class NotAuthStrategy extends PassportStrategy(Strategy, 'not-auth') {
     const result = await this.checkNotAuth.check(request);
 
     if (!result) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         CommonErrorCode.ALREADY_AUTH,

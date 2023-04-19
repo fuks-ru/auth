@@ -31,11 +31,11 @@ export class TelegramLoginStrategy extends PassportStrategy(
   /**
    * Валидация по token.
    */
-  private async validate({ body: data }: IRequest): Promise<User> {
-    const isValid = await this.linkTelegramService.validate(data);
+  private validate({ body: data }: IRequest): Promise<User> {
+    const isValid = this.linkTelegramService.validate(data);
 
     if (!isValid) {
-      const i18n = await this.i18nResolver.resolve();
+      const i18n = this.i18nResolver.resolve();
 
       throw this.systemErrorFactory.create(
         ErrorCode.TELEGRAM_HASH_NOT_VALID,

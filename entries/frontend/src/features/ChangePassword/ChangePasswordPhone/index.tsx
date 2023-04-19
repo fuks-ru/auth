@@ -10,7 +10,7 @@ import { QueryStatus } from '@reduxjs/toolkit/query';
 import { useNavigate } from 'frontend/shared/lib';
 import { routes } from 'frontend/shared/config';
 import { ResendForgotPassword } from 'frontend/features/ChangePassword/ChangePasswordPhone/ui/ResendForgotPassword';
-import { useFormMutation } from '@fuks-ru/common-frontend';
+import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';
 
 interface IProps {
   phone: string;
@@ -20,8 +20,9 @@ interface IProps {
  * Форма смены пароля.
  */
 export const ChangePasswordPhone: FC<IProps> = ({ phone }) => {
-  const [onFinish, { status, form }] = useFormMutation(
+  const [onFinish, { status, form }] = useFormMutationWithRecaptcha(
     useChangePasswordPhoneMutation,
+    { bodyKey: 'changePasswordRequest' },
   );
   const { t } = useTranslation();
   const navigate = useNavigate();

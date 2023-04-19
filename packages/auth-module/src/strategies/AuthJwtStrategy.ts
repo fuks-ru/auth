@@ -1,4 +1,4 @@
-import { TApiResponse } from '@fuks-ru/auth-client';
+import type { AuthVerifyApiArg } from '@fuks-ru/auth-client';
 import { I18nResolver, SystemErrorFactory } from '@fuks-ru/common-backend';
 import { CommonErrorCode, UnauthorizedError } from '@fuks-ru/common';
 import { Inject, Injectable } from '@nestjs/common';
@@ -29,7 +29,7 @@ export class AuthJwtStrategy extends PassportStrategy(Strategy, 'auth-jwt') {
 
   private async validate(
     request: IRequest,
-  ): Promise<TApiResponse<'authVerify'>> {
+  ): Promise<AuthVerifyApiArg> {
     try {
       const authClient = this.authClient.getClient();
 

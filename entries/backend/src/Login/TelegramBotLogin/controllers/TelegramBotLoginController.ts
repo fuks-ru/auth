@@ -1,6 +1,12 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeader,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { GoogleRecaptchaGuard } from '@nestlab/google-recaptcha';
 
 import { User } from 'backend/Auth/decorators/User';
 import { User as UserEntity } from 'backend/User/entities/User';
@@ -17,10 +23,13 @@ export class TelegramBotLoginController {
   @ApiOperation({
     operationId: 'loginTelegramBot',
   })
+  @ApiHeader({
+    name: 'recaptcha',
+  })
   @ApiOkResponse({
     type: UserVerifyResponse,
   })
-  @UseGuards(AuthGuard('login-telegram-bot'))
+  @UseGuards(GoogleRecaptchaGuard, AuthGuard('login-telegram-bot'))
   public auth(
     @User() user: UserEntity,
     @Body() _: TelegramBotLoginRequest,
