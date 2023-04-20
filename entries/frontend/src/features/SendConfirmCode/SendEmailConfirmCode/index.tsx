@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { MailOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
-import { useSendEmailConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client';
+import { useSendEmailConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';

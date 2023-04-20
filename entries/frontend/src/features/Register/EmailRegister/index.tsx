@@ -3,7 +3,7 @@ import { css } from '@linaria/core';
 import { Button, Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useRegisterEmailMutation } from '@fuks-ru/auth-client';
+import { useRegisterEmailMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { Link } from 'frontend/shared/ui';

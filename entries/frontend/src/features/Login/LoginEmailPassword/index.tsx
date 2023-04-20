@@ -3,7 +3,7 @@ import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { FC } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
-import { useLoginEmailMutation } from '@fuks-ru/auth-client';
+import { useLoginEmailMutation } from '@fuks-ru/auth-client/rtk';
 
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';

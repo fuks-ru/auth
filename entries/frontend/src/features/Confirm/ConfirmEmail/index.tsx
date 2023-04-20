@@ -5,7 +5,7 @@ import { styled } from '@linaria/react';
 import {
   useConfirmUserByEmailMutation,
   useConfirmEmailMutation,
-} from '@fuks-ru/auth-client';
+} from '@fuks-ru/auth-client/rtk';
 
 import {
   ResendConfirmEmail,

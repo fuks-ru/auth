@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FrontendSettingsGetApiResponse } from '@fuks-ru/auth-client';
+import { FrontendSettingsGetApiResponse } from '@fuks-ru/auth-client/rtk';
 
 import { SettingsContext } from 'frontend/entities/settings/model/SettingsContext';
 

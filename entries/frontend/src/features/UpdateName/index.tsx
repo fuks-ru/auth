@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   UserVerifyResponse,
   useUserUpdateNameMutation,
-} from '@fuks-ru/auth-client';
+} from '@fuks-ru/auth-client/rtk';
 import { UserOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 

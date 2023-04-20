@@ -1,7 +1,7 @@
 import { Card, Segmented, Space } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useAuthCheckNotQuery } from '@fuks-ru/auth-client';
+import { useAuthCheckNotQuery } from '@fuks-ru/auth-client/rtk';
 
 import { Head } from 'frontend/shared/ui';
 import { LoginGoogle } from 'frontend/features/Login/LoginGoogle';

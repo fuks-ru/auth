@@ -5,7 +5,7 @@ import { styled } from '@linaria/react';
 import {
   useConfirmUserByPhoneMutation,
   useConfirmPhoneMutation,
-} from '@fuks-ru/auth-client';
+} from '@fuks-ru/auth-client/rtk';
 
 import { useNavigateToSuccess } from 'frontend/shared/lib';
 import {

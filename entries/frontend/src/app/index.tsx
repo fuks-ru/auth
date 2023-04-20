@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { initApi } from '@fuks-ru/auth-client';
+import { initApi } from '@fuks-ru/auth-client/rtk';
 
 import { App } from 'frontend/app/App';
 import { backendUrl, routes } from 'frontend/shared/config';

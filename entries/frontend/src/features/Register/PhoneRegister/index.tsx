@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { MaskedInput } from 'antd-mask-input';
-import { useRegisterPhoneMutation } from '@fuks-ru/auth-client';
+import { useRegisterPhoneMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { Link } from 'frontend/shared/ui';

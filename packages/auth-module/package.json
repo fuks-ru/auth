@@ -25,15 +25,17 @@
     "passport-custom": "^1.1.1"
   },
   "devDependencies": {
-    "@fuks-ru/common": "0.1.0",
-    "@fuks-ru/common-backend": "0.6.0",
+    "@fuks-ru/common": "portal:/Users/difuks/WebstormProjects/fuks-ru/common/packages/common",
+    "@fuks-ru/common-backend": "portal:/Users/difuks/WebstormProjects/fuks-ru/common/packages/common-backend",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
     "@nestjs/passport": "^9.0.0",
+    "@types/axios": "^0.14.0",
     "@types/express": "^4.17.14",
+    "axios": "^1.3.6",
     "express": "^4.18.1",
     "nestjs-i18n": "^9.2.0",
-    "rxjs": "^7.5.7",
+    "rxjs": "7.8.0",
     "ttypescript": "^1.5.13",
     "typescript": "4.7.4",
     "typescript-transform-paths": "^3.3.1"
@@ -43,6 +45,6 @@
     "@fuks-ru/common-backend": "*",
     "@nestjs/common": "^9.1.2",
     "@nestjs/core": "^9.1.2",
-    "rxjs": "^7.5.7"
+    "rxjs": "7.8.0"
   }
 }

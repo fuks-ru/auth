@@ -4,7 +4,7 @@ import { MaskedInput } from 'antd-mask-input';
 import { PhoneOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
-import { useSendPhoneConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client';
+import { useSendPhoneConfirmCodeForRegisteredMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';

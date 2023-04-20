@@ -2,7 +2,7 @@ import { Button, Form, Typography } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import Input from 'antd/lib/input/Input';
-import { useSendForgotPasswordCodeEmailMutation } from '@fuks-ru/auth-client';
+import { useSendForgotPasswordCodeEmailMutation } from '@fuks-ru/auth-client/rtk';
 
 import { useDifferenceInterval } from 'frontend/shared/lib';
 import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';

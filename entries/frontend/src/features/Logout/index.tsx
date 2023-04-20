@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { styled } from '@linaria/react';
-import { useLogoutMutation } from '@fuks-ru/auth-client';
+import { useLogoutMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { useNavigate } from 'frontend/shared/lib';

@@ -3,6 +3,7 @@ tsconfig.*tsbuildinfo
 dist
 var
 /public
+openapitools.json
 
 .yarn/*
 !.yarn/cache

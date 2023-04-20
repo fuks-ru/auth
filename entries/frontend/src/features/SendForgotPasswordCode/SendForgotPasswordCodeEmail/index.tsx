@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
-import { useSendForgotPasswordCodeEmailMutation } from '@fuks-ru/auth-client';
+import { useSendForgotPasswordCodeEmailMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { Link } from 'frontend/shared/ui';

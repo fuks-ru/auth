@@ -4,7 +4,7 @@ import { styled } from '@linaria/react';
 import {
   useLinkTelegramMutation,
   useLoginTelegramMutation,
-} from '@fuks-ru/auth-client';
+} from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { useNavigateToSuccess } from 'frontend/shared/lib';

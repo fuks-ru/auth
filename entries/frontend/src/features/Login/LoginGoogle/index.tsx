@@ -6,7 +6,7 @@ import GoogleLogin, {
 } from 'react-google-login';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
-import { useLoginGoogleMutation } from '@fuks-ru/auth-client';
+import { useLoginGoogleMutation } from '@fuks-ru/auth-client/rtk';
 
 import { useTheme } from 'frontend/entities/theme';
 import { useNavigateToSuccess } from 'frontend/shared/lib';

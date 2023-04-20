@@ -5,9 +5,23 @@
   "repository": "https://github.com/fuks-ru/auth",
   "description": "Auth client",
   "license": "ISC",
-  "main": "./dist/client/rtk/index.js",
-  "module": "./dist/client/rtk/index.js",
-  "types": "./dist/client/rtk/index.d.ts",
+  "main": "./dist/client/index.js",
+  "module": "./dist/client/index.js",
+  "types": "./dist/client/index.d.ts",
+  "exports": {
+    "./rtk": "./dist/client/rtk/index.js",
+    "./nest": "./dist/client/nest/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "rtk": [
+        "dist/client/rtk/index.d.ts"
+      ],
+      "nest": [
+        "dist/client/nest/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build:lib": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register --files ./src/schemaBuilder.ts",
     "build": "ttsc --project tsconfig.build.json",
@@ -28,7 +42,31 @@
   },
   "peerDependencies": {
     "@fuks-ru/common": "*",
-    "@reduxjs/toolkit": "*"
+    "@reduxjs/toolkit": "*",
+    "@nestjs/common": "*",
+    "@nestjs/axios": "*",
+    "rxjs": "*",
+    "axios": "*"
+  },
+  "peerDependenciesMeta": {
+    "@fuks-ru/common": {
+      "optional": true
+    },
+    "@reduxjs/toolkit": {
+      "optional": true
+    },
+    "@nestjs/common": {
+      "optional": true
+    },
+    "@nestjs/axios": {
+      "optional": true
+    },
+    "rxjs": {
+      "optional": true
+    },
+    "axios": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@fuks-ru/common": "portal:/Users/difuks/WebstormProjects/fuks-ru/common/packages/common",
@@ -75,7 +113,7 @@
     "pg": "^8.8.0",
     "qs": "^6.11.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0",
+    "rxjs": "7.8.0",
     "set-cookie-parser": "^2.5.1",
     "sqlite3": "^5.1.1",
     "supertest": "^6.2.4",

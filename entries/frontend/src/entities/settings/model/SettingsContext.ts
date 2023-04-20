@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { FrontendSettingsResponse } from '@fuks-ru/auth-client';
+import { FrontendSettingsResponse } from '@fuks-ru/auth-client/rtk';
 
 /**
  * Контекст, хранящий конфиги фронтенда.

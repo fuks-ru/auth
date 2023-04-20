@@ -1,9 +1,9 @@
 import { CustomDecorator, SetMetadata } from '@nestjs/common';
-import { Schemas } from '@fuks-ru/auth-client';
+import { UserVerifyResponse } from '@fuks-ru/auth-client/nest';
 
 /**
  * Помечает роли, которым доступен маршрут.
  */
 export const Roles = (
-  ...roles: Array<Schemas.UserVerifyResponse['role']>
+  ...roles: UserVerifyResponse.RoleEnum[]
 ): CustomDecorator<string> => SetMetadata('roles', roles);

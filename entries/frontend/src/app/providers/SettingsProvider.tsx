@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { useFrontendSettingsGetQuery } from '@fuks-ru/auth-client';
+import { useFrontendSettingsGetQuery } from '@fuks-ru/auth-client/rtk';
 
 import { SettingsContext } from 'frontend/entities/settings';
 

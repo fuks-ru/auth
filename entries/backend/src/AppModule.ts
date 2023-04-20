@@ -34,7 +34,7 @@ import { TelegramBotLoginModule } from 'backend/Login/TelegramBotLogin/TelegramB
         sessionCookieDomain: configGetter.getCookieDomain(),
         apiPrefix: configGetter.getApiPrefix(),
         swagger: {
-          generators: ['rtk'],
+          generators: ['rtk', 'nest'],
           apiName: 'authQueryApi',
         },
       }),

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   useSendEmailConfirmCodeForUnregisteredMutation,
   useSendEmailConfirmCodeForRegisteredMutation,
-} from '@fuks-ru/auth-client';
+} from '@fuks-ru/auth-client/rtk';
 
 import { useDifferenceInterval } from 'frontend/shared/lib';
 import { useFormMutationWithRecaptcha } from 'frontend/shared/api/useFormMutationWithRecaptcha';

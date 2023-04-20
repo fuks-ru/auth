@@ -4,7 +4,7 @@ import { FC, useEffect } from 'react';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
 import { styled } from '@linaria/react';
-import { useChangePasswordPhoneMutation } from '@fuks-ru/auth-client';
+import { useChangePasswordPhoneMutation } from '@fuks-ru/auth-client/rtk';
 import { QueryStatus } from '@reduxjs/toolkit/query';
 
 import { useNavigate } from 'frontend/shared/lib';

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FC, useState } from 'react';
 import Icon from '@ant-design/icons';
 import { styled } from '@linaria/react';
-import { useAuthVerifyQuery } from '@fuks-ru/auth-client';
+import { useAuthVerifyQuery } from '@fuks-ru/auth-client/rtk';
 
 import { Head, Preloader } from 'frontend/shared/ui';
 import { Logout } from 'frontend/features/Logout';
@@ -12,7 +12,6 @@ import { SendPhoneConfirmCode } from 'frontend/features/SendConfirmCode/SendPhon
 import { UpdateName } from 'frontend/features/UpdateName';
 import { TelegramIcon } from 'frontend/shared/ui/TelegramIcon';
 import { LoginTelegram } from 'frontend/features/Login/LoginTelegram';
-import { useNavigate } from 'frontend/shared/lib';
 
 interface IProps {
   onFinishEmail: (email: string) => void;

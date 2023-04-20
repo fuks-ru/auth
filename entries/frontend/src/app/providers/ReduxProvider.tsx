@@ -5,7 +5,7 @@ import {
   configureStore,
   PreloadedState,
 } from '@reduxjs/toolkit';
-import { emptyApi } from '@fuks-ru/auth-client';
+import { emptyApi } from '@fuks-ru/auth-client/rtk';
 
 const rootReducer = combineReducers({
   [emptyApi.reducerPath]: emptyApi.reducer,

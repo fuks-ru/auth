@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { css } from '@linaria/core';
 import { Trans, useTranslation } from 'react-i18next';
 import { MaskedInput } from 'antd-mask-input';
-import { useLoginPhoneMutation } from '@fuks-ru/auth-client';
+import { useLoginPhoneMutation } from '@fuks-ru/auth-client/rtk';
 
 import { Link } from 'frontend/shared/ui';
 import { routes } from 'frontend/shared/config';
